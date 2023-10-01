@@ -1,0 +1,25 @@
+# FROM ubuntu:latest
+FROM python:3.11.5
+
+RUN apt-get update && apt-get install -y git  && apt-get -qy install netcat-traditional
+# инструменты необходимые внутри контейнера на стадии отладки
+RUN apt-get install -y net-tools && apt-get install -y iputils-ping && apt-get install -y mc 
+
+# ADD ssh-private-key /root/.ssh/git_tw_rsa
+COPY /git_con/git_tw_rsa /root/.ssh/
+COPY /git_con/config /root/.ssh/
+COPY /git_con/known_hosts /root/.ssh/
+RUN git clone git@github.com:AlexanderMelnikov/docker-django.git /repo
+
+# ARG username=$GIT_USERNAME
+# ARG password=$GIT_PASSWORD
+# ARG username='LevonAS'
+# ARG password='asdasdas'
+# RUN git clone https://username:password@github.com:AlexanderMelnikov/docker-django.git /repo
+# RUN git clone https://username:password@github.com:eugenp/tutorials.git
+
+
+COPY ./requirements.txt /repo/
+RUN pip install -r /repo/requirements.txt
+
+RUN python /repo/app/manage.py runserver
