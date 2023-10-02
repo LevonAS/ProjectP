@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+
+  web:
+    # Билд образа для продакшена
+    hostname: django-web
+    container_name: django-web
+    build:
+      context: .
+      dockerfile: Dockerfile.git
+    command: python /repo/app/manage.py runserver 0.0.0.0:8000
+    # Открываем порт 8000 внутри и снаружи
+    ports:
+      - 8000:8000
+    # Файл содержащий переменные для контейнера
+    env_file:
+      - ./.env.dev
