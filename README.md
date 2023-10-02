@@ -21,8 +21,8 @@
 - django-web
 - DB Postgres
 - pgAdmin - управление для Postgres
-- nginx
-\Будет позже.
+- nginx\
+Будет позже.
 
 ### Окружение разработки
 - asgiref==3.7.2
