@@ -21,7 +21,8 @@
 - django-web
 - DB Postgres
 - pgAdmin - управление для Postgres
-- nginx\
+- nginx
+
 Будет позже.
 
 ### Окружение разработки
