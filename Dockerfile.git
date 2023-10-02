@@ -25,6 +25,6 @@ RUN git clone git@github.com:LevonAS/ProjectP.git /repo
 
 
 # COPY ./requirements.txt /repo/
-RUN pip install -r /repo/requirements.txt
+RUN pip install -r /repo/app/requirements.txt
 
 ## RUN python /repo/app/manage.py runserver 0.0.0.0:8000
