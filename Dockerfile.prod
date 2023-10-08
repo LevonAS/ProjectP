@@ -3,6 +3,9 @@ FROM python:3.11.5
 
 # рабочая директория внутри проекта
 WORKDIR /djangoapp
+RUN mkdir ./app/ && mkdir ./app/static && mkdir ./app/media
+# RUN mkdir ./app/static
+# RUN mkdir ./app/media
 
 # переменные окружения для python
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -11,32 +14,37 @@ ENV PYTHONUNBUFFERED 1
 RUN apt-get update && apt-get install -y git  && apt-get -qy install netcat-traditional
 
 # инструменты необходимые внутри контейнера на стадии отладки
-RUN apt-get install -y net-tools && apt-get install -y iputils-ping && apt-get install -y mc 
+# RUN apt-get install -y net-tools && apt-get install -y iputils-ping && apt-get install -y mc 
 
 # Устанавливаем зависимости для Postgre
-# RUN apt-get install  postgresql-dev gcc python3-dev musl-dev
+RUN apt-get install -y postgresql postgresql-contrib libpq-dev python3-dev
 
-# # прописываем заливку репозитория APP с GIT в контейнер
-# ADD /git_con/git_tw_rsa /root/.ssh/git_tw_rsa
-# ADD /git_con/config /root/.ssh/
-# RUN ssh-keyscan -H github.com  >> ~/.ssh/known_hosts
-# # COPY /git_con/git_tw_rsa /root/.ssh/
-# # COPY /git_con/known_hosts /root/.ssh/
-# RUN git clone git@github.com:LevonAS/ProjectP.git .
+# прописываем заливку репозитория App с GIT в контейнер через токен
+ADD /git_con/git_tw_rsa /root/.ssh/git_tw_rsa
+RUN chmod 600 /root/.ssh/git_tw_rsa
+ADD /git_con/config /root/.ssh/
+RUN ssh-keyscan -H github.com  >> ~/.ssh/known_hosts
+# COPY /git_con/git_tw_rsa /root/.ssh/
+# COPY /git_con/known_hosts /root/.ssh/
+RUN git clone git@github.com:LevonAS/ProjectP.git .
 
+# # прописываем заливку репозитория App с GIT в контейнер через логин/пароль
 # ARG username=$GIT_USERNAME
 # ARG password=$GIT_PASSWORD
 # ARG username='LevonAS'
 # ARG password='asdasdas'
-# RUN git clone https://username:password@github.com:LevonAS/ProjectP.git /repo
+# RUN git clone https://username:password@github.com:LevonAS/ProjectP.git .
 
+# загрузка репозитория из локальной папки разработки
+# COPY . .
 
-COPY . .
-
+#
 RUN pip install --upgrade pip
 RUN pip install -r ./app/requirements.txt
-
+# раздача прав запуска на исполняемые скрипты
 RUN chmod +x ./app/run.sh
 RUN chmod +x ./app/entrypoint.sh
+RUN chmod +x ./app/ent.sh
 
-# ENTRYPOINT ["./app/entrypoint.sh"]
+# Проверка на доступность DB Postgres
+ENTRYPOINT ["./app/entrypoint.sh"]

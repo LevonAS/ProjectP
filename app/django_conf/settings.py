@@ -98,6 +98,8 @@ DATABASES = {
         'PORT': os.getenv('POSTGRES_PORT', '5432'),
     }
 }
+
+# DB PostgreSQL
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
@@ -144,13 +146,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
+# STATIC_URL = 'static/'
 
-# STATICFILES_DIRS = (
-#     # os.path.join(BASE_DIR, '..', "frontend", "src"),
-# )
-# MEDIA_ROOT = os.path.join(BASE_DIR, '..', 'public', 'media')
-# MEDIA_URL = '/media/'
+# То как статический файл будет отображаться в url
+# Пример /static/1.jpg
+STATIC_URL = "/static/"
+# По какому пути можно будет найти файлы
+STATIC_ROOT = BASE_DIR / "static"
+
+# Аналогично static файлам
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
