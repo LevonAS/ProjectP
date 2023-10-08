@@ -641,7 +641,6 @@ footer .social ul img {
 }
 
 
-
 @media (max-width: 1400px) {
     .about {
         flex-direction: column;
@@ -659,6 +658,7 @@ footer .social ul img {
     .faq__title {
         margin-bottom: 77px;
     }
+
     /* .menu {
         display: none;
     } */
@@ -691,6 +691,7 @@ footer .social ul img {
     footer .social ul li {
         margin: 20px 5px;
     }
+
 }
 
 @media (max-width: 777px) {
@@ -897,6 +898,7 @@ footer .social ul img {
         margin-top: 38px;
     }
 
+
     .header {
         flex-direction: column;
         justify-content: center;
@@ -918,4 +920,5 @@ footer .social ul img {
     footer .social span {
         margin: 0;
     }
+
 }
