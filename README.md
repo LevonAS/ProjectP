@@ -21,7 +21,7 @@
 Для сборки контейнеров необходимы:
 - папка git_con с содержимым
 - Dockerfile.prod
-- docker-compose.yml
+- docker-compose.prod.yml
 - nginx.conf
 - .env
 
@@ -38,7 +38,7 @@
 Сайт работает с DB Postgres из контейнера.\
 Сайт отвечает на порту 8080 (gunicorn через nginx-proxy).\
 При запуске проводятся миграции и сборка статических файлов.\
-Папки проекта static и media синхронизируются с nginx через docker.\
+Папки проекта static и media синхронизируются с nginx через docker.
 
 
 
