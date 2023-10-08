@@ -3,7 +3,7 @@ FROM python:3.11.5
 
 # рабочая директория внутри проекта
 WORKDIR /djangoapp
-RUN mkdir ./app/ && mkdir ./app/static && mkdir ./app/media
+# RUN mkdir ./app/ && mkdir ./app/static && mkdir ./app/media
 # RUN mkdir ./app/static
 # RUN mkdir ./app/media
 
