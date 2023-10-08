@@ -44,7 +44,6 @@ RUN pip install -r ./app/requirements.txt
 # раздача прав запуска на исполняемые скрипты
 RUN chmod +x ./app/run.sh
 RUN chmod +x ./app/entrypoint.sh
-RUN chmod +x ./app/ent.sh
 
 # Проверка на доступность DB Postgres
 ENTRYPOINT ["./app/entrypoint.sh"]
