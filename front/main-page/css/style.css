@@ -601,6 +601,44 @@ li.menu-li:hover a:after{
     font-size: 14px;
 }
 
+/* FOOTER */
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 28px;
+    height: 200px;
+}
+footer .logo {
+    padding-left: 0px;
+    width: 249px;
+    height: 55px;
+    overflow: hidden;
+}
+footer .logo img {
+    width: 100%;
+    height: 100%;
+}
+footer .social {
+    display: flex;
+    align-items: center;
+}
+footer .social span {
+    margin-right: 37px;
+    font-size: 18px;
+}
+footer .social ul {
+    display: flex;
+    list-style: none;
+}
+footer .social ul li {
+    margin: 20px 10px;
+}
+footer .social ul img {
+    height: 44px;
+    width: 44px;
+}
 
 
 @media (max-width: 1400px) {
@@ -620,6 +658,40 @@ li.menu-li:hover a:after{
     .faq__title {
         margin-bottom: 77px;
     }
+
+    /* .menu {
+        display: none;
+    } */
+    .menu__detailed {
+        display: none;
+    }
+    .header .menu-btn {
+        font-size: 16px;
+        margin: 0;
+    }
+    .header .menu-btn:hover {
+        font-size: 16px;
+        margin: 0; 
+    }
+    .header .menu ul a {
+        margin: 0px 0px;
+        font-size: 14px;
+    }
+    .header .logo {
+        width: 155px;
+        height: 44px;
+    }
+    footer .logo {
+        width: 155px;
+        height: 44px;
+    }
+    footer .social span {
+        margin-right: 17px;
+    }
+    footer .social ul li {
+        margin: 20px 5px;
+    }
+
 }
 
 @media (max-width: 777px) {
@@ -825,4 +897,28 @@ li.menu-li:hover a:after{
     .form__email p {
         margin-top: 38px;
     }
+
+
+    .header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        /* margin: 0px 28px; */
+        height: 200px;
+    }
+    .menu-btn {
+        font-size: 16px;
+    }
+
+    footer {
+        flex-direction: column-reverse;
+        justify-content: center;
+    }
+    footer .social {
+        flex-direction: column;
+    }
+    footer .social span {
+        margin: 0;
+    }
+
 }
