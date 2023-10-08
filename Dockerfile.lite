@@ -34,5 +34,7 @@ RUN git clone git@github.com:LevonAS/ProjectP.git .
 #
 RUN pip install --upgrade pip
 RUN pip install -r ./app/requirements.txt
+# раздача прав запуска на исполняемые скрипты
+RUN chmod +x ./app/run.dev.sh
 
 ## RUN python /repo/app/manage.py runserver 0.0.0.0:8000
