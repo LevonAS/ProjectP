@@ -9,7 +9,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.lite
-    command: python ./app/manage.py runserver 0.0.0.0:8000
+    # command: python ./app/manage.py runserver 0.0.0.0:8000
+    command: sh -c "./app/run.dev.sh"
     # Открываем порт 8000 внутри и снаружи
     ports:
       - 8000:8000
