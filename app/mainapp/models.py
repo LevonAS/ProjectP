@@ -3,6 +3,30 @@ from django.db import models
 from uuid import uuid4
 
 
+class Advantage(models.Model):
+    id = models.UUIDField(default=uuid4, primary_key=True)
+    title = models.CharField(verbose_name="Преимущество", max_length=150)
+    description = models.TextField(verbose_name="Описание", blank=True)
+    image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
+    deleted = models.BooleanField(verbose_name="Удален", default=False)
+
+    class Meta:
+        verbose_name = "Преимущество"
+        verbose_name_plural = "Преимущества"
+        ordering = ["title"]
+
+
+class QuestionAnswer(models.Model):
+    id = models.UUIDField(default=uuid4, primary_key=True)
+    question = models.TextField(verbose_name="Вопрос")
+    answer = models.TextField(verbose_name="Ответ")
+    deleted = models.BooleanField(verbose_name="Удален", default=False)
+
+    class Meta:
+        verbose_name = "Вопрос - ответ"
+        verbose_name_plural = "Вопросы - ответы"
+
+
 class Tag(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     text = models.CharField(verbose_name="Текст", max_length=50)
@@ -11,6 +35,31 @@ class Tag(models.Model):
         verbose_name = "Тег"
         verbose_name_plural = "Теги"
         ordering = ["text"]
+
+
+class Benefit(models.Model):
+    id = models.UUIDField(default=uuid4, primary_key=True)
+    title = models.CharField(verbose_name="Польза", max_length=150)
+    image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
+    deleted = models.BooleanField(verbose_name="Удален", default=False)
+
+    class Meta:
+        verbose_name = "Польза"
+        verbose_name_plural = "Польза"
+        ordering = ["title"]
+
+
+class Talent(models.Model):
+    id = models.UUIDField(default=uuid4, primary_key=True)
+    title = models.CharField(verbose_name="Талант", max_length=255)
+    description = models.TextField(verbose_name="Описание", blank=True)
+    image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
+    deleted = models.BooleanField(verbose_name="Удален", default=False)
+
+    class Meta:
+        verbose_name = "Талант"
+        verbose_name_plural = "Таланты"
+        ordering = ["title"]
 
 
 class Course(models.Model):
@@ -30,6 +79,8 @@ class Course(models.Model):
     updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
     deleted = models.BooleanField(verbose_name="Удален", default=False)
     tags = models.ManyToManyField(Tag, verbose_name="Теги курса")
+    benefits = models.ManyToManyField(Benefit, verbose_name="Польза курса")
+    talents = models.ManyToManyField(Talent, verbose_name="Навыки, которые дает курс")
     students = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name="Студенты курса")
 
     class Meta:
@@ -97,55 +148,6 @@ class Onlinelesson(models.Model):
         verbose_name = "Онлайн урок"
         verbose_name_plural = "Онлайн уроки"
         ordering = ["-created_at"]
-
-
-class Advantage(models.Model):
-    id = models.UUIDField(default=uuid4, primary_key=True)
-    title = models.CharField(verbose_name="Преимущество", max_length=150)
-    description = models.TextField(verbose_name="Описание", blank=True)
-    image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
-    deleted = models.BooleanField(verbose_name="Удален", default=False)
-
-    class Meta:
-        verbose_name = "Преимущество"
-        verbose_name_plural = "Преимущества"
-        ordering = ["title"]
-
-
-class Benefit(models.Model):
-    id = models.UUIDField(default=uuid4, primary_key=True)
-    title = models.CharField(verbose_name="Польза", max_length=150)
-    image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
-    deleted = models.BooleanField(verbose_name="Удален", default=False)
-
-    class Meta:
-        verbose_name = "Польза"
-        verbose_name_plural = "Польза"
-        ordering = ["title"]
-
-
-class QuestionAnswer(models.Model):
-    id = models.UUIDField(default=uuid4, primary_key=True)
-    question = models.TextField(verbose_name="Вопрос")
-    answer = models.TextField(verbose_name="Ответ")
-    deleted = models.BooleanField(verbose_name="Удален", default=False)
-
-    class Meta:
-        verbose_name = "Вопрос - ответ"
-        verbose_name_plural = "Вопросы - ответы"
-
-
-class Talent(models.Model):
-    id = models.UUIDField(default=uuid4, primary_key=True)
-    title = models.CharField(verbose_name="Талант", max_length=255)
-    description = models.TextField(verbose_name="Описание", blank=True)
-    image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
-    deleted = models.BooleanField(verbose_name="Удален", default=False)
-
-    class Meta:
-        verbose_name = "Талант"
-        verbose_name_plural = "Таланты"
-        ordering = ["title"]
 
 
 class StudentsWork(models.Model):
