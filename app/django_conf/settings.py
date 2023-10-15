@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
 from pathlib import Path
+
+# import django.contrib.auth.backends
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -47,6 +49,11 @@ INSTALLED_APPS = [
     'authapp',
     'mainapp',
 ]
+
+AUTHENTICATION_BACKENDS = (
+    'authapp.auth.EmailAuthBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

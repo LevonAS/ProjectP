@@ -29,7 +29,7 @@ class QuestionAnswer(models.Model):
 
 class Tag(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
-    text = models.CharField(verbose_name="Текст", max_length=50)
+    text = models.CharField(verbose_name="Текст тега", max_length=50)
 
     class Meta:
         verbose_name = "Тег"
@@ -160,3 +160,15 @@ class StudentsWork(models.Model):
     class Meta:
         verbose_name = "Работа студента"
         verbose_name_plural = "Работы студентов"
+
+
+class PromoCode(models.Model):
+    id = models.UUIDField(default=uuid4, primary_key=True)
+    text = models.CharField(verbose_name="Промокод", max_length=50)
+    created_at = models.DateTimeField(verbose_name="Создан", auto_now_add=True)
+    expiration_date = models.DateTimeField(verbose_name="Действует до")
+
+    class Meta:
+        verbose_name = "Промокод"
+        verbose_name_plural = "Промокоды"
+        ordering = ["-created_at"]
