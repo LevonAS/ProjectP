@@ -125,8 +125,8 @@ class Mentor(models.Model):
 
 class Application(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
-    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name="applications")
-    course_id = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="applications")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name="applications")
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="applications")
     approved = models.BooleanField(verbose_name="Заявка подтверждена", default=False)
     created_at = models.DateTimeField(verbose_name='Создана', auto_now_add=True)
 
@@ -141,7 +141,7 @@ class Videolesson(models.Model):
     title = models.CharField(verbose_name="Название видеоурока", max_length=150)
     description = models.TextField(verbose_name="Описание видеоурока", blank=True)
     path_to_file = models.FilePathField(path="")
-    course_id = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="videolessons")
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="videolessons")
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
@@ -162,7 +162,7 @@ class Onlinelesson(models.Model):
     title = models.CharField(verbose_name="Название онлайн-урока", max_length=150)
     link = models.CharField(verbose_name="Ссылка на онлайн-урок", max_length=150, blank=True)
     lesson_date = models.DateTimeField(verbose_name="Дата онлайн-урока")
-    course_id = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="onlinelessons")
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="onlinelessons")
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
     deleted = models.BooleanField(verbose_name="Удален", default=False)
@@ -181,7 +181,7 @@ class StudentsWork(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(verbose_name="Название", max_length=255)
     description = models.TextField(verbose_name="Описание", blank=True)
-    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name="studentworks")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name="studentworks")
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
 
     def __str__(self):
