@@ -10,6 +10,9 @@ class Advantage(models.Model):
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
     deleted = models.BooleanField(verbose_name="Удален", default=False)
 
+    def __str__(self):
+        return self.title
+
     class Meta:
         verbose_name = "Преимущество"
         verbose_name_plural = "Преимущества"
@@ -22,6 +25,9 @@ class QuestionAnswer(models.Model):
     answer = models.TextField(verbose_name="Ответ")
     deleted = models.BooleanField(verbose_name="Удален", default=False)
 
+    def __str__(self):
+        return self.question
+
     class Meta:
         verbose_name = "Вопрос - ответ"
         verbose_name_plural = "Вопросы - ответы"
@@ -30,6 +36,9 @@ class QuestionAnswer(models.Model):
 class Tag(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     text = models.CharField(verbose_name="Текст тега", max_length=50)
+
+    def __str__(self):
+        return self.text
 
     class Meta:
         verbose_name = "Тег"
@@ -43,6 +52,9 @@ class Benefit(models.Model):
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
     deleted = models.BooleanField(verbose_name="Удален", default=False)
 
+    def __str__(self):
+        return self.title
+
     class Meta:
         verbose_name = "Польза"
         verbose_name_plural = "Польза"
@@ -55,6 +67,9 @@ class Talent(models.Model):
     description = models.TextField(verbose_name="Описание", blank=True)
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
     deleted = models.BooleanField(verbose_name="Удален", default=False)
+
+    def __str__(self):
+        return self.title
 
     class Meta:
         verbose_name = "Талант"
@@ -78,10 +93,13 @@ class Course(models.Model):
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
     deleted = models.BooleanField(verbose_name="Удален", default=False)
-    tags = models.ManyToManyField(Tag, verbose_name="Теги курса")
-    benefits = models.ManyToManyField(Benefit, verbose_name="Польза курса")
-    talents = models.ManyToManyField(Talent, verbose_name="Навыки, которые дает курс")
-    students = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name="Студенты курса")
+    tags = models.ManyToManyField(Tag, verbose_name="Теги курса", related_name="courses")
+    benefits = models.ManyToManyField(Benefit, verbose_name="Польза курса", related_name="courses")
+    talents = models.ManyToManyField(Talent, verbose_name="Навыки, которые дает курс", related_name="courses")
+    students = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name="Студенты курса", related_name="courses")
+
+    def __str__(self):
+        return self.title
 
     class Meta:
         verbose_name = "Курс"
@@ -94,7 +112,10 @@ class Mentor(models.Model):
     first_name = models.CharField(verbose_name="Имя ментора", max_length=150)
     last_name = models.CharField(verbose_name="Фамилия ментора", max_length=150)
     photo = models.ImageField(verbose_name="Фото ментора", blank=True, null=True, upload_to="")
-    courses = models.ManyToManyField(Course, verbose_name="")
+    courses = models.ManyToManyField(Course, verbose_name="Курсы", related_name="mentors")
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
 
     class Meta:
         verbose_name = "Ментор"
@@ -104,10 +125,10 @@ class Mentor(models.Model):
 
 class Application(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
-    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
-    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name="applications")
+    course_id = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="applications")
     approved = models.BooleanField(verbose_name="Заявка подтверждена", default=False)
-    created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
+    created_at = models.DateTimeField(verbose_name='Создана', auto_now_add=True)
 
     class Meta:
         verbose_name = "Заявка"
@@ -120,12 +141,15 @@ class Videolesson(models.Model):
     title = models.CharField(verbose_name="Название видеоурока", max_length=150)
     description = models.TextField(verbose_name="Описание видеоурока", blank=True)
     path_to_file = models.FilePathField(path="")
-    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course_id = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="videolessons")
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
     viewed = models.BooleanField(verbose_name="Просмотрен", default=False)
     deleted = models.BooleanField(verbose_name="Удален", default=False)
+
+    def __str__(self):
+        return self.title
 
     class Meta:
         verbose_name = "Видеоурок"
@@ -136,13 +160,16 @@ class Videolesson(models.Model):
 class Onlinelesson(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(verbose_name="Название онлайн-урока", max_length=150)
-    link = models.CharField(verbose_name="Ссылка на онлайн-урок", max_length=150)
+    link = models.CharField(verbose_name="Ссылка на онлайн-урок", max_length=150, blank=True)
     lesson_date = models.DateTimeField(verbose_name="Дата онлайн-урока")
-    course_id = models.ForeignKey(Course, on_delete=models.CASCADE)
+    course_id = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="onlinelessons")
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
     deleted = models.BooleanField(verbose_name="Удален", default=False)
-    students = models.ManyToManyField(settings.AUTH_USER_MODEL)
+    students = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="onlinelessons")
+
+    def __str__(self):
+        return self.title
 
     class Meta:
         verbose_name = "Онлайн урок"
@@ -154,8 +181,11 @@ class StudentsWork(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(verbose_name="Название", max_length=255)
     description = models.TextField(verbose_name="Описание", blank=True)
-    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True)
+    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name="studentworks")
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
+
+    def __str__(self):
+        return self.title
 
     class Meta:
         verbose_name = "Работа студента"
@@ -167,6 +197,9 @@ class PromoCode(models.Model):
     text = models.CharField(verbose_name="Промокод", max_length=50)
     created_at = models.DateTimeField(verbose_name="Создан", auto_now_add=True)
     expiration_date = models.DateTimeField(verbose_name="Действует до")
+
+    def __str__(self):
+        return self.text
 
     class Meta:
         verbose_name = "Промокод"

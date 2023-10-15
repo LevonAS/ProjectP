@@ -65,7 +65,7 @@ class StudentUser(AbstractUser):
     REQUIRED_FIELDS = ['first_name', 'phone_number']
 
     def __str__(self):
-        return self.email
+        return f'{self.first_name} {self.email}'
 
     def is_activation_key_expired(self):
         if now() <= self.activation_key_expires:
