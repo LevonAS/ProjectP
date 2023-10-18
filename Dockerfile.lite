@@ -19,7 +19,7 @@ ADD /git_con/config /root/.ssh/
 RUN ssh-keyscan -H github.com  >> ~/.ssh/known_hosts
 # COPY /git_con/git_tw_rsa /root/.ssh/
 # COPY /git_con/known_hosts /root/.ssh/
-RUN git clone git@github.com:LevonAS/ProjectP.git .
+RUN git clone https://github.com/LevonAS/ProjectP.git .
 
 # # прописываем заливку репозитория App с GIT в контейнер через логин/пароль
 # ARG username=$GIT_USERNAME
