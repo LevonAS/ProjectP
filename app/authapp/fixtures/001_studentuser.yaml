@@ -1,0 +1,20 @@
+- model: authapp.studentuser
+  pk: 1
+  fields:
+    password: pbkdf2_sha256$600000$LS9zck4qqtp0rFN09O0Ds5$OT+i3wQA9uNEcBu+fIX6Rae+TOTZQy1LsGkTniKVp74=
+    last_login: 2023-10-15 09:15:44.470443
+    is_superuser: true
+    last_name: ""
+    is_staff: true
+    is_active: true
+    date_joined: 2023-10-14 21:19:36.290
+    id: 42db7d71f8134dd198f7e8f253d9ed05
+    first_name: PetroAdminMaria
+    email: admin@local.ru
+    phone_number: 79275018932
+    age: null
+    created_at: 2023-10-14 21:19:36.491547
+    updated_at: 2023-10-14 21:19:36.496530
+    deleted: false
+    activation_key:
+    activation_key_expires: 2023-10-16 21:18:35.052501
