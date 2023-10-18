@@ -27,6 +27,8 @@ RUN ssh-keyscan -H github.com  >> ~/.ssh/known_hosts
 # COPY /git_con/git_tw_rsa /root/.ssh/
 # COPY /git_con/known_hosts /root/.ssh/
 RUN git clone git@github.com:LevonAS/ProjectP.git .
+# Если надо  залить с Github не main, а определённую ветку "TASK-41" - меняем на команду ниже
+# RUN git clone --single-branch -b TASK-41 git@github.com:LevonAS/ProjectP.git .
 
 # # прописываем заливку репозитория App с GIT в контейнер через логин/пароль
 # ARG username=$GIT_USERNAME
