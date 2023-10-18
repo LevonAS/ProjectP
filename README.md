@@ -96,6 +96,7 @@
 - requests==2.31.0
 - pytz==2023.3
 - sqlparse==0.4.3
+- Pillow==10.0.1
 - gunicorn==21.2.0
 
 - python 3.11.5
