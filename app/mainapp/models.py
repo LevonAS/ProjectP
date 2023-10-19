@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from uuid import uuid4
 
 
@@ -79,11 +80,12 @@ class Course(models.Model):
     category = models.CharField(verbose_name="Категория курса", max_length=11, choices=CourseCategory.choices)
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
-    deleted = models.BooleanField(verbose_name="Удален", default=False)
     tags = models.ManyToManyField(Tag, verbose_name="Теги курса", related_name="courses")
     benefits = models.ManyToManyField(Benefit, verbose_name="Польза курса", related_name="courses")
     talents = models.ManyToManyField(Talent, verbose_name="Навыки, которые дает курс", related_name="courses")
     students = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name="Студенты курса", related_name="courses")
+    is_popular = models.BooleanField(verbose_name="Популярный", default=False)
+    deleted = models.BooleanField(verbose_name="Удален", default=False)
 
     def __str__(self):
         return self.title
@@ -92,6 +94,9 @@ class Course(models.Model):
         verbose_name = "Курс"
         verbose_name_plural = "Курсы"
         ordering = ["title"]
+
+    # def get_absolute_url(self):
+    #     return reverse('')
 
 
 class QuestionAnswer(models.Model):
