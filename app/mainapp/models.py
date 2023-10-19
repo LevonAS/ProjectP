@@ -19,20 +19,6 @@ class Advantage(models.Model):
         ordering = ["title"]
 
 
-class QuestionAnswer(models.Model):
-    id = models.UUIDField(default=uuid4, primary_key=True)
-    question = models.TextField(verbose_name="Вопрос")
-    answer = models.TextField(verbose_name="Ответ")
-    deleted = models.BooleanField(verbose_name="Удален", default=False)
-
-    def __str__(self):
-        return self.question
-
-    class Meta:
-        verbose_name = "Вопрос - ответ"
-        verbose_name_plural = "Вопросы - ответы"
-
-
 class Tag(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     text = models.CharField(verbose_name="Текст тега", max_length=50)
@@ -79,12 +65,13 @@ class Talent(models.Model):
 
 class Course(models.Model):
     class CourseCategory(models.TextChoices):
-        ART = ("ART", "искусство")
-        DESIGN = ("DESIGN", "дизайн")
-        SOFT_SKILLS = ("SOFT_SKILLS", "soft skills")
+        ART = ("ART", "ИСКУССТВО")
+        DESIGN = ("DESIGN", "ДИЗАЙН")
+        SOFT_SKILLS = ("SOFT_SKILLS", "SOFT SKILLS")
 
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(verbose_name="Название курса", max_length=150)
+    slug = models.SlugField(verbose_name="URL", max_length=200, unique=True)
     description = models.TextField(verbose_name="Описание курса", blank=True)
     price = models.FloatField(verbose_name="Стоимость курса")
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
@@ -105,6 +92,21 @@ class Course(models.Model):
         verbose_name = "Курс"
         verbose_name_plural = "Курсы"
         ordering = ["title"]
+
+
+class QuestionAnswer(models.Model):
+    id = models.UUIDField(default=uuid4, primary_key=True)
+    question = models.TextField(verbose_name="Вопрос")
+    answer = models.TextField(verbose_name="Ответ")
+    course = models.ForeignKey(Course, blank=True, null=True, on_delete=models.CASCADE)
+    deleted = models.BooleanField(verbose_name="Удален", default=False)
+
+    def __str__(self):
+        return self.question
+
+    class Meta:
+        verbose_name = "Вопрос - ответ"
+        verbose_name_plural = "Вопросы - ответы"
 
 
 class Mentor(models.Model):
@@ -139,6 +141,7 @@ class Application(models.Model):
 class Videolesson(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(verbose_name="Название видеоурока", max_length=150)
+    slug = models.SlugField(verbose_name="URL", max_length=200, unique=True)
     description = models.TextField(verbose_name="Описание видеоурока", blank=True)
     path_to_file = models.FilePathField(path="")
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="videolessons")
@@ -160,6 +163,7 @@ class Videolesson(models.Model):
 class Onlinelesson(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(verbose_name="Название онлайн-урока", max_length=150)
+    slug = models.SlugField(verbose_name="URL", max_length=200, unique=True)
     link = models.CharField(verbose_name="Ссылка на онлайн-урок", max_length=150, blank=True)
     lesson_date = models.DateTimeField(verbose_name="Дата онлайн-урока")
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="onlinelessons")
@@ -179,7 +183,7 @@ class Onlinelesson(models.Model):
 
 class StudentsWork(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
-    title = models.CharField(verbose_name="Название", max_length=255)
+    title = models.CharField(verbose_name="Название", max_length=250)
     description = models.TextField(verbose_name="Описание", blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name="studentworks")
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
