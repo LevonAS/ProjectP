@@ -179,5 +179,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authapp.StudentUser'
 
-LOGIN_REDIRECT_URL = ''
-LOGOUT_REDIRECT_URL = ''
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'authapp:login'
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
