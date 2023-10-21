@@ -1,0 +1,30 @@
+{% load static %}
+
+<!-- Слайдер миссии -->
+<div class="site-box">
+    <section class="slider" id="anchor-about">
+        <div class="slider__container">
+            <div class="slider__card slider__fade">
+                <h1>Нестандартный подход</h1>
+                <p>Мы вдохновляем детей творчеством через эксперименты, чувства и анализ, помогая им развивать свою уникальную творческую сторону.</p>
+                <img src="{% static 'img/image05.svg' %}" alt="">
+            </div>
+            <div class="slider__card slider__fade">
+                <h1>Свобода в домашних заданиях</h1>
+                <p>Домашние задания можно делать, а можно не делать. Но мы даем домашку чтобы ребенок самостоятельно закрепил материал, с обязательным условием: включить фантазию.</p>
+                <img src="{% static 'img/image06.svg' %}" alt="">
+            </div>
+            <div class="slider__card slider__fade">
+                <h1>Поддержка индивидуальности</h1>
+                <p>Преподаватель поддержит, если ребенок захочет придать мамонту зелёный цвет, вместо традиционного коричневого. Ведь за этим что-то стоит, а мы любознательно раскроем этот секрет!</p>
+                <img src="{% static 'img/image07.svg' %}" alt="">
+            </div>
+        </div>
+        <br>
+        <div class="slider__dots">
+            <span class="slider__dot" onclick="showSlide(0)"></span>
+            <span class="slider__dot" onclick="showSlide(1)"></span>
+            <span class="slider__dot" onclick="showSlide(2)"></span>
+        </div>
+    </section>
+</div>

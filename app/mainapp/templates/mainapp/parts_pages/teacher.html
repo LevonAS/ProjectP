@@ -1,0 +1,29 @@
+{% load static %}
+
+<!-- Преподаватель -->
+<div class="site-box">
+    <section class="teacher" id="anchor-mentors">
+        <h1 class="section__title">Преподаватель</h1>
+        <div class="teacher__about">
+            <div class="teacher__photo">
+                <img src="{% static 'img/photo.png' %}" alt="">
+            </div>
+            <div class="teacher__text">
+                <div class="teacher__name">Алина Заремба<span>художник, основатель школы</span></div>
+                <div class="teacher__note">Детские рисунки похожи на петроглифы - самое первое изобразительное искусство человека. Твои рисунки - это то, чем вдохновляются даже самые великие художники.</div>
+            </div>
+        </div>
+        <div class="teacher__form">
+            <form action="#"  method="post" class="form__email">
+                <h1 class="form__title">Узнавайте новости школы первыми</h1>
+                <div class="form__inputs">
+                    <input class="form__inputs_text" type="text" name="name" placeholder="Имя">
+                    <input class="form__inputs_email" type="email" name="email" placeholder="Почта">
+                </div>
+                <input type="submit" value="Получить письмо" class="form__submit">
+                <p>Нажимая на кнопку «Получить письмо», вы принимаете условия <a href="#">пользовательского соглашения</a>.</p>
+            </form>
+            <img src="{% static 'img/image08.svg' %}" alt="" class="teacher__petroglif">
+        </div>
+    </section>
+</div>
