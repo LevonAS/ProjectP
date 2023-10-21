@@ -1,13 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "mainapp/base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+{% block title %}Петроглиф - Развивай свои креативные навыки вместе с нами{% endblock %}
 
-<body>
-    Главная страница в templates
-</body>
 
-</html>
+{% block content %}
+    {% include "mainapp/parts/video.html" %}
+    {% include "mainapp/parts/image_tree_green.html" %}
+    {% include "mainapp/parts/mission_slider.html" %}
+    {% include "mainapp/parts/task_school.html" %}
+
+    <!-- Курсы  -->
+    <!-- Обратите внимание что 1ый курс уникальный! Остальные однотипные, их можно в поток -->
+    <div class="site-box">
+        <section class="courses"  id="anchor-courses">
+            <h1 class="section__title">Наши курсы</h1>
+            <div class="courses__cards">
+
+                <div class="courses__card">
+                    <div class="courses__info">
+                        <a class="courses__age" href="#">6-10 лет</a>
+                        <a class="courses__count" href="#">4 урока</a>
+                        <a class="courses__time courses__time-unique" href="#">бесконечный доступ</a>
+                    </div>
+                    <div class="courses__name">Древний мир наскальной живописи</div>
+                    <div class="courses__for-btns">
+                        <a class="courses__for-1" href="#"><div>Для начинающих</div></a>
+                        <a class="courses__for-2" href="#"><div>О ПЕТРОГЛИФЕ</div></a>
+                    </div>
+                    <p class="courses__note">Развиваем визуальное мышление<br>Погружаемся в историю древних людей<br>Путешествуем по странам в поисках Петроглифов</p>
+                    <a class="courses__detailed" href="#"><div>Подробнее о курсе</div></a>
+                </div>
+
+                <div class="courses__card">
+                    <div class="courses__info">
+                        <a class="courses__age" href="#">7-12 лет</a>
+                        <a class="courses__count" href="#">7 уроков</a>
+                        <a class="courses__time" href="#">1,5 месяца</a>
+                    </div>
+                    <div class="courses__name">Цвет:<br>Внутри цвета</div>
+                    <a class="courses__for" href="#"><div>Для начинающих и Подготовленных</div></a>
+                    <p class="courses__note">Заглянем в мир цвета и его секретов<br>Изучим теорию Василия Кандинского<br>Поработаем с контрастом, акцентом, монохромом</p>
+                    <a class="courses__detailed" href="#"><div>Подробнее о курсе</div></a>
+                </div>
+                <div class="courses__card">
+                    <div class="courses__info">
+                        <a class="courses__age" href="#">7-12 лет</a>
+                        <a class="courses__count" href="#">7 уроков</a>
+                        <a class="courses__time" href="#">1,5 месяца</a>
+                    </div>
+                    <div class="courses__name">Форма:<br>как из треугольника получается вулкан</div>
+                    <a class="courses__for" href="#"><div>Для начинающих и Подготовленных</div></a>
+                    <p class="courses__note">Научимся видеть геометрические фигуры во всем<br>Знакомимся с Кубизмом<br>Применяем геометрические тренды в дизайне</p>
+                    <a class="courses__detailed" href="#"><div>Подробнее о курсе</div></a>
+                </div>
+                <div class="courses__card">
+                    <div class="courses__info">
+                        <a class="courses__age" href="#">7-12 лет</a>
+                        <a class="courses__count" href="#">7 уроков</a>
+                        <a class="courses__time" href="#">1,5 месяца</a>
+                    </div>
+                    <div class="courses__name">Линии и паттерны:<br>все состоит из линий</div>
+                    <a class="courses__for" href="#"><div>Для начинающих и Подготовленных</div></a>
+                    <p class="courses__note">Даем характер линиям<br>Изучаем паттерны<br>Создаем сказочных персонажей</p>
+                    <a class="courses__detailed" href="#"><div>Подробнее о курсе</div></a>
+                </div>
+            </div>
+
+            <div class="courses__all">
+                <a class="courses__all-btn" href="#">Все курсы</a>
+            </div>
+
+            <div class="courses__helpdesc">
+                <div class="courses__help">
+                    <p>Поможем выбрать курс и ответим на вопросы</p>
+                    <div class="courses__buttons">
+                        <a href="#" class="courses__button courses__button-tg"><span class="courses__button-full">Написать в Telegram</span><span class="courses__button-small">Telegram</span></a>
+                        <a href="#" class="courses__button courses__button-vk"><span class="courses__button-full">Написать в VK</span><span class="courses__button-small">VK</span></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    {% include "mainapp/parts/teacher.html" %}
+    {% include "mainapp/parts/faq_school.html" %}
+    {% include "mainapp/parts/image_tree_yellow.html" %}
+
+{% endblock %}
