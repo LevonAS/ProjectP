@@ -1,13 +1,80 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
 </head>
 
 <body>
-    Главная base-страница в templates
+    <!-- MENU -->
+    <div class="site-box">
+        <header id="header">
+            <div class="header__logo"><a href="#"><img src="{% static 'img/logo.png' %}" alt="Logo"></a></div>
+            <nav class="header__menu">
+                <ul>
+                    <li><a href="#anchor-about">О школе</a></li>
+                    <li><a href="#anchor-courses">Наши курсы</a></li>
+                    <li><a href="#anchor-mentors">Преподаватели</a></li>
+                </ul>
+            </nav>
+            <div class="header__buttons">
+                <a href="#" class="header__login" id="header__login">Войти</a>
+                <!-- <a href="#form__autorization" class="header__login" id="header__login">Войти</a> -->
+                <a href="#" class="header__detailed">О курсах</a>
+            </div>
+
+            <form action="/login/"  method="post" class="form__autorization" id="form__autorization">
+                <div class="autorization__inner">
+                    <!-- <h1 class="autorization__title">Укажите данные:</h1> -->
+                    <a href="#"><div class="autorization__close" id="autorization__close"></div></a>
+                    <div class="autorization__inputs">
+                        <input class="autorization__email" type="email" name="email" placeholder="Почта" required>
+                        <input class="autorization__password" type="password" name="password" placeholder="Пароль" required>
+                    </div>
+                    <button class="autorization__button" type="submit" name="autorization__submit">Отправить</button>
+                    <p>Если Вы первый раз, прошу <a href="#" id="autorization__registration">зарегистрироваться</a>.</p>
+                </div>
+            </form>
+            <form action="/registration/"  method="post" class="form__registration" id="form__registration">
+                <div class="registration__inner">
+                    <!-- <h1 class="autorization__title">Укажите данные:</h1> -->
+                    <a href="#"><div class="registration__close" id="registration__close"></div></a>
+                    <div class="registration__inputs">
+                        <input class="registration__name" type="text" name="name" placeholder="Имя" required>
+                        <input class="registration__email" type="email" name="email" placeholder="Почта" required>
+                        <input class="registration__phone" type="tel" name="phone" placeholder="Телефон" required>
+                        <input class="registration__password" type="password" name="password" placeholder="Пароль" required id="registration__password">
+                        <input class="registration__password2" type="password" name="password2" placeholder="Повторите пароль" required id="registration__password2">
+                    </div>
+                    <div id="registration__error">Пароли не совпадают! Отправка формы не возможна.</div>
+                    <button class="registration__button" type="submit" name="registration__submit" id="registration__button">Отправить</button>
+                    <p>Если Вы регистрировались, то <a href="#" id="registration__autorization">авторизоваться</a>.</p>
+                </div>
+            </form>
+        </header>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <!-- FOOTER -->
+    <div class="site-box">
+        <footer>
+            <span>Мы в соц-сетях:</span>
+            <ul>
+                <li><a href="#"><img src="{% static 'img/vk.svg' %}" alt="VK"></a></li>
+                <li><a href="#"><img src="{% static 'img/in.svg' %}" alt=""></a></li>
+                <li><a href="#"><img src="{% static 'img/tg.svg' %}" alt="Telegram"></a></li>
+            </ul>
+        </footer>
+    </div>
+
+
+    <script src="{% static 'js/index.js' %}"></script>
 </body>
 
 </html>
