@@ -1,0 +1,28 @@
+{% load static %}
+
+<!-- Видео (только для главной страницы!) -->
+<section class="wallpaper">
+    <div class="wallpaper__overlay">
+        <p class="wallpaper__overlay-1">Для детей от 6 до 18 лет</p>
+        <h1 class="wallpaper__overlay-2">Школа для развития креативных навыков для детей и подростков</h1>
+        <p class="wallpaper__overlay-3">Посмотреть видео о школе</p>
+        <a href="#wallpaper__zatemnenie"><div class="wallpaper__btn"></div></a>
+        <!-- <div class="wallpaper__btn"><a href="#"><img src="img/video_play_btn.svg" alt="Play"></a></div> -->
+    </div>
+    <video loop muted="" autoplay="autoplay" playsinline="playsinline" poster="{% static 'img/poster.png' %}" class="wallpaper__video">
+        <source src="" type="video/mp4">
+        <source src="" type="video/webm">
+    </video>
+    <div id="wallpaper__zatemnenie">
+        <a href="#" class="wallpaper__close">
+            <div id="wallpaper__okno">
+                <video controls loop muted="" autoplay="autoplay" playsinline="playsinline" poster="{% static 'img/poster.png' %}" class="wallpaper__video">
+                    <source src="{% static 'vid/plane.mp4' %}" type="video/mp4">
+                    <source src="{% static 'vid/plane.webm' %}" type="video/webm">
+                </video>
+                <!-- Всплывающее окошко!<br> -->
+                <!-- <a href="#" class="wallpaper__close">Закрыть окно</a> -->
+            </div>
+        </a>
+    </div>
+</section>
