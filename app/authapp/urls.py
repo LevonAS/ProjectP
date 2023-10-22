@@ -1,12 +1,16 @@
 from django.urls import path
 
-from authapp import views
-from authapp.apps import AuthappConfig
+from authapp.views import StudentRegisterView, EmailConfirmationSentView, UserConfirmEmailView, EmailConfirmedView,\
+    EmailConfirmationFailedView, CustomLoginView, CustomLogoutView
 
-app_name = AuthappConfig.name
+app_name = 'authapp'
 
 urlpatterns = [
-    path("login/", views.CustomLoginView.as_view(), name="login"),
-    path("logout/", views.CustomLogoutView.as_view(), name="logout"),
-
+    path('register/', StudentRegisterView.as_view(), name='register'),
+    path('email-confirmation-sent/', StudentRegisterView.as_view(), name='email_confirmation_sent'),
+    path('confirm-email/<str:email>/<str:activation_key>/', UserConfirmEmailView.as_view(), name='confirm_email'),
+    path('email-confirmed/', EmailConfirmedView.as_view(), name='email_confirmed'),
+    path('email-confirmation-failed/', EmailConfirmationFailedView.as_view(), name='email_confirmation_failed'),
+    path("login/", CustomLoginView.as_view(), name="login"),
+    path("logout/", CustomLogoutView.as_view(), name="logout"),
 ]

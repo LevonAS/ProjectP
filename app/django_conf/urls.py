@@ -21,5 +21,7 @@ from mainapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path("authapp/", include("authapp.urls", namespace="authapp")),
+
+    # path('courses/', include('mainapp.urls', namespace='courses')),
+    path('auth/', include('authapp.urls', namespace='authapp')),
 ]
