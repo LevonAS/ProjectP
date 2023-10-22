@@ -96,7 +96,7 @@ class Course(models.Model):
         ordering = ["title"]
 
     # def get_absolute_url(self):
-    #     return reverse('')
+    #     return reverse('courses: course_detail', args=[self.slug])
 
 
 class QuestionAnswer(models.Model):
@@ -206,6 +206,7 @@ class PromoCode(models.Model):
     text = models.CharField(verbose_name="Промокод", max_length=50)
     created_at = models.DateTimeField(verbose_name="Создан", auto_now_add=True)
     expiration_date = models.DateTimeField(verbose_name="Действует до")
+    students = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="promocodes")
 
     def __str__(self):
         return self.text
