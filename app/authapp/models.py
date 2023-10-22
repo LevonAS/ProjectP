@@ -48,7 +48,7 @@ class StudentUserManager(BaseUserManager):
 class StudentUser(AbstractUser):
     id = models.UUIDField(default=uuid4, primary_key=True)
     username = None
-    first_name = models.CharField(verbose_name="Имя", max_length=150, blank=False)
+    first_name = models.CharField(verbose_name="Имя", max_length=30, blank=False)
     email = models.EmailField(verbose_name="Адрес электронной почты", unique=True, blank=False,
                               validators=[EmailValidator])
     phone_number = models.CharField(verbose_name="Номер телефона", max_length=13, unique=True, blank=False)

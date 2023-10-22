@@ -45,10 +45,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 'django.contrib.sites',
 
     'authapp',
     'mainapp',
 ]
+
+# SITE_ID = 1
 
 AUTHENTICATION_BACKENDS = (
     'authapp.auth.EmailAuthBackend',
@@ -143,7 +146,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ru-RU'
 
 # TIME_ZONE = 'UTC'
 TIME_ZONE = "Europe/Moscow"
@@ -175,3 +178,12 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authapp.StudentUser'
+
+# Настройки сервера исходящей почты (SMTP)
+DOMAIN_NAME = 'http://localhost:8000'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'pereverzeva.mary@gmail.com'
+EMAIL_HOST_PASSWORD = 'uhgi hgau ltwl ldik'
+EMAIL_USE_TLS = True

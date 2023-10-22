@@ -1,0 +1,9 @@
+{% extends "authapp/base.html" %}
+
+{% block content %}
+{% csrf_token %}
+<div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Электронная почта подтверждена!</h4>
+    <p>Ваш адрес электронной почты успешно подтвержден. Спасибо за регистрацию!</p>
+</div>
+{% endblock %}
