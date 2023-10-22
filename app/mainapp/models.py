@@ -1,3 +1,4 @@
+import os
 from django.conf import settings
 from django.db import models
 from django.urls import reverse
@@ -72,12 +73,11 @@ class Course(models.Model):
 
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(verbose_name="Название курса", max_length=150)
-    slug = models.SlugField(verbose_name="URL", max_length=200, unique=True)
+    slug = models.SlugField(verbose_name="URL", max_length=200, unique=True, blank=True, null=True)
     description = models.TextField(verbose_name="Описание курса", blank=True)
     price = models.FloatField(verbose_name="Стоимость курса")
-    image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
-    teaser_video = models.FilePathField(verbose_name="Тизер-видео", blank=True, null=True, path="")
-    category = models.CharField(verbose_name="Категория курса", max_length=11, choices=CourseCategory.choices)
+    image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="сourses_images")
+    teaser_video = models.FilePathField(verbose_name="Тизер-видео", blank=True, null=True, path=os.path.join(settings.MEDIA_ROOT, "teaser_video"))
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
     tags = models.ManyToManyField(Tag, verbose_name="Теги курса", related_name="courses")
@@ -148,7 +148,7 @@ class Videolesson(models.Model):
     title = models.CharField(verbose_name="Название видеоурока", max_length=150)
     slug = models.SlugField(verbose_name="URL", max_length=200, unique=True)
     description = models.TextField(verbose_name="Описание видеоурока", blank=True)
-    path_to_file = models.FilePathField(path="")
+    path_to_file = models.FilePathField(path=os.path.join(settings.MEDIA_ROOT, "video_lessons"))
     course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="videolessons")
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
