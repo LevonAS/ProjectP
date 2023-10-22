@@ -23,5 +23,5 @@ urlpatterns = [
     path('', views.index, name='index'),
 
     # path('courses/', include('mainapp.urls', namespace='courses')),
-    path('auth/', include('authapp.urls', namespace='authapp'))
+    path('auth/', include('authapp.urls', namespace='authapp')),
 ]

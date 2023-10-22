@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hhhh</title>
+</head>
+<body>
+{% include 'includes/messages.html' %}
+
+<h2>Вход пользователя</h2>
+<form method="POST">
+    {% csrf_token %}
+    <p>
+        <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username" maxlength="150"
+               class="textinput textInput form-control" required="" id="id_username" placeholder="Username">
+    </p>
+    <input type="password" name="password" autocomplete="current-password"
+
+           class="textinput textInput form-control" required="" id="id_password" placeholder="Password">
+    <button type="submit"
+            class="btn btn-primary btn-block">Войти
+    </button>
+</form>
+</body>
+</html>

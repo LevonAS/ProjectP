@@ -178,10 +178,6 @@ MEDIA_ROOT = BASE_DIR / "media"
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-AUTH_USER_MODEL = 'authapp.StudentUser'
-
 # Настройки сервера исходящей почты (SMTP)
 DOMAIN_NAME = 'http://localhost:8000'
 
@@ -190,3 +186,23 @@ EMAIL_PORT = '587'
 EMAIL_HOST_USER = 'pereverzeva.mary@gmail.com'
 EMAIL_HOST_PASSWORD = 'uhgi hgau ltwl ldik'
 EMAIL_USE_TLS = True
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'authapp.StudentUser'
+
+<<<<<<< HEAD
+# Настройки сервера исходящей почты (SMTP)
+DOMAIN_NAME = 'http://localhost:8000'
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_HOST_USER = 'pereverzeva.mary@gmail.com'
+EMAIL_HOST_PASSWORD = 'uhgi hgau ltwl ldik'
+EMAIL_USE_TLS = True
+=======
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'authapp:login'
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+>>>>>>> task48
