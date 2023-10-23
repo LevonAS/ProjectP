@@ -21,6 +21,8 @@ from mainapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
+    path('login/', views.login_view),
+    path('logout/', views.logout_view),
 
     # path('courses/', include('mainapp.urls', namespace='courses')),
     path('auth/', include('authapp.urls', namespace='authapp')),

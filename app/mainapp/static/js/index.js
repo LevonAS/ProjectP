@@ -45,23 +45,26 @@ function autorization() {
     let rgs = document.getElementById("autorization__registration");
     let frm_rgs = document.getElementById("form__registration");   
 
-    btn.addEventListener('click', function() {
-        if (btn.innerHTML === 'Войти') {
+    if (btn) {
+        btn.addEventListener('click', function() {
+//        if (btn.innerHTML === 'Войти') {
             frm.style.display = 'block';
-        } else {
+//        }
+//        else {
             // window.location.href = '/logout/';
             // https://code.mu/ru/javascript/book/supreme/ajax/post-queries/
-            let promise = fetch('/logout/', {
-                method: 'post',
-            });
+//            let promise = fetch('/logout/', {
+//                method: 'post',
+//            });
             // https://learn.javascript.ru/fetch
             // fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits')
             //     .then(response => response.json())
             //     .then(commits => alert(commits[0].author.login));
-        }
+//        }
         // btn.innerHTML =
         //   (btn.innerHTML === 'Показать всё') ? btn.innerHTML = 'Скрыть всё' : btn.innerHTML = 'Показать всё';
-    });
+        });
+    };
 
     cls.addEventListener("click", function() {
         frm.style.display = "none";
