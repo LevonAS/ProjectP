@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # 'django.contrib.sites',
+    "markdownify.apps.MarkdownifyConfig",
 
     'authapp',
     'mainapp',
@@ -198,3 +199,11 @@ LOGIN_REDIRECT_URL = 'index'
 LOGOUT_REDIRECT_URL = 'authapp:login'
 
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+
+MARKDOWNIFY = {
+    "default": {
+        "WHITELIST_TAGS": [
+            'b', 'i', 'strong', 'a', 'p', 'br', 'hr'
+        ]
+    }
+}

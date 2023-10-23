@@ -104,6 +104,7 @@ class QuestionAnswer(models.Model):
     question = models.TextField(verbose_name="Вопрос")
     answer = models.TextField(verbose_name="Ответ")
     course = models.ForeignKey(Course, blank=True, null=True, on_delete=models.CASCADE)
+    main = models.BooleanField(verbose_name="Для главной страницы", default=False)
     deleted = models.BooleanField(verbose_name="Удален", default=False)
 
     def __str__(self):
