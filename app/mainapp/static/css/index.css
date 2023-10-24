@@ -40,6 +40,8 @@ header {
     align-items: center;
     font-weight: 400;
     position: relative;
+    margin-top: calc(77px - clamp(20px, 4vw, 43px));
+    margin-bottom: calc(77px - clamp(57px, 4vw, 63px));
 }
 
 .header__logo {
