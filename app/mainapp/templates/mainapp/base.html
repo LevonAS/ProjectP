@@ -46,7 +46,8 @@
                     <p>Если Вы первый раз, прошу <a href="#" id="autorization__registration">зарегистрироваться</a>.</p>
                 </div>
             </form>
-            <form action="/registration/" method="post" class="form__registration" id="form__registration">
+            <form action="registration/" method="post" class="form__registration" id="form__registration">
+                {% csrf_token %}
                 <div class="registration__inner">
                     <!-- <h1 class="autorization__title">Укажите данные:</h1> -->
                     <a href="#">
