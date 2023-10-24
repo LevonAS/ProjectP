@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 
+from authapp.models import StudentUser
+
 
 def index(request):
     context = {}
@@ -11,7 +13,7 @@ def index(request):
 
 
 
-def login_view(request):
+def view_login(request):
     context = {}
 
     # получаем из данных запроса POST отправленные через форму данные
@@ -26,9 +28,23 @@ def login_view(request):
     else:
         return HttpResponse(f"<h2>Email: {email}  Password: {password}</h2>")
 
-def logout_view(request):
+def view_logout(request):
     context = {}
 
     logout(request)
     return redirect(index)
     # return render(request, 'mainapp/index.html', context)
+
+def view_registration(request):
+    first_name = request.POST.get("name", "Undefined")
+    email = request.POST.get("email", "Undefined")
+    phone_number = request.POST.get("phone", 1)
+    password = request.POST.get("password", 1)
+
+
+
+    user = StudentUser.objects.create_user(first_name, email, phone_number, password)
+    # user.last_name = "Lennon"
+    user.save()
+
+    return redirect(index)
