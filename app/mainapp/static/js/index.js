@@ -3,13 +3,6 @@
 autorization();
 registration();
 
-headerMargin();  
-resizeWidthOnly(function() {
-    headerMargin();
-    // foo();
-    // bar();
-});
-
 const mobileWidthMediaQuery = window.matchMedia('(max-width: 1300px)');
 mobileWidthMediaQuery.addEventListener('change', function (event) {
     showMission(event.matches)
@@ -123,31 +116,6 @@ function resizeWidthOnly(a,b) {
           b = setTimeout(a, 50);
         } 
     }, a;
-}    
-// function foo(){
-//     var a = document.getElementById("foo");
-//     a.innerHTML += "Сработало!<br>";  
-// }  
-// function bar(){
-//     var a = document.getElementById("bar");
-//     a.innerHTML = window.innerHeight+"px x "+window.innerWidth+"px";  
-// }
-
-function headerMargin() {
-  let head = document.getElementById("header")
-  let mTop = 25;
-  let mAddTop = 28;
-  let mBottom = 20;
-  let mAddBottom = 4;
-  head.style.marginTop = ((1280 - Math.min(window.innerWidth, 1280)) * (mAddTop / 905) + mTop) + "px";
-  head.style.marginBottom = ((1280 - Math.min(window.innerWidth, 1280)) * (mAddBottom / 905) + mBottom) + "px";
-  
-  // a.innerHTML = (1280 - Math.min(window.innerWidth, 1280)) * (28 / 905);
-  // a.innerHTML += head;
-  // a.innerHTML = getComputedStyle(head).marginTop;
-  // getComputedStyle(myElement); // получить все стили
-  // getComputedStyle(myElement).marginRight; // получить margin-right
-  // let a = document.getElementById("foo");
 }
   
 // РАБОТА СЛАЙДЕРА
