@@ -41,10 +41,21 @@ def view_registration(request):
     phone_number = request.POST.get("phone", 1)
     password = request.POST.get("password", 1)
 
+    try:
+        user_email = StudentUser.objects.get(email=email)
+    except (TypeError, ValueError, OverflowError, StudentUser.DoesNotExist):
+        user_email = None
+    else:
+        return render(request, 'mainapp/thing/errors.html', {'err_text': f'Пользователь с таким e-mail: {email} уже существует'})
 
+    try:
+        user_phone = StudentUser.objects.get(phone_number=phone_number)
+    except (TypeError, ValueError, OverflowError, StudentUser.DoesNotExist):
+        user_phone = None
+    else:
+        return render(request, 'mainapp/thing/errors.html', {'err_text': f'Пользователь с таким номером телефона: {phone_number} уже существует'})
 
     user = StudentUser.objects.create_user(first_name, email, phone_number, password)
     # user.last_name = "Lennon"
     user.save()
-
     return redirect(index)
