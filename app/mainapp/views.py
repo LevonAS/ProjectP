@@ -58,4 +58,8 @@ def view_registration(request):
     user = StudentUser.objects.create_user(first_name, email, phone_number, password)
     # user.last_name = "Lennon"
     user.save()
+
+    user = authenticate(request, email=email, password=password)
+    login(request, user)
+
     return redirect(index)
