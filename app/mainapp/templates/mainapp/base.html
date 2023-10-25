@@ -10,6 +10,18 @@
 </head>
 
 <body>
+
+    {% if messages %}
+    <div class="messages__overlay">
+        <div class="messages__message">
+            <a href="#" id="message__close"><div id="message__close-img"></div></a>
+            {% for message in messages %}
+            <p {% if message.tags %} class="message__text message__{{ message.tags }}"{% endif %}>{{ message }}</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
     <!-- MENU -->
     <div class="site-box">
         <header id="header">
@@ -87,6 +99,7 @@
 
 
     <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/message.js' %}"></script>
 </body>
 
 </html>

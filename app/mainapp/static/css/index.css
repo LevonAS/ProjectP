@@ -31,7 +31,78 @@ body {
     padding: clamp(40px, 6vw, 100px) calc(clamp(40px, 6vw, 76px) - 40px) clamp(40px, 6vw, 80px);
 }
 
-/* МЕНЮИ ФУТЕР */
+/* ОКНО СООБЩЕНИЙ */
+
+.messages__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.77);
+    overflow: auto;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+.messages__message {
+    position: fixed;
+    padding: 17px;
+    max-width: 77%;
+    border-radius: 24px;
+    background: #FFFFFF;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+}
+
+#message__close {
+    color: #95AA99;
+    text-decoration: none;
+    position: absolute;
+    right: 17px;
+    top: 17px;
+
+}
+
+#message__close-img {
+    width: 40px;
+    height: 40px;
+    background-image: url("../img/ico_close.svg");
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+#message__close-img:hover {
+    background-image: url("../img/ico_close_active.svg");
+}
+
+.message__text {
+    padding: 57px 37px 27px;
+    font-size: 1.25rem;
+}
+
+.message__success {
+    color: #95AA99;
+}
+
+.message__error {
+    color: #BA2121;
+}
+
+.message__info {
+    color: #0D161B;
+}
+
+.messages__overlay.closed {
+    display: none;
+}
+
+.messages__message.closed {
+    display: none;
+}
+
+/* МЕНЮ И ФУТЕР */
 
 header {
     width: 100%;
