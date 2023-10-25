@@ -86,6 +86,9 @@ class Course(models.Model):
     students = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name="Студенты курса", related_name="courses")
     is_popular = models.BooleanField(verbose_name="Популярный", default=False)
     deleted = models.BooleanField(verbose_name="Удален", default=False)
+    age_group = models.CharField(verbose_name="Возрастная группа", max_length=15)
+    lesson_qty = models.CharField(verbose_name="Количество уроков", max_length=15)
+    duration = models.CharField(verbose_name="Продолжительность курса", max_length=15)
 
     def __str__(self):
         return self.title
@@ -215,3 +218,11 @@ class PromoCode(models.Model):
         verbose_name = "Промокод"
         verbose_name_plural = "Промокоды"
         ordering = ["-created_at"]
+
+
+class Preparation(models.Model):
+    id = models.UUIDField(default=uuid4, primary_key=True)
+    value = models.CharField(verbose_name="Значение", max_length=50)
+
+    def __str__(self):
+        return self.value
