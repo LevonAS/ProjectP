@@ -25,6 +25,7 @@ class StudentUserManager(BaseUserManager):
             phone_number=phone_number
         )
         user.set_password(password)
+        user.is_active = False
         user.save(using=self._db)
         return user
 
