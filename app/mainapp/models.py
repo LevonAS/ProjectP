@@ -1,5 +1,6 @@
 import os
 from django.conf import settings
+from django.core.validators import EmailValidator
 from django.db import models
 from django.urls import reverse
 from uuid import uuid4
@@ -215,3 +216,17 @@ class PromoCode(models.Model):
         verbose_name = "Промокод"
         verbose_name_plural = "Промокоды"
         ordering = ["-created_at"]
+
+
+class Subscriber(models.Model):
+    id = models.UUIDField(default=uuid4, primary_key=True)
+    first_name = models.CharField(verbose_name="Имя", max_length=30)
+    email = models.EmailField(verbose_name="Адрес электронной почты", unique=True, validators=[EmailValidator])
+
+    def __str__(self):
+        return f'{self.first_name} {self.email}'
+
+    class Meta:
+        verbose_name = "Подписчик на новостную рассылку"
+        verbose_name_plural = "Подписчики на новостную рассылку"
+        ordering = ["first_name", "email"]

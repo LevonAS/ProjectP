@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import View, TemplateView
 from django.contrib.auth import get_user_model, authenticate, login, logout
@@ -46,35 +47,33 @@ def logout_view(request):
 
 
 def register_view(request):
-    first_name = request.POST.get("name", "Undefined")
-    email = request.POST.get("email", "Undefined")
-    phone_number = request.POST.get("phone", 1)
-    password = request.POST.get("password", 1)
+    first_name = request.POST.get("name")
+    email = request.POST.get("email")
+    phone_number = request.POST.get("phone")
+    password = request.POST.get("password")
 
-    try:
-        user_email = StudentUser.objects.get(email=email)
-    except (TypeError, ValueError, OverflowError, StudentUser.DoesNotExist):
-        user_email = None
-    else:
-        messages.error(request, f'Пользователь с таким e-mail: {email} уже существует')
-        # return render(request, 'mainapp/thing/errors.html',
-        #               {'err_text': f'Пользователь с таким e-mail: {email} уже существует'})
+    if not all(
+        [
+            first_name,
+            email,
+            phone_number,
+            password
+        ]
+    ):
+        messages.error(request, message='Форма регистрации заполнена некорректно')
         return redirect('index')
 
-    try:
-        user_phone = StudentUser.objects.get(phone_number=phone_number)
-    except (TypeError, ValueError, OverflowError, StudentUser.DoesNotExist):
-        user_phone = None
-    else:
-        messages.error(request, f'Пользователь с таким номером телефона: {phone_number} уже существует')
-        # return render(request, 'mainapp/thing/errors.html',
-        #               {'err_text': f'Пользователь с таким номером телефона: {phone_number} уже существует'})
-        return redirect('index')
+    student = StudentUser.objects.filter(Q(email=email) | Q(phone_number=phone_number)).first()
+    if not student:
+        user = StudentUser.objects.create_user(first_name, email, phone_number, password)
+        activation_link = create_activation_link(user)
+        return send_mail_to_activate_user(user, activation_link, request)
+    elif student.email == email:
+        messages.error(request, message=f'Пользователь с таким email: {email} уже существует')
+    elif student.phone_number == phone_number:
+        messages.error(request, message=f'Пользователь с таким номером телефона: {phone_number} уже существует')
 
-    user = StudentUser.objects.create_user(first_name, email, phone_number, password)
-
-    activation_link = create_activation_link(user)
-    return send_mail_to_activate_user(user, activation_link, request)
+    return redirect('index')
 
 
 def create_activation_link(user):
@@ -97,7 +96,7 @@ def send_mail_to_activate_user(user, activation_link, request):
         [user.email],
         fail_silently=False,
     )
-    # return redirect('authapp:email_confirmation_sent')
+
     messages.info(request, f'На ваш адрес электронной почты было отправлено письмо с подтверждением.\n'
                               f'Пожалуйста, проверьте свою электронную почту и нажмите на ссылку подтверждения, чтобы завершить регистрацию.\n'
                               f'Если письмо не пришло, проверьте папку спам.')
