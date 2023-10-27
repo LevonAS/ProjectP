@@ -65,6 +65,18 @@ class Talent(models.Model):
         ordering = ["title"]
 
 
+class Preparation(models.Model):
+    id = models.UUIDField(default=uuid4, primary_key=True)
+    value = models.CharField(verbose_name="Значение", max_length=50)
+
+    def __str__(self):
+        return self.value
+
+    class Meta:
+        verbose_name = "Уровень подготовки"
+        verbose_name_plural = "Уровни подготовки"
+
+
 class Course(models.Model):
     class CourseCategory(models.TextChoices):
         ART = ("ART", "ИСКУССТВО")
@@ -86,9 +98,10 @@ class Course(models.Model):
     students = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name="Студенты курса", related_name="courses")
     is_popular = models.BooleanField(verbose_name="Популярный", default=False)
     deleted = models.BooleanField(verbose_name="Удален", default=False)
-    age_group = models.CharField(verbose_name="Возрастная группа", max_length=15, blank=True)
-    lesson_qty = models.CharField(verbose_name="Количество уроков", max_length=15, blank=True)
-    duration = models.CharField(verbose_name="Продолжительность курса", max_length=15, blank=True)
+    age_group = models.CharField(verbose_name="Возрастная группа", max_length=25, blank=True)
+    lesson_qty = models.CharField(verbose_name="Количество уроков", max_length=25, blank=True)
+    duration = models.CharField(verbose_name="Продолжительность курса", max_length=25, blank=True)
+    preparation = models.ForeignKey(Preparation, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.title
@@ -220,9 +233,3 @@ class PromoCode(models.Model):
         ordering = ["-created_at"]
 
 
-class Preparation(models.Model):
-    id = models.UUIDField(default=uuid4, primary_key=True)
-    value = models.CharField(verbose_name="Значение", max_length=50)
-
-    def __str__(self):
-        return self.value
