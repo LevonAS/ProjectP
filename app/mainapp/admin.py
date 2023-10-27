@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 from mainapp.models import Advantage, QuestionAnswer, Tag, Benefit, Talent, Course, Mentor, Application,\
-                   Videolesson, Onlinelesson, StudentsWork, PromoCode
+                   Videolesson, Onlinelesson, StudentsWork, PromoCode, Subscriber
 
 
 admin.site.register(Advantage)
@@ -13,6 +13,7 @@ admin.site.register(Mentor)
 admin.site.register(Application)
 admin.site.register(StudentsWork)
 admin.site.register(PromoCode)
+admin.site.register(Subscriber)
 
 
 @admin.register(Course)
