@@ -8,62 +8,7 @@
     {% include "mainapp/parts_pages/image_tree_green.html" %}
     {% include "mainapp/parts_pages/mission_slider.html" %}
     {% include "mainapp/parts_pages/task_school.html" %}
-
-    <!-- Курсы  -->
-    <!-- Обратите внимание что 1ый курс уникальный! Остальные однотипные, их можно в поток -->
-    <div class="site-box">
-        <section class="courses"  id="anchor-courses">
-
-            <h1 class="section__title">Наши курсы</h1>
-            <div class="courses__cards">
-
-                <div class="courses__card">
-                    <div class="courses__info">
-                        <a class="courses__age" href="#">{{ first_course.age_group }}</a>
-                        <a class="courses__count" href="#">{{ first_course.lesson_qty }}</a>
-                        <a class="courses__time courses__time-unique" href="#">{{ first_course.duration }}</a>
-                    </div>
-                    <div class="courses__name">{{ first_course.title }}</div>
-                    <div class="courses__for-btns">
-                        <a class="courses__for-1" href="#"><div>{{ first_course.preparation }}</div></a>
-                        <a class="courses__for-2" href="#"><div>О ПЕТРОГЛИФЕ</div></a>
-                    </div>
-                    <p class="courses__note">{{ first_course.description }}</p>
-                    <a class="courses__detailed" href="#"><div>Подробнее о курсе</div></a>
-                </div>
-
-                {% for item in courses %}
-                <div class="courses__card">
-                    <div class="courses__info">
-                        <a class="courses__age" href="#">{{ item.age_group }}</a>
-                        <a class="courses__count" href="#">{{ item.lesson_qty }}</a>
-                        <a class="courses__time" href="#">{{ item.duration }}</a>
-                    </div>
-                    <div class="courses__name">{{ item.title }}</div>
-                    <a class="courses__for" href="#"><div>{{ item.preparation }}</div></a>
-                    <p class="courses__note">{{ item.description }}</p>
-                    <a class="courses__detailed" href="#"><div>Подробнее о курсе</div></a>
-                </div>
-                {% endfor %}
-
-            </div>
-
-            <div class="courses__all">
-                <a class="courses__all-btn" href="#">Все курсы</a>
-            </div>
-
-            <div class="courses__helpdesc">
-                <div class="courses__help">
-                    <p>Поможем выбрать курс и ответим на вопросы</p>
-                    <div class="courses__buttons">
-                        <a href="#" class="courses__button courses__button-tg"><span class="courses__button-full">Написать в Telegram</span><span class="courses__button-small">Telegram</span></a>
-                        <a href="#" class="courses__button courses__button-vk"><span class="courses__button-full">Написать в VK</span><span class="courses__button-small">VK</span></a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
+    {% include "mainapp/parts_pages/courses.html" %}
     {% include "mainapp/parts_pages/teacher.html" %}
     {% include "mainapp/parts_pages/faq_school.html" %}
     {% include "mainapp/parts_pages/image_tree_yellow.html" %}
