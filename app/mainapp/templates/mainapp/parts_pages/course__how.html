@@ -1,0 +1,39 @@
+{% load static markdownify %}
+
+
+<!-- Как проходит обучение (со всплытием блоков)  -->
+<div class="site-box">
+    <section class="pc__how">
+        <h1 class="section__title">Как проходит обучение на курсе?</h1>
+        <div class="pc__how-cards">
+            <div class="pc__how-card">
+                <h1><div>1</div>Оплатите курс</h1>
+                <p>Приобретите полный доступ к курсу, и изучайте его в личном кабинете. У курса есть телеграмм-канал, вступите в него, чтобы получать дополнительные материалы</p>
+            </div>
+            <div class="pc__how-card">
+                <h1><div>2</div>Подготовьте материалы для работы</h1>
+                <p>Достаньте самые важные инструменты для творчества: бумагу, карандаши, краски и кисточки</p>
+            </div>
+            <div class="pc__how-card">
+                <h1><div>3</div>Включите видео урок</h1>
+                <p>На компьютере, планшете или телефоне. В этом и есть удобство - творить из любой точки мира!</p>
+            </div>
+            <div class="pc__how-card">
+                <h1><div>4</div>Включите видео урок</h1>
+                <p>Делитесь тем, что узнали на уроке с семьей и друзьями! Ведь это так круто, учиться творчески</p>
+            </div>
+        </div>
+        <div class="teacher__form">
+            <form action="#"  method="post" class="form__email">
+                <h1 class="form__title">Узнавайте новости школы первыми</h1>
+                <div class="form__inputs">
+                    <input class="form__inputs_text" type="text" name="name" placeholder="Имя">
+                    <input class="form__inputs_email" type="email" name="email" placeholder="Почта">
+                </div>
+                <input type="submit" value="Получить письмо" class="form__submit">
+                <p>Нажимая на кнопку «Получить письмо», вы принимаете условия <a href="#">пользовательского соглашения</a>.</p>
+            </form>
+            <img src="{% static 'img/image08.svg' %}" alt="" class="teacher__petroglif">
+        </div>
+    </section>
+</div>

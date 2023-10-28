@@ -56,3 +56,10 @@ def send_mail_to_subscribe_user(user, request):
 
     messages.info(request, f'Первое письмо с сюрпризом уже на вашей почте - бежим проверять)))')
     return redirect('index')
+
+
+def view_course(request, slug):
+    context = {}
+    context['course'] = get_object_or_404(mainapp_models.Course, slug=slug)
+
+    return render(request, 'mainapp/course.html', context)
