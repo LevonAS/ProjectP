@@ -3,6 +3,13 @@
 autorization();
 registration();
 
+// headerMargin();  
+// resizeWidthOnly(function() {
+//     headerMargin();
+//     // foo();
+//     // bar();
+// });
+
 const mobileWidthMediaQuery = window.matchMedia('(max-width: 1300px)');
 mobileWidthMediaQuery.addEventListener('change', function (event) {
     showMission(event.matches)
@@ -38,26 +45,23 @@ function autorization() {
     let rgs = document.getElementById("autorization__registration");
     let frm_rgs = document.getElementById("form__registration");   
 
-    if (btn) {
-        btn.addEventListener('click', function() {
-//        if (btn.innerHTML === 'Войти') {
+    btn.addEventListener('click', function() {
+        if (btn.innerHTML === 'Войти') {
             frm.style.display = 'block';
-//        }
-//        else {
+        } else {
             // window.location.href = '/logout/';
             // https://code.mu/ru/javascript/book/supreme/ajax/post-queries/
-//            let promise = fetch('/logout/', {
-//                method: 'post',
-//            });
+            let promise = fetch('/logout/', {
+                method: 'post',
+            });
             // https://learn.javascript.ru/fetch
             // fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits')
             //     .then(response => response.json())
             //     .then(commits => alert(commits[0].author.login));
-//        }
+        }
         // btn.innerHTML =
         //   (btn.innerHTML === 'Показать всё') ? btn.innerHTML = 'Скрыть всё' : btn.innerHTML = 'Показать всё';
-        });
-    };
+    });
 
     cls.addEventListener("click", function() {
         frm.style.display = "none";
@@ -116,7 +120,32 @@ function resizeWidthOnly(a,b) {
           b = setTimeout(a, 50);
         } 
     }, a;
-}
+}    
+// function foo(){
+//     var a = document.getElementById("foo");
+//     a.innerHTML += "Сработало!<br>";  
+// }  
+// function bar(){
+//     var a = document.getElementById("bar");
+//     a.innerHTML = window.innerHeight+"px x "+window.innerWidth+"px";  
+// }
+
+// function headerMargin() {
+//   let head = document.getElementById("header")
+//   let mTop = 25;
+//   let mAddTop = 28;
+//   let mBottom = 20;
+//   let mAddBottom = 4;
+//   head.style.marginTop = ((1280 - Math.min(window.innerWidth, 1280)) * (mAddTop / 905) + mTop) + "px";
+//   head.style.marginBottom = ((1280 - Math.min(window.innerWidth, 1280)) * (mAddBottom / 905) + mBottom) + "px";
+  
+//   // a.innerHTML = (1280 - Math.min(window.innerWidth, 1280)) * (28 / 905);
+//   // a.innerHTML += head;
+//   // a.innerHTML = getComputedStyle(head).marginTop;
+//   // getComputedStyle(myElement); // получить все стили
+//   // getComputedStyle(myElement).marginRight; // получить margin-right
+//   // let a = document.getElementById("foo");
+// }
   
 // РАБОТА СЛАЙДЕРА
 
@@ -133,13 +162,17 @@ function showSlide(n) {
     var slides = document.getElementsByClassName("slider__card");
     var dots = document.getElementsByClassName("slider__dot");
 
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-        dots[i].className = dots[i].className.replace(" slider__dot-active", "");
-    }
+    if (slides.length > 0) {
 
-    slides[n].style.display = "block";
-    dots[n].className += " slider__dot-active";
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+            dots[i].className = dots[i].className.replace(" slider__dot-active", "");
+        }
+
+        slides[n].style.display = "block";
+        dots[n].className += " slider__dot-active";
+
+    }
 }
 
 function showSlidesAll() {
@@ -147,11 +180,12 @@ function showSlidesAll() {
     var slides = document.getElementsByClassName("slider__card");
     var dots = document.getElementsByClassName("slider__dot");
 
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "block";
+    if (slides.length > 0) {
+
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "block";
+        }
+        
     }
-  }
-
-
-
+}
   
