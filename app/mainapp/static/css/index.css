@@ -574,6 +574,11 @@ footer ul li img {
     position: relative;
 }
 
+.courses__card > p {
+    font-size: 1.25rem;
+    color: #A0A5A9;
+}
+
 .courses__info {
     display: flex;
     gap: clamp(4px, 1vw, 7px);
@@ -1066,6 +1071,10 @@ footer ul li img {
 
     .teacher .teacher__form {
         background: #95AA99;
+        display: none;
+    }
+
+    .courses__card > p {
         display: none;
     }
 }
