@@ -26,6 +26,7 @@ urlpatterns = [
     path('logout/', auth_views.logout_view),
     path('register/', auth_views.register_view),
     path('subscribe/', main_views.subscribe_view),
+    path('courses/<str:slug>/', main_views.view_course, name='course'),
 
     # path('courses/', include('mainapp.urls', namespace='courses')),
     path('auth/', include('authapp.urls', namespace='authapp')),

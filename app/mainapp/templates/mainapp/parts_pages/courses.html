@@ -19,7 +19,7 @@
                         <a class="courses__for-2" href="#"><div>О ПЕТРОГЛИФЕ</div></a>
                     </div>
                     <p class="courses__note">{{ first_course.description|markdownify }}</p>
-                    <a class="courses__detailed" href="#"><div>Подробнее о курсе</div></a>
+                    <a class="courses__detailed" href="{% url 'course' first_course.slug %}"><div>Подробнее о курсе</div></a>
                 </div>
 
                 {% for item in courses %}
@@ -32,7 +32,7 @@
                     <div class="courses__name">{{ item.title }}</div>
                     <a class="courses__for" href="#"><div>{{ item.preparation }}</div></a>
                     <p class="courses__note">{{ item.description|markdownify }}</p>
-                    <a class="courses__detailed" href="#"><div>Подробнее о курсе</div></a>
+                    <a class="courses__detailed" href="{% url 'course' item.slug %}"><div>Подробнее о курсе</div></a>
                 </div>
                 {% endfor %}
 

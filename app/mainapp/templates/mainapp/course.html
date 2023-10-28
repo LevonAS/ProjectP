@@ -1,0 +1,15 @@
+{% extends "mainapp/base.html" %}
+
+{% block title %}{{course.title}}{% endblock %}
+
+{% block content %}
+    {% include "mainapp/parts_pages/course__aboute.html" %}
+    {% include "mainapp/parts_pages/course__what.html" %}
+    {% include "mainapp/parts_pages/course__lesson.html" %}
+    {% include "mainapp/parts_pages/course__teacher.html" %}
+    {% include "mainapp/parts_pages/course__resources.html" %}
+    {% include "mainapp/parts_pages/course__rate.html" %}
+    {% include "mainapp/parts_pages/course__how.html" %}
+    {% include "mainapp/parts_pages/course__faq.html" %}
+    {% include "mainapp/parts_pages/image_tree_yellow.html" %}
+{% endblock %}

@@ -1,0 +1,34 @@
+{% load static markdownify %}
+
+<!-- Чему научимся? (со слайдером на 2 блока) -->
+<div class="site-box">
+  <section class="pc__what">
+    <h1 class="section__title">Чему научимся на курсе?</h1>
+    <div class="pc__what__cards pc__what-slideshow-container">
+      <!-- <div class="pc__what__card mySlides fade"> -->
+      <div class="pc__what__card pc__what__fade">
+        <img src="{% static 'img/image01.jpeg' %}" alt="">
+        <p>Мыслить образами</p>
+      </div>
+      <div class="pc__what__card pc__what__fade">
+        <img src="{% static 'img/image01.jpeg' %}" alt="">
+        <p>Придумывать истории</p>
+      </div>
+      <div class="pc__what__card pc__what__fade">
+        <img src="{% static 'img/image01.jpeg' %}" alt="">
+        <p>Рисовать мамонта</p>
+      </div>
+      <div class="pc__what__card pc__what__fade">
+        <img src="{% static 'img/image01.jpeg' %}" alt="">
+        <p>Путешествовать по местам Петроглифов</p>
+      </div>
+    </div>
+    <br>
+    <!-- The dots/circles -->
+    <div style="text-align:center">
+      <span class="pc__what__dot" onclick="showSlidePcWhat(0, 1)"></span>
+      <span class="pc__what__dot" onclick="showSlidePcWhat(1, 2)"></span>
+      <span class="pc__what__dot" onclick="showSlidePcWhat(2, 3)"></span>
+    </div>
+  </section>
+</div>
