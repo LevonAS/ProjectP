@@ -92,6 +92,7 @@
 - Django==4.2.5
 - python-dotenv==1.0.0
 - django-bootstrap5==23.3
+- django-markdownify==0.9.3
 - psycopg2-binary==2.9.8
 - requests==2.31.0
 - pytz==2023.3
