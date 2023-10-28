@@ -135,7 +135,11 @@ class Mentor(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     first_name = models.CharField(verbose_name="Имя ментора", max_length=150)
     last_name = models.CharField(verbose_name="Фамилия ментора", max_length=150)
-    photo = models.ImageField(verbose_name="Фото ментора", blank=True, null=True, upload_to="")
+    photo = models.ImageField(verbose_name="Фото ментора", blank=True, null=True, upload_to="mentor")
+    status = models.CharField(verbose_name="Статус", max_length=255)
+    experience = models.TextField(verbose_name="Образование и Опыт")
+    credo = models.TextField(verbose_name="Кредо и Сильные стороны")
+    approach = models.TextField(verbose_name="Подход в обучении")
     courses = models.ManyToManyField(Course, verbose_name="Курсы", related_name="mentors")
 
     def __str__(self):
