@@ -14,7 +14,8 @@
             </div>
         </div>
         <div class="teacher__form">
-            <form action="#"  method="post" class="form__email">
+            <form action="subscribe/"  method="post" class="form__email">
+                {% csrf_token %}
                 <h1 class="form__title">Узнавайте новости школы первыми</h1>
                 <div class="form__inputs">
                     <input class="form__inputs_text" type="text" name="name" placeholder="Имя">

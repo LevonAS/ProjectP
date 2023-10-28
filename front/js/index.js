@@ -3,12 +3,12 @@
 autorization();
 registration();
 
-headerMargin();  
-resizeWidthOnly(function() {
-    headerMargin();
-    // foo();
-    // bar();
-});
+// headerMargin();  
+// resizeWidthOnly(function() {
+//     headerMargin();
+//     // foo();
+//     // bar();
+// });
 
 const mobileWidthMediaQuery = window.matchMedia('(max-width: 1300px)');
 mobileWidthMediaQuery.addEventListener('change', function (event) {
@@ -130,22 +130,22 @@ function resizeWidthOnly(a,b) {
 //     a.innerHTML = window.innerHeight+"px x "+window.innerWidth+"px";  
 // }
 
-function headerMargin() {
-  let head = document.getElementById("header")
-  let mTop = 25;
-  let mAddTop = 28;
-  let mBottom = 20;
-  let mAddBottom = 4;
-  head.style.marginTop = ((1280 - Math.min(window.innerWidth, 1280)) * (mAddTop / 905) + mTop) + "px";
-  head.style.marginBottom = ((1280 - Math.min(window.innerWidth, 1280)) * (mAddBottom / 905) + mBottom) + "px";
+// function headerMargin() {
+//   let head = document.getElementById("header")
+//   let mTop = 25;
+//   let mAddTop = 28;
+//   let mBottom = 20;
+//   let mAddBottom = 4;
+//   head.style.marginTop = ((1280 - Math.min(window.innerWidth, 1280)) * (mAddTop / 905) + mTop) + "px";
+//   head.style.marginBottom = ((1280 - Math.min(window.innerWidth, 1280)) * (mAddBottom / 905) + mBottom) + "px";
   
-  // a.innerHTML = (1280 - Math.min(window.innerWidth, 1280)) * (28 / 905);
-  // a.innerHTML += head;
-  // a.innerHTML = getComputedStyle(head).marginTop;
-  // getComputedStyle(myElement); // получить все стили
-  // getComputedStyle(myElement).marginRight; // получить margin-right
-  // let a = document.getElementById("foo");
-}
+//   // a.innerHTML = (1280 - Math.min(window.innerWidth, 1280)) * (28 / 905);
+//   // a.innerHTML += head;
+//   // a.innerHTML = getComputedStyle(head).marginTop;
+//   // getComputedStyle(myElement); // получить все стили
+//   // getComputedStyle(myElement).marginRight; // получить margin-right
+//   // let a = document.getElementById("foo");
+// }
   
 // РАБОТА СЛАЙДЕРА
 
@@ -162,13 +162,17 @@ function showSlide(n) {
     var slides = document.getElementsByClassName("slider__card");
     var dots = document.getElementsByClassName("slider__dot");
 
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-        dots[i].className = dots[i].className.replace(" slider__dot-active", "");
-    }
+    if (slides.length > 0) {
 
-    slides[n].style.display = "block";
-    dots[n].className += " slider__dot-active";
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+            dots[i].className = dots[i].className.replace(" slider__dot-active", "");
+        }
+
+        slides[n].style.display = "block";
+        dots[n].className += " slider__dot-active";
+
+    }
 }
 
 function showSlidesAll() {
@@ -176,11 +180,12 @@ function showSlidesAll() {
     var slides = document.getElementsByClassName("slider__card");
     var dots = document.getElementsByClassName("slider__dot");
 
-    for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "block";
+    if (slides.length > 0) {
+
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "block";
+        }
+        
     }
-  }
-
-
-
+}
   

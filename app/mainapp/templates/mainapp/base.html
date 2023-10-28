@@ -10,6 +10,18 @@
 </head>
 
 <body>
+
+    {% if messages %}
+    <div class="messages__overlay">
+        <div class="messages__message">
+            <a href="#" id="message__close"><div id="message__close-img"></div></a>
+            {% for message in messages %}
+            <p {% if message.tags %} class="message__text message__{{ message.tags }}"{% endif %}>{{ message }}</p>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+
     <!-- MENU -->
     <div class="site-box">
         <header id="header">
@@ -45,7 +57,7 @@
                     <p>Если Вы первый раз, прошу <a href="#" id="autorization__registration">зарегистрироваться</a>.</p>
                 </div>
             </form>
-            <form action="registration/" method="post" class="form__registration" id="form__registration">
+            <form action="register/" method="post" class="form__registration" id="form__registration">
                 {% csrf_token %}
                 <div class="registration__inner">
                     <!-- <h1 class="autorization__title">Укажите данные:</h1> -->
@@ -87,6 +99,7 @@
 
 
     <script src="{% static 'js/index.js' %}"></script>
+    <script src="{% static 'js/message.js' %}"></script>
 </body>
 
 </html>
