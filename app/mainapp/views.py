@@ -18,6 +18,7 @@ def index(request):
     # Первый курс выбирается по слагу first-course
     context['first_course'] = get_object_or_404(mainapp_models.Course, slug='first-course')
     # return HttpResponse("Главная")
+    # print(' /// context_main : ', context)
     return render(request, 'mainapp/index.html', context)
 
 
@@ -59,7 +60,10 @@ def send_mail_to_subscribe_user(user, request):
 
 
 def view_course(request, slug):
+    course = get_object_or_404(mainapp_models.Course, slug=slug)
+    # print(' /// context_course : ', course, course.benefits.all())
+
     context = {}
     context['course'] = get_object_or_404(mainapp_models.Course, slug=slug)
-
+    # print(' /// context_course : ', context)
     return render(request, 'mainapp/course.html', context)

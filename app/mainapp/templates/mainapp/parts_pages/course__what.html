@@ -6,22 +6,15 @@
     <h1 class="section__title">Чему научимся на курсе?</h1>
     <div class="pc__what__cards pc__what-slideshow-container">
       <!-- <div class="pc__what__card mySlides fade"> -->
+      {% for item in course.benefits.all %}
+      
       <div class="pc__what__card pc__what__fade">
-        <img src="{% static 'img/image01.jpeg' %}" alt="">
-        <p>Мыслить образами</p>
+        {% if item.image %}
+        <img src="{{ item.image.url }}" alt="">
+        {% endif %}
+        <p>{{ item.title }}</p>
       </div>
-      <div class="pc__what__card pc__what__fade">
-        <img src="{% static 'img/image01.jpeg' %}" alt="">
-        <p>Придумывать истории</p>
-      </div>
-      <div class="pc__what__card pc__what__fade">
-        <img src="{% static 'img/image01.jpeg' %}" alt="">
-        <p>Рисовать мамонта</p>
-      </div>
-      <div class="pc__what__card pc__what__fade">
-        <img src="{% static 'img/image01.jpeg' %}" alt="">
-        <p>Путешествовать по местам Петроглифов</p>
-      </div>
+      {% endfor %}
     </div>
     <br>
     <!-- The dots/circles -->

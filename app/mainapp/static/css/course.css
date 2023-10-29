@@ -70,8 +70,8 @@
 }
 
 .pc__aboute__data > ul > li::before {
-    content: "♥ ";
-    /* content: "● "; */
+    /* content: "♥ "; */
+    content: "● ";
 }
 
 .pc__aboute__data-btn {
@@ -111,8 +111,9 @@
 
 .pc__what__card > img {
     position: absolute;
-    min-width: 100%;
-    min-height: 100%;
+    height: 100%;
+    /* min-width: 100%;
+    min-height: 100%; */
     flex-shrink: 0;
 }
 

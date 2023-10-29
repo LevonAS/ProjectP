@@ -105,27 +105,21 @@
                 </div>
             </div>
         </div>
-        <a href="#"><div class="pc__lesson-all">Смотреть все уроки</div></a>
+        <a href="#"><div class="pc__lesson-all">Смотреть все уроки</div></a>     
         <div class="pc__lesson__container">
+            {% for item in course.talents.all %}   
             <div class="pc__lesson__card">
-                <h1>Навык образного мышления</h1>
-                <p>Ребенок учится думать картинками и образами, что способствует развитию творческого мышления</p>
-                <img src="{% static 'img/image05.svg' %}" alt="">
+                <h1>{{ item.title }}</h1>
+                <p>{{ item.description}}</p>
+                {% if item.image %}
+                    <img src="{{ item.image.url }}" alt="">
+                {% endif %}
             </div>
-            <div class="pc__lesson__card">
-                <h1>Навык составлять истории</h1>
-                <p>Ученик придумывает истории, следуя последовательности, продумывая цели для героя и итог их достижения</p>
-                <img src="{% static 'img/image06.svg' %}" alt="">
-            </div>
-            <div class="pc__lesson__card">
-                <h1>Навык быть исследователем</h1>
-                <p>Экспериментировать, выбирать нестандартный подход, делать ошибки и творить!</p>
-                <img src="{% static 'img/image07.svg' %}" alt="">
-            </div>
+            {% endfor %}                
         </div>
         <div class="pc__lesson__pay">
             <div>
-                <h2>Давайте отправимся в путешествие к Петроглифам на курсе<br>“Мир наскальной живописи”</h2>
+                <h2>Давайте отправимся в путешествие к Петроглифам на курсе<br>“{{ course.title }}”</h2>
                 <a href="#"><div>Купить</div></a>
             </div>
         </div>

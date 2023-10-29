@@ -38,7 +38,7 @@ class Tag(models.Model):
 class Benefit(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(verbose_name="Польза", max_length=150)
-    image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
+    image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="benefit_img/")
     deleted = models.BooleanField(verbose_name="Удален", default=False)
 
     def __str__(self):
@@ -54,7 +54,7 @@ class Talent(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(verbose_name="Талант", max_length=255)
     description = models.TextField(verbose_name="Описание", blank=True)
-    image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
+    image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="talent_img/")
     deleted = models.BooleanField(verbose_name="Удален", default=False)
 
     def __str__(self):
@@ -87,8 +87,11 @@ class Course(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(verbose_name="Название курса", max_length=150)
     slug = models.SlugField(verbose_name="URL", max_length=200, unique=True, blank=True, null=True)
+    note = models.CharField(verbose_name="Цель курса", default='', max_length=200)
     description = models.TextField(verbose_name="Описание курса", blank=True)
     price = models.FloatField(verbose_name="Стоимость курса")
+    tools = models.TextField(verbose_name="Необходимые материалы и инструменты для курса", blank=True)
+    filling = models.TextField(verbose_name="Наполнение курса", blank=True)
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="сourses_images")
     teaser_video = models.FilePathField(verbose_name="Тизер-видео", blank=True, null=True, path=os.path.join(settings.MEDIA_ROOT, "teaser_video"))
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
