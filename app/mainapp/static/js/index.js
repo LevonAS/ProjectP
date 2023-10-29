@@ -2,6 +2,7 @@
 
 autorization();
 registration();
+passTrue();
 
 // headerMargin();  
 // resizeWidthOnly(function() {
@@ -40,14 +41,16 @@ for (i = 0; i < coll.length; i++) {
 
 function autorization() {
     let btn = document.getElementById("header__login");
-    let frm = document.getElementById("form__autorization");
+    let popUp = document.getElementById('autorization__pop_up');
+    // let frm = document.getElementById("form__autorization");
     let cls = document.getElementById("autorization__close");
     let rgs = document.getElementById("autorization__registration");
-    let frm_rgs = document.getElementById("form__registration");   
+    let frm_rgs = document.getElementById("registration__pop_up");   
 
     btn.addEventListener('click', function() {
         if (btn.innerHTML === 'Войти') {
-            frm.style.display = 'block';
+            // frm.style.display = 'block';
+            popUp.classList.add('pop_up_active');
         } else {
             // window.location.href = '/logout/';
             // https://code.mu/ru/javascript/book/supreme/ajax/post-queries/
@@ -64,30 +67,37 @@ function autorization() {
     });
 
     cls.addEventListener("click", function() {
-        frm.style.display = "none";
+        // frm.style.display = "none";
+        popUp.classList.remove('pop_up_active');
     });
 
     rgs.addEventListener("click", function() {
-        frm.style.display = "none";
-        frm_rgs.style.display = "block";
+        popUp.classList.remove('pop_up_active');
+        frm_rgs.classList.add('pop_up_active');
+        // frm.style.display = "none";
+        // frm_rgs.style.display = "block";
     });
 }
 
 function registration() {
-    let frm_auth = document.getElementById("form__autorization");
-    let frm_rgs = document.getElementById("form__registration");
-    let btn_auth = document.getElementById("registration__autorization");
+    let popUp = document.getElementById('registration__pop_up');
+    // let frm_auth = document.getElementById("form__autorization");
+    // let frm_rgs = document.getElementById("form__registration");
+    // let btn_auth = document.getElementById("registration__autorization");
     let cls = document.getElementById("registration__close");
 
-    btn_auth.addEventListener("click", function() {
-        frm_rgs.style.display = "none";
-        frm_auth.style.display = "block";
-    });
+    // btn_auth.addEventListener("click", function() {
+    //     frm_rgs.style.display = "none";
+    //     frm_auth.style.display = "block";
+    // });
 
     cls.addEventListener("click", function() {
-        frm_rgs.style.display = "none";
+        // frm_rgs.style.display = "none";
+        popUp.classList.remove('pop_up_active');
     });
+}
 
+function passTrue() {
     // Соответствие паролей
     let psw1 = document.getElementById("registration__password");
     let psw2 = document.getElementById("registration__password2");
@@ -96,15 +106,33 @@ function registration() {
     psw2.oninput = function() {
         // console.log('Введено значение: ' + psw2.value);
         // console.log(sbmt.innerHTML)
-        if (psw1.value !== psw2.value) {
-            // console.log('Пароли не совпадают! ' + psw1.value + ' | ' + psw2.value);
-            sbmt.setAttribute('disabled', '');
-            err.style.display = "block";
+        if (psw1.value.length > 0) {
+            if (psw1.value !== psw2.value) {
+                // console.log('Пароли не совпадают! ' + psw1.value + ' | ' + psw2.value);
+                sbmt.setAttribute('disabled', '');
+                err.style.display = "block";
+            } else {
+                sbmt.removeAttribute('disabled');
+                err.style.display = "none";
+            }
         } else {
             sbmt.removeAttribute('disabled');
-            err.style.display = "none";
         }
     };
+
+    psw1.oninput = function() {
+        if (psw2.value.length > 0) {
+            if (psw1.value !== psw2.value) {
+                sbmt.setAttribute('disabled', '');
+                err.style.display = "block";
+            } else {
+                sbmt.removeAttribute('disabled');
+                err.style.display = "none";
+            }
+        } else {
+            sbmt.removeAttribute('disabled');
+        }
+    }
 }
 
 // РЕСАЙЗ ОКНА И ИЗМЕНЕНИЕ ОТСУПА МЕНЮ В ЗАВИСИМОСТИ ОТ ШИРИНЫ ОКНА
