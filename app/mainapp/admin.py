@@ -3,9 +3,10 @@ from django.forms import ModelForm, FileField
 
 
 from mainapp.models import Advantage, QuestionAnswer, Tag, Benefit, Talent, Course, Mentor, Application,\
-Videolesson, Onlinelesson, StudentsWork, PromoCode, Preparation, Subscriber
+Videolesson, Onlinelesson, StudentsWork, PromoCode, Preparation, Subscriber, Lessons
 
 
+admin.site.register(Lessons)
 admin.site.register(Advantage)
 admin.site.register(QuestionAnswer)
 admin.site.register(Tag)
@@ -19,7 +20,7 @@ admin.site.register(Preparation)
 admin.site.register(Subscriber)
 
 
-# Класс-обманка для загрузки файлов .svg через алминку в модели Talent
+# Класс-обманка для загрузки файлов .svg через алминку в модель Talent
 class TalentModelForm(ModelForm):
     class Meta:
         model = Talent
