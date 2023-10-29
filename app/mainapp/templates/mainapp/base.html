@@ -23,6 +23,53 @@
     </div>
     {% endif %}
 
+    <!-- Авторизация и регистрация -->
+    <div class="autorization__pop_up" id="autorization__pop_up">
+        <div class="autorization__pop_up_container">
+            <form action="login/"  method="post" class="autorization__form" id="autorization__form">
+                {% csrf_token %}
+                <div class="autorization__title">
+                    <span>Вход</span>
+                    <a href="#"><div class="autorization__close" id="autorization__close"></div></a>
+                </div>
+                <div class="autorization__inputs">
+                    <input class="autorization__email" type="email" name="email" placeholder="E-Mail" required>
+                    <input class="autorization__password" type="password" name="password" placeholder="Пароль" required>
+                </div>
+                <p class="autorization__recover"><a href="#" id="autorization__recover">Восстановить пароль</a></p>
+                <div class="autorization__footer">
+                    <a href="#" class="autorization__registration" id="autorization__registration">Зарегистрироваться</a>
+                    <button class="autorization__button" type="submit" name="autorization__submit">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="registration__pop_up" id="registration__pop_up">
+        <div class="registration__pop_up_container">
+            <form action="register/"  method="post" class="registration__form" id="registration__form">
+                {% csrf_token %}
+                <div class="registration__title">
+                    <span>Регистрация</span>
+                    <a href="#"><div class="registration__close" id="registration__close"></div></a>
+                </div>
+                    <div class="registration__inputs">
+                        <input class="registration__name" type="text" name="name" placeholder="Имя" required>
+                        <input class="registration__email" type="email" name="email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" placeholder="E-Mail" required>
+                        <input class="registration__phone" type="tel" name="phone" pattern="\+?[0-9\s\-\(\)]+" placeholder="+7" required>
+                        <input class="registration__password" type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Не менее восьми символов, содержащих хотя бы одну цифру и символы из верхнего и нижнего регистра" placeholder="Пароль" required id="registration__password">
+                        <input class="registration__password2" type="password" name="password2" placeholder="Подтвердить пароль" required id="registration__password2">
+                    </div>
+                    <div id="registration__error">Пароли не совпадают! Отправка формы не возможна.</div>
+                    <!-- <div class="registration__agreement">Нажимая на кнопку «Оплатить курс», вы принимаете условия пользовательского соглашения</div> -->
+                    <div class="registration__footer">
+                        <button class="registration__button" type="submit" name="registration__submit" id="registration__button">Зарегистрироваться</button>
+                    </div>
+                    <!-- <p>Если Вы регистрировались, то <a href="#" id="registration__autorization">авторизоваться</a>.</p> -->
+            </form>
+        </div>
+    </div>
+
     <!-- MENU -->
     <div class="site-box">
         <header id="header">
@@ -43,44 +90,6 @@
                 {% endif %}
                 <a href="#" class="header__detailed">О курсах</a>
             </div>
-
-            <form action="login/" method="POST" class="form__autorization" id="form__autorization">
-                {% csrf_token %}
-                <div class="autorization__inner">
-                    <!-- <h1 class="autorization__title">Укажите данные:</h1> -->
-                    <a href="#">
-                        <div class="autorization__close" id="autorization__close"></div>
-                    </a>
-                    <div class="autorization__inputs">
-                        <input class="autorization__email" type="email" name="email" placeholder="Почта" required>
-                        <input class="autorization__password" type="password" name="password" placeholder="Пароль" required>
-                    </div>
-                    <button class="autorization__button" type="submit" name="autorization__submit">Войти</button>
-                    <p>Если Вы первый раз, прошу <a href="#" id="autorization__registration">зарегистрироваться</a>.</p>
-                </div>
-            </form>
-            <form action="register/" method="post" class="form__registration" id="form__registration">
-                {% csrf_token %}
-                <div class="registration__inner">
-                    <!-- <h1 class="autorization__title">Укажите данные:</h1> -->
-                    <a href="#">
-                        <div class="registration__close" id="registration__close"></div>
-                    </a>
-                    <div class="registration__inputs">
-                        <input class="registration__name" type="text" name="name" placeholder="Имя" required>
-                        <input class="registration__email" type="email" name="email" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,6}" placeholder="Почта" required>
-                        <input class="registration__phone" type="tel" name="phone" pattern="(\+?\d[- .]*){7,13}" title="Международный, государственный или местный телефонный номер" placeholder="Телефон" required>
-                        <input class="registration__password" type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"  title="Не менее восьми символов, содержащих хотя бы одну цифру и символы из верхнего и нижнего регистра" placeholder="Пароль"
-                            required id="registration__password">
-                        <input class="registration__password2" type="password" name="password2"
-                            placeholder="Повторите пароль" required id="registration__password2">
-                    </div>
-                    <div id="registration__error">Пароли не совпадают! Отправка формы не возможна.</div>
-                    <button class="registration__button" type="submit" name="registration__submit"
-                        id="registration__button">Отправить</button>
-                    <p>Если Вы регистрировались, то <a href="#" id="registration__autorization">авторизоваться</a>.</p>
-                </div>
-            </form>
         </header>
     </div>
 

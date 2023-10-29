@@ -31,7 +31,7 @@ body {
     padding: clamp(40px, 6vw, 100px) calc(clamp(40px, 6vw, 76px) - 40px) clamp(40px, 6vw, 80px);
 }
 
-/* МЕНЮ И ФУТЕР */
+/* МЕНЮИ ФУТЕР */
 
 header {
     width: 100%;
@@ -152,142 +152,131 @@ header {
     background-color: #566659;
 }
 
-.form__autorization {
-    display: none;
-    background-color: white;
-    border-radius: 24px;
-    width: 307px;
-    padding: 20px;
-    position: absolute;
-    top: 7px;
-    right: 7px;
-    z-index: 7;
-}
 
-.autorization__inner {
+
+/* pop-up авторизации и регистрации */
+
+.autorization__pop_up, .registration__pop_up {
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: transparent;
+    z-index: 7;
+    transform: translate(27%, -40%) scale(0);
+    transition: 0.5s ease-in-out;
 }
 
-.autorization__inner>*:first-child {
-    display: flex;
-    justify-content: end;
+.autorization__pop_up.pop_up_active, .registration__pop_up.pop_up_active {
+    transform: translate(0%, 0%) scale(100%);
+    background-color: rgba(86, 102, 89, .8);    
 }
 
-.autorization__close {
+.autorization__pop_up_container, .registration__pop_up_container {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.autorization__form, .registration__form {
+    margin: auto;
+    width: min(495px, 90vw);
+    padding: 28px;
+    background-color: white;
+    border-radius: 24px;
+}
+
+.autorization__title, .registration__title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.autorization__title > span, .registration__title > span {
+    color: #082963;
+    font-size: 2.25rem;
+    font-weight: 500;
+}
+
+.autorization__close, .registration__close {
     width: 40px;
     height: 40px;
-    background-image: url("../img/ico_close.svg");
+    background-image: url("../img/btn_close.svg");
     background-repeat: no-repeat;
     background-size: contain;
 }
 
-.autorization__close:hover {
-    background-image: url("../img/ico_close_active.svg");
+.autorization__close:hover, .registration__close:hover {
+    background-image: url("../img/btn_close_hover.svg");
 }
 
-.autorization__inputs > input {
-    margin-top: 7px;
-    height: 35px;
-    border: 1px solid #B1C2B5;
-    border-radius: 15px;
-    padding: 14px 24px;
-    font-size: 1.25rem;
-    width: 257px;
-}
-
-.autorization__button {
-    margin: 17px auto 7px;
-    border-radius: 15px;
-    font-size: 1.25rem;
+.autorization__inputs > input, .registration__inputs > input {
     border: 1px solid #95AA99;
-    color: #95AA99;
-    background: #FFFFFF;
-    padding: 17px 27px;
-}
-
-.autorization__button:hover {
-    color: #FFFFFF;
-    background: #95AA99;
-}
-
-.autorization__inner > p {
-    font-size: 1rem;
-    margin: 7px;
-}
-/* #form__autorization:target {
-    display: block;
-} */
-
-
-.form__registration {
-    display: none;
-    background-color: white;
+    padding: 20px 30px;
+    margin-top: 12px;
+    height: 35px;
+    font-size: 1.5rem;
     border-radius: 24px;
-    width: 307px;
-    padding: 20px;
-    position: absolute;
-    top: 7px;
-    right: 7px;
-    z-index: 7;
+    width: calc(100% - 70px);
 }
 
-.registration__inner {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
+.autorization__inputs > input:focus, .registration__inputs > input:focus {
+    outline: none;
 }
 
-.registration__inner>*:first-child {
-    display: flex;
-    justify-content: end;
+.autorization__inputs > input.autorization__email {
+    margin-top: 39px;
 }
 
-.registration__close {
-    width: 40px;
-    height: 40px;
-    background-image: url("../img/ico_close.svg");
-    background-repeat: no-repeat;
-    background-size: contain;
+.registration__inputs > input.registration__name {
+    margin-top: 27px;
 }
 
-.registration__close:hover {
-    background-image: url("../img/ico_close_active.svg");
+.autorization__recover {
+    text-align: end;    
+    margin-top: 17px;
 }
 
-.registration__inputs > input {
-    margin-top: 7px;
-    height: 35px;
-    border: 1px solid #B1C2B5;
-    border-radius: 15px;
-    padding: 14px 24px;
-    font-size: 1.25rem;
-    width: 257px;
-}
-
-.registration__button {
-    margin: 17px auto 7px;
-    border-radius: 15px;
-    font-size: 1.25rem;
-    border: 1px solid #95AA99;
-    color: #95AA99;
-    background: #FFFFFF;
-    padding: 17px 27px;
-}
-
-.registration__button:hover {
-    color: #FFFFFF;
-    background: #95AA99;
-}
-
-.registration__inner > p {
+.autorization__recover > a {
+    text-decoration: none;
+    color: #A0A5A9;
     font-size: 1rem;
-    margin: 7px;
+    font-weight: 400;
+}
+
+.autorization__footer, .registration__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: end;
+    margin-top: 45px;
+}
+
+.autorization__registration {
+    padding: 30px 28px;
+    background: #FFFFFF;
+    text-decoration: none;
+    color: #95AA99;
+    font-size: 1.25rem;
+}
+
+.autorization__registration:hover {
+    color: #566659;
+}
+
+.autorization__button, .registration__button {
+    padding: 30px 36px;
+    border: none;
+    border-radius: 15px;
+    background: #95AA99;
+    color: #FFFFFF;
+    font-size: 1.25rem;
+    cursor: pointer;
+}
+
+.autorization__button:hover, .registration__button:hover {
+    background: #566659;
 }
 
 #registration__error {
@@ -296,6 +285,9 @@ header {
     color: red;
     display: none;
 }
+
+
+/* Конец страницы */
 
 .endpage { 
     margin-top: calc(175px - clamp(35px, 5vw, 75px));
@@ -572,11 +564,6 @@ footer ul li img {
     background-color: #FFFFFF;
     border-radius: 24px;
     position: relative;
-}
-
-.courses__card > p {
-    font-size: 1.25rem;
-    color: #A0A5A9;
 }
 
 .courses__info {
@@ -1071,10 +1058,6 @@ footer ul li img {
 
     .teacher .teacher__form {
         background: #95AA99;
-        display: none;
-    }
-
-    .courses__card > p {
         display: none;
     }
 }
