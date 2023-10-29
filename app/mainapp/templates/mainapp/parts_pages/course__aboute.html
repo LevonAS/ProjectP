@@ -7,21 +7,21 @@
         <img src="{% static 'img/course_wp_1.png' %}" alt="">
         <div class="pc__aboute__data">
             <div class="pc__aboute__info">
-                <a class="pc__aboute__age" href="#">6-10 лет</a>
-                <a class="pc__aboute__count" href="#">4 урока</a>
+                <a class="pc__aboute__age" href="#">{{ course.age_group }}</a>
+                <a class="pc__aboute__count" href="#">{{ course.lesson_qty }}</a>
                 <!-- Для главного начального курса, указать доп стили в этот элемент! -->
-                <a class="pc__aboute__time" href="#" style="background: #FF8D8D; color: #FFFFFF;">бесконечный доступ</a>
+                <a class="pc__aboute__time" href="#" {% if course.duration == 'Бесконечный доступ' %} style="background: #FF8D8D; color: #FFFFFF;" {% else %} style="background: #FFFFFF; color: #566659;" {% endif %}>{{ course.duration }}</a>
                 <!-- Для остальных курсов не надо! -->
                 <!-- <a class="pc__aboute__time" href="#">бесконечный доступ</a> -->
             </div>
-            <div class="pc__aboute__name">Древний мир наскальной живописи</div>
-            <div class="pc__aboute__note">курс, чтобы познакомится со школой поближе</div>
+            <div class="pc__aboute__name">{{ course.title }}</div>
+            <div class="pc__aboute__note">{{ course.note }}</div>
             <ul>
-                <li>Развиваем визуальное мышление</li>
-                <li>Погружаемся в историю древних людей</li>
-                <li>Путешествуем по четырем странам в поисках петроглифов</li>
+                {{ course.description|markdownify }}
             </ul>
-            <a class="pc__aboute__data-btn" href="#"><div class="pc__aboute__data-btn">Записаться</div></a>
+            <a class="pc__aboute__data-btn" href="#">
+                <div class="pc__aboute__data-btn">Записаться</div>
+            </a>
         </div>
     </section>
 </div>

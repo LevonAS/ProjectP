@@ -8,20 +8,23 @@
         <div class="faq__body">
             <div class="faq__items">
                 {% for lesson in lessons %}
+                    {% for i in range %}
+                        
+                    {% endfor %}
                 <div class="faq__item">
                     <button class="faq__collapsible"><div><div><a href="#">Урок {{ lesson.number }}</a></div><div>{{ lesson.title }}</div></div></button>
                     <div class="faq__content pc__lesson__content">
                         {% if lesson.part1 %}
                         <div class="pc__lesson__p">
                             <p class="pc__lesson-title">{{ lesson.part1 }}</p>
-                            <p class="pc__lesson-text">{{ lesson.description_part1 }}</p>
+                            <p class="pc__lesson-text">{{ lesson.description_part1|markdownify }}</p>
                         </div>
                         {% endif %}
 
                         {% if lesson.part2 %}
                         <div class="pc__lesson__p">
                             <p class="pc__lesson-title">{{ lesson.part2 }}</p>
-                            <p class="pc__lesson-text">{{ lesson.description_part2 }}</p>
+                            <p class="pc__lesson-text">{{ lesson.description_part2|markdownify }}</p>
                         </div>
                         {% endif %}
 
@@ -35,14 +38,14 @@
                         {% if lesson.part4 %}
                         <div class="pc__lesson__p">
                             <p class="pc__lesson-title">{{ lesson.part4 }}</p>
-                            <p class="pc__lesson-text">{{ lesson.description_part4 }}</p>
+                            <p class="pc__lesson-text">{{ lesson.description_part4|markdownify }}</p>
                         </div>
                         {% endif %}
 
                         {% if lesson.part5 %}
                         <div class="pc__lesson__p">
                             <p class="pc__lesson-title">{{ lesson.part5 }}</p>
-                            <p class="pc__lesson-text">{{ lesson.description_part5 }}</p>
+                            <p class="pc__lesson-text">{{ lesson.description_part5|markdownify }}</p>
                         </div>
                         {% endif %}
                         

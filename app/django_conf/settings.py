@@ -204,7 +204,7 @@ MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
 MARKDOWNIFY = {
     "default": {
         "WHITELIST_TAGS": [
-            'b', 'i', 'strong', 'a', 'p', 'br', 'hr'
+            'b', 'i', 'strong', 'a', 'p', 'ol', 'ul', 'li', 'br', 'hr'
         ]
     }
 }
