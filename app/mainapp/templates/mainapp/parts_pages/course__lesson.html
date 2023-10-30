@@ -28,21 +28,11 @@
                         {% if lesson.part3 %}
                         <div class="pc__lesson__p">
                             <p class="pc__lesson-title">{{ lesson.part3 }}</p>
-                            <p class="pc__lesson-text">{{ lesson.description_part3|markdownify }}</p>
-                        </div>
-                        {% endif %}
-
-                        {% if lesson.part4 %}
-                        <div class="pc__lesson__p">
-                            <p class="pc__lesson-title">{{ lesson.part4 }}</p>
-                            <p class="pc__lesson-text">{{ lesson.description_part4 }}</p>
-                        </div>
-                        {% endif %}
-
-                        {% if lesson.part5 %}
-                        <div class="pc__lesson__p">
-                            <p class="pc__lesson-title">{{ lesson.part5 }}</p>
-                            <p class="pc__lesson-text">{{ lesson.description_part5 }}</p>
+                            <ul class="pc__lesson-text">
+                                {% for item_li in lesson.description_part3 %}
+                                    <li>{{ item_li }}</li>
+                                {% endfor %}
+                            </ul>
                         </div>
                         {% endif %}
                         
