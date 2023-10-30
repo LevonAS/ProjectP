@@ -84,7 +84,7 @@
             </nav>
             <div class="header__buttons">
                 {% if request.user.is_authenticated %}
-                    <a href="logout/" class="header__login" id="header__logout">Выйти</a>
+                    <a href="/logout/" class="header__login" id="header__logout">Выйти</a>
                 {% else %}
                     <a href="#" class="header__login" id="header__login">Войти</a>
                 {% endif %}
