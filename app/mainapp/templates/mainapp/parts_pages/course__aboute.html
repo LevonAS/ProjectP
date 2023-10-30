@@ -4,20 +4,24 @@
 <!-- Заголовок с картинкой -->
 <div class="site-box">
     <section class="pc__aboute">
-        <img src="{% static 'img/course_wp_1.png' %}" alt="">
+<!--        <img src="{% static 'img/course_wp_1.png' %}" alt="">-->
+        <img src="/media/{{ course.image }}" alt="">
         <div class="pc__aboute__data">
             <div class="pc__aboute__info">
                 <a class="pc__aboute__age" href="#">{{ course.age_group }}</a>
                 <a class="pc__aboute__count" href="#">{{ course.lesson_qty }}</a>
                 <!-- Для главного начального курса, указать доп стили в этот элемент! -->
-                <a class="pc__aboute__time" href="#" {% if course.duration == 'Бесконечный доступ' %} style="background: #FF8D8D; color: #FFFFFF;" {% else %} style="background: #FFFFFF; color: #566659;" {% endif %}>{{ course.duration }}</a>
+                <a class="pc__aboute__time" href="#" {% if course.slug == 'first-course' %} style="background: #FF8D8D; color: #FFFFFF;"{% endif %}>{{ course.duration }}</a>
+<!--                <a class="pc__aboute__time" href="#" {% if course.duration == 'Бесконечный доступ' %} style="background: #FF8D8D; color: #FFFFFF;" {% else %} style="background: #FFFFFF; color: #566659;" {% endif %}>{{ course.duration }}</a>-->
                 <!-- Для остальных курсов не надо! -->
                 <!-- <a class="pc__aboute__time" href="#">бесконечный доступ</a> -->
             </div>
             <div class="pc__aboute__name">{{ course.title }}</div>
             <div class="pc__aboute__note">{{ course.note }}</div>
             <ul>
-                {{ course.description|markdownify }}
+                {% for description in descriptions %}
+                    <li>{{ description }}</li>
+                {% endfor %}
             </ul>
             <a class="pc__aboute__data-btn" href="#">
                 <div class="pc__aboute__data-btn">Записаться</div>

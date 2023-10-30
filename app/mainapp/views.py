@@ -61,14 +61,16 @@ def send_mail_to_subscribe_user(user, request):
 
 def view_course(request, slug):
     course = get_object_or_404(mainapp_models.Course, slug=slug)
+    descriptions = course.description.split('\n')
+
     lessons = mainapp_models.Lessons.objects.filter(сourses=course)
-    # print(' /// context_course : ', lessons)
+    # print('image: ', image)
     # for i in range(1,6):
     #     print(i)
     context = {'course': course,
+               'descriptions': descriptions,
                'lessons': lessons,
-               'range': range(1,6)
+               'range': range(1,6),
             }
-    
     # print(' /// context_course : ', context)
     return render(request, 'mainapp/course.html', context)
