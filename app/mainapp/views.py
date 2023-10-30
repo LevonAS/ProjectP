@@ -15,9 +15,8 @@ def index(request):
     context = {}
     #  Курсы за исключением первого, первые три
     courses = mainapp_models.Course.objects.exclude(slug='first-course')[:3]
-    for c in courses:
-        c.description = c.description.split('\n')
-        print(c.title, c.description)
+    for course in courses:
+        course.description = course.description.split('\n')
     # courses.description.str.split('\n')
     # descriptions = courses.description.split('\n')
     # Первый курс выбирается по слагу first-course
@@ -74,6 +73,8 @@ def view_course(request, slug):
     descriptions = course.description.split('\n')
 
     lessons = mainapp_models.Lessons.objects.filter(сourses=course)
+    for lesson in lessons:
+        lesson.description_part3 = lesson.description_part3.split('\n')
     # print('image: ', image)
     # for i in range(1,6):
     #     print(i)

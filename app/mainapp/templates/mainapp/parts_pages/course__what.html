@@ -5,15 +5,13 @@
   <section class="pc__what">
     <h1 class="section__title">Чему научимся на курсе?</h1>
     <div class="pc__what__cards pc__what-slideshow-container">
-      <!-- <div class="pc__what__card mySlides fade"> -->
       {% for item in course.benefits.all %}
-      
-      <div class="pc__what__card pc__what__fade">
-        {% if item.image %}
-        <img src="{{ item.image.url }}" alt="">
-        {% endif %}
-        <p>{{ item.title }}</p>
-      </div>
+        <div class="pc__what__card pc__what__fade">
+          {% if item.image %}
+            <img src="{{ item.image.url }}" alt="">
+          {% endif %}
+          <p>{{ item.title }}</p>
+        </div>
       {% endfor %}
     </div>
     <br>
