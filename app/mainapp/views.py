@@ -14,11 +14,21 @@ from mainapp.models import Subscriber, Tag
 def index(request):
     context = {}
     #  Курсы за исключением первого, первые три
-    context['courses'] = mainapp_models.Course.objects.exclude(slug='first-course')[:3]
+    courses = mainapp_models.Course.objects.exclude(slug='first-course')[:3]
+    for c in courses:
+        c.description = c.description.split('\n')
+        print(c.title, c.description)
+    # courses.description.str.split('\n')
+    # descriptions = courses.description.split('\n')
     # Первый курс выбирается по слагу first-course
-    context['first_course'] = get_object_or_404(mainapp_models.Course, slug='first-course')
-    # return HttpResponse("Главная")
-    # print(' /// context_main : ', context)
+    first_course = get_object_or_404(mainapp_models.Course, slug='first-course')
+    descriptions_first = first_course.description.split('\n')
+
+    context = {'courses': courses,
+               # 'descriptions': descriptions,
+               'first_course': first_course,
+               'descriptions_first': descriptions_first,
+               }
     return render(request, 'mainapp/index.html', context)
 
 

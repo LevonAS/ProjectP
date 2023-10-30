@@ -669,6 +669,7 @@ footer ul li img {
     display: flex;   
     font-size: clamp(0.75rem, 1vw, 1rem);
     gap: 9px;
+    margin-bottom: 14px;
 }
 
 .courses__for-1 {
@@ -701,13 +702,14 @@ footer ul li img {
     text-wrap: nowrap;
     font-size: clamp(0.75rem, 2vw, 1rem);
     display: inline-block;
+    margin-bottom: 14px;
 }
 
 .courses__note {
     font-size: clamp(1rem, 1vw, 1.25rem);
     color: #A0A5A9;
-    margin-top: 14px;
 }
+
 
 .courses__detailed {
     border-radius: 15px;
