@@ -28,7 +28,7 @@ def login_view(request):
     user = authenticate(request, email=email, password=password)
     if user is not None:
         login(request, user)
-        messages.success(request, 'Авторизация пройдена успешно')
+        # messages.success(request, 'Авторизация пройдена успешно')
         # Redirect to a success page.
         # return render(request, 'mainapp/index.html', context)
         return redirect('index')
