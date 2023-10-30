@@ -40,7 +40,8 @@ for (i = 0; i < coll.length; i++) {
 // АВТОРИЗАЦИЯ
 
 function autorization() {
-    let btn = document.getElementById("header__login");
+    let btn = document.querySelectorAll(".header__login")[0];
+//    let btn = document.getElementById("header__login");
     let popUp = document.getElementById('autorization__pop_up');
     // let frm = document.getElementById("form__autorization");
     let cls = document.getElementById("autorization__close");
