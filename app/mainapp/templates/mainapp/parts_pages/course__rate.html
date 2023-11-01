@@ -1,4 +1,4 @@
-{% load static markdownify %}
+{% load static %}
 
 
 <!-- Тарифы -->
@@ -9,7 +9,9 @@
             <div class="pc__rate__1">
                 <h1>{{ course.title }}</h1>
                 <ul>
-                    {{ course.filling|markdownify }}
+                    {% for item in course_filling %}
+                        <li>{{ item }}</li>
+                    {% endfor %} 
                 </ul>
             </div>
             <div class="pc__rate__2">

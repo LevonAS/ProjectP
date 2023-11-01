@@ -1,4 +1,4 @@
-{% load static markdownify %}
+{% load static %}
 
 
 <!-- Материалы и инструменты -->
@@ -7,7 +7,9 @@
         <h1 class="section__title">Необходимые материалы<br>и инструменты</h1>
         <div class="pc__resources__block">
             <ul>
-                {{ course.tools|markdownify }}
+                {% for item in course_tools %}
+                     <li>{{ item }}</li>
+                {% endfor %}    
             </ul>
         </div>
     </section>

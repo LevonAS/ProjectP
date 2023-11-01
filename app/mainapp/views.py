@@ -70,6 +70,7 @@ def send_mail_to_subscribe_user(user, request):
 
 
 def view_course(request, slug):
+    ''' Страница вывода конкретного курса '''
     course = get_object_or_404(mainapp_models.Course, slug=slug)
     descriptions = course.description.split('\n')
 
@@ -79,11 +80,13 @@ def view_course(request, slug):
     # print('image: ', image)
     # for i in range(1,6):
     #     print(i)
-
+    # print(' /// context_course : ', descriptions, ' |o|||o| ', course.filling.split('\n'))
     mentor = get_mentor_course(request, slug)
 
     context = {'course': course,
                'descriptions': descriptions,
+               'course_tools': course.tools.split('\n'),
+               'course_filling': course.filling.split('\n'),
                'lessons': lessons,
                'mentor': mentor,
                }
