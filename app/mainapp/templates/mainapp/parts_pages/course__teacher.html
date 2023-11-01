@@ -5,24 +5,24 @@
     <section class="pc__teacher">
         <h1 class="section__title">Эксперт курса</h1>
         <div class="pc__teacher__photo">
-            <img src="{% static 'img/photo.png' %}" alt="">
+            <img src="{{ mentor.photo.url }}" alt="">
             <div class="pc__teacher__data">
-                <div class="pc__teacher__name">Алина Заремба</div>
-                <div class="pc__teacher__note">художник, основатель школы</div>
+                <div class="pc__teacher__name">{{ mentor.first_name }} {{ mentor.last_name }}</div>
+                <div class="pc__teacher__note">{{ mentor.status }}</div>
             </div>
         </div>
         <div class="pc__teacher__cards">
             <div class="pc__teacher__card pc__teacher__card-1">
                 <div class="pc__teacher__card-number">1</div>
-                <div class="pc__teacher__card-text">Опыт художника и куратора выставок современного искусства. Алина уже четыре года преподает детям, использует индивидуальный подход в обучении и погружает в историю искусств. В ее опыте работа с художниками разных уголков России, мастер-классы для детей и лекции по истории для взрослых</div>
+                <div class="pc__teacher__card-text">{{ mentor.experience }}</div>
             </div>
             <div class="pc__teacher__card pc__teacher__card-2">
                 <div class="pc__teacher__card-number">2</div>
-                <div class="pc__teacher__card-text">Курсы Алины построены так, чтобы ученик не боялся браться за смелые цвета, использовать неожиданные формы и сочетания. И, что немаловажно, полученные с уроков навыки уже можно применять практически, сколько бы лет не было ученику!</div>
+                <div class="pc__teacher__card-text">{{ mentor.credo }}</div>
             </div>
             <div class="pc__teacher__card pc__teacher__card-3">
                 <div class="pc__teacher__card-number">3</div>
-                <div class="pc__teacher__card-text">Алина уверена, что творчество детей - это самое  искреннее искусство, а задача преподавателя помочь ученику найти свой исследовательский вектор. Она знает, как помочь ребенку влюбиться в искусство и поверить в свои творческие силы</div>
+                <div class="pc__teacher__card-text">{{ mentor.approach }}</div>
             </div>
         </div>
         <div class="pc__teacher__dots">

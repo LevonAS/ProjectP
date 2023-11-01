@@ -79,11 +79,15 @@ def view_course(request, slug):
     # print('image: ', image)
     # for i in range(1,6):
     #     print(i)
+
+    mentor = get_mentor_course(request, slug)
+
     context = {'course': course,
                'descriptions': descriptions,
                'lessons': lessons,
-               'range': range(1,6),
-            }
+               'mentor': mentor,
+               'range': range(1, 6),
+               }
     # print(' /// context_course : ', context)
     return render(request, 'mainapp/course.html', context)
 
@@ -103,6 +107,14 @@ def view_courses_all(request):
                'descriptions_first': descriptions_first,
                }
     return render(request, 'mainapp/courses_all.html', context)
+
+
+def get_mentor_course(request, slug):
+    course = get_object_or_404(mainapp_models.Course, slug=slug)
+    mentor = mainapp_models.Mentor.objects.filter(courses=course).first()
+
+    return mentor
+
 
 def view_self_account(request):
 
