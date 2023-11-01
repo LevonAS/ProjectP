@@ -1018,12 +1018,25 @@ footer ul li img {
     color: #FFFFFF;
     background: #95AA99;
     border-radius: 64px;
+    text-wrap: nowrap;
     padding: clamp(11px, 2vw, 19.5px) clamp(20px, 3vw, 35px);
 }
 
 .faq__collapsible > div > div > a:hover {
     background: #566659;
 }
+
+.faq__collapsible > div > div > a::after {
+    content: url(../img/padlock-locked.png);
+    margin-left: 7px;
+}
+
+.faq__collapsible > div > div > a.faq__collapsible-lesson-open::after {
+    content: url(../img/padlock-unlocked.png);
+    margin-left: 7px;
+}
+
+
 
 .faq__active {
     background: transparent;

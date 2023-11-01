@@ -70,6 +70,12 @@ def send_mail_to_subscribe_user(user, request):
 
 
 def view_course(request, slug):
+    current_number = 0
+    current_user = request.user
+    if current_user.is_authenticated:
+        # Необходимо установить current_number для текущего пользователя на этот курс (default 1)
+        current_number = 1
+
     ''' Страница вывода конкретного курса '''
     course = get_object_or_404(mainapp_models.Course, slug=slug)
     descriptions = course.description.split('\n')
@@ -89,6 +95,7 @@ def view_course(request, slug):
                'course_filling': course.filling.split('\n'),
                'lessons': lessons,
                'mentor': mentor,
+               'current_number': current_number,
                }
     # print(' /// context_course : ', context)
     return render(request, 'mainapp/course.html', context)
@@ -128,6 +135,7 @@ def view_self_account(request):
             course.description = course.description.split('\n')
         first_course = get_object_or_404(mainapp_models.Course, slug='first-course')
         descriptions_first = first_course.description.split('\n')
+
         context = {'courses': courses,
                    'first_course': first_course,
                    'descriptions_first': descriptions_first,
