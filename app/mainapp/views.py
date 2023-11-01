@@ -85,3 +85,20 @@ def view_course(request, slug):
             }
     # print(' /// context_course : ', context)
     return render(request, 'mainapp/course.html', context)
+
+
+def view_courses_all(request):
+    #  Курсы за исключением первого, все
+    courses = mainapp_models.Course.objects.exclude(slug='first-course')
+    for course in courses:
+        course.description = course.description.split('\n')
+
+    # Первый курс выбирается по слагу first-course
+    first_course = get_object_or_404(mainapp_models.Course, slug='first-course')
+    descriptions_first = first_course.description.split('\n')
+
+    context = {'courses': courses,
+               'first_course': first_course,
+               'descriptions_first': descriptions_first,
+               }
+    return render(request, 'mainapp/courses_all.html', context)
