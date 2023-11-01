@@ -1050,7 +1050,12 @@ footer ul li img {
     height: 100%;
 }
 
-
+.self-account__title {
+    color: #0D161B;
+    font-size: clamp(2.5rem, 4vw, 4.75rem);
+    font-weight: 400;
+    margin: clamp(40px, 6vw, 100px) auto;
+}
 
 
 

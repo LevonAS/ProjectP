@@ -8,6 +8,7 @@ from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from mainapp.models import Subscriber, Tag
+from authapp import views as authapp_views
 
 
 
@@ -102,3 +103,23 @@ def view_courses_all(request):
                'descriptions_first': descriptions_first,
                }
     return render(request, 'mainapp/courses_all.html', context)
+
+def view_self_account(request):
+
+    current_user = request.user
+    if current_user.is_authenticated == True:
+        # courses = current_user.courses.all()
+        courses = current_user.courses.exclude(slug='first-course')
+        for course in courses:
+            course.description = course.description.split('\n')
+        first_course = get_object_or_404(mainapp_models.Course, slug='first-course')
+        descriptions_first = first_course.description.split('\n')
+        context = {'courses': courses,
+                   'first_course': first_course,
+                   'descriptions_first': descriptions_first,
+                   'user': current_user,
+                   }
+        return render(request, 'mainapp/user_page.html', context)
+    else:
+        messages.error(request, 'Для входа в личный кабинет Вам необходимо авторизоваться')
+        return redirect('index')

@@ -26,12 +26,13 @@ from authapp import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main_views.index, name='index'),
-    path('login/', auth_views.login_view),
+    path('login/', auth_views.login_view, name='login'),
     path('logout/', auth_views.logout_view),
     path('register/', auth_views.register_view),
     path('subscribe/', main_views.subscribe_view),
     path('courses/<str:slug>/', main_views.view_course, name='course'),
     path('courses-all/', main_views.view_courses_all, name='courses_all'),
+    path('self-account/', main_views.view_self_account, name='self-account'),
 
     # path('courses/', include('mainapp.urls', namespace='courses')),
     path('auth/', include('authapp.urls', namespace='authapp')),
