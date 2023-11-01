@@ -22,7 +22,7 @@
                     <li>{{ description }}</li>
                 {% endfor %}
             </ul>
-            <a class="pc__aboute__data-btn" href="#">
+            <a class="pc__aboute__data-btn" href="{% url 'buy-course' course.slug %}">
                 <div class="pc__aboute__data-btn">Записаться</div>
             </a>
         </div>
