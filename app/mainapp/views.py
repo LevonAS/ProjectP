@@ -74,7 +74,7 @@ def view_course(request, slug):
     course = get_object_or_404(mainapp_models.Course, slug=slug)
     descriptions = course.description.split('\n')
 
-    lessons = mainapp_models.Lesson.objects.filter(сourses=course)
+    lessons = mainapp_models.Lesson.objects.filter(course=course)
     for lesson in lessons:
         lesson.description_part3 = lesson.description_part3.split('\n')
     # print('image: ', image)
@@ -136,4 +136,21 @@ def view_self_account(request):
         return render(request, 'mainapp/user_page.html', context)
     else:
         messages.error(request, 'Для входа в личный кабинет Вам необходимо авторизоваться')
+        return redirect('index')
+
+
+def user_buy_course(request, slug):
+    current_user = request.user
+    course = get_object_or_404(mainapp_models.Course, slug=slug)
+    if current_user.is_authenticated:
+        if current_user not in course.students.all():
+            course.students.add(current_user)
+            course.save()
+            messages.info(request, f'Поздравляем! Вы записаны на курс {course.title}')
+            return redirect('self-account')
+        else:
+            messages.info(request, f'Вы уже записаны на курс {course.title}')
+            return redirect('self-account')
+    else:
+        messages.error(request, 'Для того чтобы записаться на курс Вам необходимо авторизоваться')
         return redirect('index')
