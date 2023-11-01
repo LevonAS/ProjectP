@@ -90,6 +90,7 @@ class Course(models.Model):
     note = models.CharField(verbose_name="Цель курса", default='', max_length=200)
     description = models.TextField(verbose_name="Описание курса", blank=True)
     price = models.FloatField(verbose_name="Стоимость курса")
+    category = models.CharField(verbose_name="Категория курса", max_length=11, choices=CourseCategory.choices)
     tools = models.TextField(verbose_name="Необходимые материалы и инструменты для курса", blank=True)
     filling = models.TextField(verbose_name="Наполнение курса", blank=True)
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="сourses_images")
@@ -119,14 +120,20 @@ class Course(models.Model):
     #     return reverse('courses: course_detail', args=[self.slug])
 
 
-class Lessons(models.Model):
+class Lesson(models.Model):
     VALUE_PART1 = 'Цель урока'
     VALUE_PART2 = 'Чему научится ребенок?'
-    VALUE_PART3 = 'Что нужно для урока?' 
+    VALUE_PART3 = 'Что нужно для урока?'
+
+    class LessonType(models.TextChoices):
+        ONLINE_LESSON = ("Online lesson", "Онлайн-урок")
+        VIDEO_LESSON = ("Video lesson", "Видеоурок")
+
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(verbose_name="Название урока", max_length=150)
     number = models.IntegerField(verbose_name="Номер урока")
-    сourses = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="lessons")
+    type = models.CharField(verbose_name="Тип урока", max_length=13, choices=LessonType.choices)
     part1 = models.CharField(verbose_name="Название первой части описания урока", default=VALUE_PART1, max_length=150, blank=True)
     description_part1 = models.TextField(verbose_name="Содержание первой части", blank=True)
     part2 = models.CharField(verbose_name="Название второй части описания урока", default=VALUE_PART2, max_length=150, blank=True)
@@ -134,19 +141,22 @@ class Lessons(models.Model):
     part3 = models.CharField(verbose_name="Название третьей части описания урока", default=VALUE_PART3, max_length=150, blank=True)
     description_part3 = models.TextField(verbose_name="Содержание третьей части", blank=True)
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="lessons_img/")
+    path_to_file = models.FilePathField(path=os.path.join(settings.MEDIA_ROOT, "video_lessons"), blank=True)
+    link = models.CharField(verbose_name="Ссылка на онлайн-урок", max_length=150, blank=True)
+    lesson_date = models.DateTimeField(verbose_name="Дата онлайн-урока", blank=True, null=True)
+    viewed = models.BooleanField(verbose_name="Просмотрен", default=False)
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
     deleted = models.BooleanField(verbose_name="Удален", default=False)
 
     def __str__(self):
-        return f'Курс "{self.сourses}", Урок {self.number}, {self.title} '
+        return f'Курс "{self.course}", Урок {self.number}, {self.title} '
 
     class Meta:
         verbose_name = "Урок"
         verbose_name_plural = "Уроки"
-        ordering = ["сourses", "number"]
+        ordering = ["course", "number"]
 
-        
 
 class QuestionAnswer(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
@@ -194,49 +204,6 @@ class Application(models.Model):
         verbose_name = "Заявка"
         verbose_name_plural = "Заявки"
         ordering = ["created_at"]
-
-
-class Videolesson(models.Model):
-    id = models.UUIDField(default=uuid4, primary_key=True)
-    title = models.CharField(verbose_name="Название видеоурока", max_length=150)
-    slug = models.SlugField(verbose_name="URL", max_length=200, unique=True)
-    description = models.TextField(verbose_name="Описание видеоурока", blank=True)
-    path_to_file = models.FilePathField(path=os.path.join(settings.MEDIA_ROOT, "video_lessons"))
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="videolessons")
-    image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
-    created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
-    updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
-    viewed = models.BooleanField(verbose_name="Просмотрен", default=False)
-    deleted = models.BooleanField(verbose_name="Удален", default=False)
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = "Видеоурок"
-        verbose_name_plural = "Видеоуроки"
-        ordering = ["-created_at"]
-
-
-class Onlinelesson(models.Model):
-    id = models.UUIDField(default=uuid4, primary_key=True)
-    title = models.CharField(verbose_name="Название онлайн-урока", max_length=150)
-    slug = models.SlugField(verbose_name="URL", max_length=200, unique=True)
-    link = models.CharField(verbose_name="Ссылка на онлайн-урок", max_length=150, blank=True)
-    lesson_date = models.DateTimeField(verbose_name="Дата онлайн-урока")
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="onlinelessons")
-    created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
-    updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
-    deleted = models.BooleanField(verbose_name="Удален", default=False)
-    students = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="onlinelessons")
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = "Онлайн урок"
-        verbose_name_plural = "Онлайн уроки"
-        ordering = ["-created_at"]
 
 
 class StudentsWork(models.Model):

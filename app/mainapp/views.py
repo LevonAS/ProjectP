@@ -74,7 +74,7 @@ def view_course(request, slug):
     course = get_object_or_404(mainapp_models.Course, slug=slug)
     descriptions = course.description.split('\n')
 
-    lessons = mainapp_models.Lessons.objects.filter(сourses=course)
+    lessons = mainapp_models.Lesson.objects.filter(сourses=course)
     for lesson in lessons:
         lesson.description_part3 = lesson.description_part3.split('\n')
     # print('image: ', image)
