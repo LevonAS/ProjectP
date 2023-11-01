@@ -86,7 +86,6 @@ def view_course(request, slug):
                'descriptions': descriptions,
                'lessons': lessons,
                'mentor': mentor,
-               'range': range(1, 6),
                }
     # print(' /// context_course : ', context)
     return render(request, 'mainapp/course.html', context)
