@@ -5,7 +5,9 @@
     <section class="pc__teacher">
         <h1 class="section__title">Эксперт курса</h1>
         <div class="pc__teacher__photo">
-            <img src="{{ mentor.photo.url }}" alt="">
+            {% if mentor.photo %}
+                <img src="{{ mentor.photo.url }}" alt="">
+            {% endif %}
             <div class="pc__teacher__data">
                 <div class="pc__teacher__name">{{ mentor.first_name }} {{ mentor.last_name }}</div>
                 <div class="pc__teacher__note">{{ mentor.status }}</div>

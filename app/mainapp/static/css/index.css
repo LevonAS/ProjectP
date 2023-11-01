@@ -1057,6 +1057,22 @@ footer ul li img {
     margin: clamp(40px, 6vw, 100px) auto;
 }
 
+.header__self-account {
+    background-image: url(../img/self-account.svg);
+    background-size: contain;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-position: center center;
+    height: clamp(37px, 4vw, 47px);
+    width: clamp(57px, 4vw, 67px);
+    padding: 5px;
+    object-fit: cover;
+}
+
+.header__self-account:hover {
+    background-image: url(../img/self-account_active.svg);
+}
+
 
 
 
