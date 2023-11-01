@@ -70,13 +70,13 @@ def send_mail_to_subscribe_user(user, request):
 
 
 def view_course(request, slug):
+    ''' Страница вывода конкретного курса '''
     current_number = 0
     current_user = request.user
     if current_user.is_authenticated:
         # Необходимо установить current_number для текущего пользователя на этот курс (default 1)
         current_number = 1
 
-    ''' Страница вывода конкретного курса '''
     course = get_object_or_404(mainapp_models.Course, slug=slug)
     descriptions = course.description.split('\n')
 
