@@ -3,10 +3,10 @@ from django.forms import ModelForm, FileField
 
 
 from mainapp.models import Advantage, QuestionAnswer, Tag, Benefit, Talent, Course, Mentor, Application,\
-Videolesson, Onlinelesson, StudentsWork, PromoCode, Preparation, Subscriber, Lessons
+StudentsWork, PromoCode, Preparation, Subscriber, Lesson
 
 
-admin.site.register(Lessons)
+admin.site.register(Lesson)
 admin.site.register(Advantage)
 admin.site.register(QuestionAnswer)
 admin.site.register(Tag)
@@ -38,15 +38,4 @@ class TalentAdmin(admin.ModelAdmin):
 
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('title',)}
-    
-
-
-@admin.register(Videolesson)
-class VideolessonAdmin(admin.ModelAdmin):
-    prepopulated_fields = {'slug': ('title',)}
-
-
-@admin.register(Onlinelesson)
-class OnlinelessonAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ('title',)}
