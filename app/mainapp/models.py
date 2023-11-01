@@ -120,21 +120,23 @@ class Course(models.Model):
 
 
 class Lessons(models.Model):
+    VALUE_PART1 = 'Цель урока'
+    VALUE_PART2 = 'Чему научится ребенок?'
+    VALUE_PART3 = 'Что нужно для урока?' 
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(verbose_name="Название урока", max_length=150)
     number = models.IntegerField(verbose_name="Номер урока")
     сourses = models.ForeignKey(Course, on_delete=models.CASCADE, null=True)
-    part1 = models.CharField(verbose_name="Название первой части описания урока", max_length=150, blank=True)
+    part1 = models.CharField(verbose_name="Название первой части описания урока", default=VALUE_PART1, max_length=150, blank=True)
     description_part1 = models.TextField(verbose_name="Содержание первой части", blank=True)
-    part2 = models.CharField(verbose_name="Название второй части описания урока", max_length=150, blank=True)
+    part2 = models.CharField(verbose_name="Название второй части описания урока", default=VALUE_PART2, max_length=150, blank=True)
     description_part2 = models.TextField(verbose_name="Содержание второй части", blank=True)
-    part3 = models.CharField(verbose_name="Название третьей части описания урока", max_length=150, blank=True)
+    part3 = models.CharField(verbose_name="Название третьей части описания урока", default=VALUE_PART3, max_length=150, blank=True)
     description_part3 = models.TextField(verbose_name="Содержание третьей части", blank=True)
-    part4 = models.CharField(verbose_name="Название четвёртой части описания урока", max_length=150, blank=True)
-    description_part4 = models.TextField(verbose_name="Содержание четвёртой части", blank=True)
-    part5 = models.CharField(verbose_name="Название пятой части описания урока", max_length=150, blank=True)
-    description_part5 = models.TextField(verbose_name="Содержание пятой части", blank=True)
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="lessons_img/")
+    created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
+    deleted = models.BooleanField(verbose_name="Удален", default=False)
 
     def __str__(self):
         return f'Курс "{self.сourses}", Урок {self.number}, {self.title} '
