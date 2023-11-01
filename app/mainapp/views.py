@@ -119,7 +119,7 @@ def get_mentor_course(request, slug):
 def view_self_account(request):
 
     current_user = request.user
-    if current_user.is_authenticated == True:
+    if current_user.is_authenticated:
         # courses = current_user.courses.all()
         courses = current_user.courses.exclude(slug='first-course')
         for course in courses:

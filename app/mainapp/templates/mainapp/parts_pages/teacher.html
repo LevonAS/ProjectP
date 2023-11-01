@@ -13,18 +13,6 @@
                 <div class="teacher__note">Детские рисунки похожи на петроглифы - самое первое изобразительное искусство человека. Твои рисунки - это то, чем вдохновляются даже самые великие художники.</div>
             </div>
         </div>
-        <div class="teacher__form">
-            <form action="subscribe/"  method="post" class="form__email">
-                {% csrf_token %}
-                <h1 class="form__title">Узнавайте новости школы первыми</h1>
-                <div class="form__inputs">
-                    <input class="form__inputs_text" type="text" name="name" placeholder="Имя">
-                    <input class="form__inputs_email" type="email" name="email" placeholder="Почта">
-                </div>
-                <input type="submit" value="Получить письмо" class="form__submit">
-                <p>Нажимая на кнопку «Получить письмо», вы принимаете условия <a href="#">пользовательского соглашения</a>.</p>
-            </form>
-            <img src="{% static 'img/image08.svg' %}" alt="" class="teacher__petroglif">
-        </div>
+        {% include "mainapp/parts_pages/subscription_form.html" %}
     </section>
 </div>
