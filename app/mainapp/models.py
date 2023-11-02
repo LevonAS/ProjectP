@@ -6,22 +6,6 @@ from django.urls import reverse
 from uuid import uuid4
 
 
-class Advantage(models.Model):
-    id = models.UUIDField(default=uuid4, primary_key=True)
-    title = models.CharField(verbose_name="Преимущество", max_length=150)
-    description = models.TextField(verbose_name="Описание", blank=True)
-    image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
-    deleted = models.BooleanField(verbose_name="Удален", default=False)
-
-    def __str__(self):
-        return self.title
-
-    class Meta:
-        verbose_name = "Преимущество"
-        verbose_name_plural = "Преимущества"
-        ordering = ["title"]
-
-
 class Tag(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     text = models.CharField(verbose_name="Текст тега", max_length=50)
@@ -66,6 +50,26 @@ class Talent(models.Model):
         ordering = ["title"]
 
 
+class Mentor(models.Model):
+    id = models.UUIDField(default=uuid4, primary_key=True)
+    first_name = models.CharField(verbose_name="Имя ментора", max_length=150)
+    last_name = models.CharField(verbose_name="Фамилия ментора", max_length=150)
+    photo = models.ImageField(verbose_name="Фото ментора", blank=True, null=True, upload_to="mentor")
+    status = models.CharField(verbose_name="Статус", max_length=255)
+    quote = models.TextField(verbose_name="Высказывание")
+    experience = models.TextField(verbose_name="Образование и Опыт")
+    credo = models.TextField(verbose_name="Кредо и Сильные стороны")
+    approach = models.TextField(verbose_name="Подход в обучении")
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+
+    class Meta:
+        verbose_name = "Ментор"
+        verbose_name_plural = "Менторы"
+        ordering = ["last_name", "first_name"]
+
+
 class Preparation(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     value = models.CharField(verbose_name="Значение", max_length=50)
@@ -87,26 +91,33 @@ class Course(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(verbose_name="Название курса", max_length=150)
     slug = models.SlugField(verbose_name="URL", max_length=200, unique=True, blank=True, null=True)
-    note = models.CharField(verbose_name="Цель курса", default='', max_length=200)
+    category = models.CharField(verbose_name="Категория курса", max_length=11, choices=CourseCategory.choices)
+    tags = models.ManyToManyField(Tag, verbose_name="Теги курса", related_name="courses")
+    aim = models.CharField(verbose_name="Цель курса", max_length=200, blank=True)
     description = models.TextField(verbose_name="Описание курса", blank=True)
     price = models.FloatField(verbose_name="Стоимость курса")
-    category = models.CharField(verbose_name="Категория курса", max_length=11, choices=CourseCategory.choices)
-    tools = models.TextField(verbose_name="Необходимые материалы и инструменты для курса", blank=True)
-    filling = models.TextField(verbose_name="Наполнение курса", blank=True)
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="сourses_images")
-    teaser_video = models.FilePathField(verbose_name="Тизер-видео", blank=True, null=True, path=os.path.join(settings.MEDIA_ROOT, "teaser_video"))
-    created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
-    updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
-    tags = models.ManyToManyField(Tag, verbose_name="Теги курса", related_name="courses")
-    benefits = models.ManyToManyField(Benefit, verbose_name="Польза курса", related_name="courses")
+    teaser_video = models.FilePathField(verbose_name="Тизер-видео", blank=True, null=True,
+                                        path=os.path.join(settings.MEDIA_ROOT, "teaser_video"))
     talents = models.ManyToManyField(Talent, verbose_name="Навыки, которые дает курс", related_name="courses")
-    students = models.ManyToManyField(settings.AUTH_USER_MODEL, verbose_name="Студенты курса", related_name="courses")
-    is_popular = models.BooleanField(verbose_name="Популярный", default=False)
-    deleted = models.BooleanField(verbose_name="Удален", default=False)
-    age_group = models.CharField(verbose_name="Возрастная группа", max_length=25, blank=True)
+    benefits = models.ManyToManyField(Benefit, verbose_name="Польза курса", related_name="courses")
     lesson_qty = models.CharField(verbose_name="Количество уроков", max_length=25, blank=True)
     duration = models.CharField(verbose_name="Продолжительность курса", max_length=25, blank=True)
-    preparation = models.ForeignKey(Preparation, on_delete=models.CASCADE, null=True)
+    age_group = models.CharField(verbose_name="Возрастная группа", max_length=25, blank=True)
+    tools = models.TextField(verbose_name="Необходимые материалы и инструменты для курса", blank=True)
+    preparation = models.ForeignKey(Preparation, verbose_name="Уровень подготовки", on_delete=models.CASCADE,
+                                    null=True, related_name="courses")
+    filling = models.TextField(verbose_name="Наполнение курса", blank=True)
+    mentors = models.ManyToManyField(Mentor, verbose_name="Менторы", related_name="courses")
+    is_popular = models.BooleanField(verbose_name="Популярный", default=False)
+    question_lessons_features = models.TextField(verbose_name="Как проходят занятия на курсе?")
+    question_access_duration = models.TextField(verbose_name="На сколько по времени доступен курс?")
+    question_homework = models.TextField(verbose_name="Что насчет домашнего задания?")
+    question_joining_telegram_chat = models.TextField(verbose_name="Что я получу, вступив в телеграм-канал курса?")
+    question_paid_no_access = models.TextField(verbose_name="Я оплатил и не получил доступ к курсу")
+    created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
+    deleted = models.BooleanField(verbose_name="Удален", default=False)
 
     def __str__(self):
         return self.title
@@ -132,25 +143,27 @@ class Lesson(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(verbose_name="Название урока", max_length=150)
     number = models.IntegerField(verbose_name="Номер урока")
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="lessons")
+    course = models.ForeignKey(Course, verbose_name="Курс", on_delete=models.CASCADE, related_name="lessons")
     type = models.CharField(verbose_name="Тип урока", max_length=13, choices=LessonType.choices)
-    part1 = models.CharField(verbose_name="Название первой части описания урока", default=VALUE_PART1, max_length=150, blank=True)
+    part1 = models.CharField(verbose_name="Название первой части описания урока", default=VALUE_PART1,
+                             max_length=150, blank=True)
     description_part1 = models.TextField(verbose_name="Содержание первой части", blank=True)
-    part2 = models.CharField(verbose_name="Название второй части описания урока", default=VALUE_PART2, max_length=150, blank=True)
+    part2 = models.CharField(verbose_name="Название второй части описания урока", default=VALUE_PART2,
+                             max_length=150, blank=True)
     description_part2 = models.TextField(verbose_name="Содержание второй части", blank=True)
-    part3 = models.CharField(verbose_name="Название третьей части описания урока", default=VALUE_PART3, max_length=150, blank=True)
+    part3 = models.CharField(verbose_name="Название третьей части описания урока", default=VALUE_PART3,
+                             max_length=150, blank=True)
     description_part3 = models.TextField(verbose_name="Содержание третьей части", blank=True)
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="lessons_img/")
     path_to_file = models.FilePathField(path=os.path.join(settings.MEDIA_ROOT, "video_lessons"), blank=True)
     link = models.CharField(verbose_name="Ссылка на онлайн-урок", max_length=150, blank=True)
     lesson_date = models.DateTimeField(verbose_name="Дата онлайн-урока", blank=True, null=True)
-    viewed = models.BooleanField(verbose_name="Просмотрен", default=False)
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
     deleted = models.BooleanField(verbose_name="Удален", default=False)
 
     def __str__(self):
-        return f'Курс "{self.course}", Урок {self.number}, {self.title} '
+        return f'Курс "{self.course}", Урок {self.number}: {self.title} '
 
     class Meta:
         verbose_name = "Урок"
@@ -158,45 +171,11 @@ class Lesson(models.Model):
         ordering = ["course", "number"]
 
 
-class QuestionAnswer(models.Model):
-    id = models.UUIDField(default=uuid4, primary_key=True)
-    question = models.TextField(verbose_name="Вопрос")
-    answer = models.TextField(verbose_name="Ответ")
-    course = models.ForeignKey(Course, blank=True, null=True, on_delete=models.CASCADE)
-    deleted = models.BooleanField(verbose_name="Удален", default=False)
-
-    def __str__(self):
-        return self.question
-
-    class Meta:
-        verbose_name = "Вопрос - ответ"
-        verbose_name_plural = "Вопросы - ответы"
-
-
-class Mentor(models.Model):
-    id = models.UUIDField(default=uuid4, primary_key=True)
-    first_name = models.CharField(verbose_name="Имя ментора", max_length=150)
-    last_name = models.CharField(verbose_name="Фамилия ментора", max_length=150)
-    photo = models.ImageField(verbose_name="Фото ментора", blank=True, null=True, upload_to="mentor")
-    status = models.CharField(verbose_name="Статус", max_length=255)
-    experience = models.TextField(verbose_name="Образование и Опыт")
-    credo = models.TextField(verbose_name="Кредо и Сильные стороны")
-    approach = models.TextField(verbose_name="Подход в обучении")
-    courses = models.ManyToManyField(Course, verbose_name="Курсы", related_name="mentors")
-
-    def __str__(self):
-        return f'{self.first_name} {self.last_name}'
-
-    class Meta:
-        verbose_name = "Ментор"
-        verbose_name_plural = "Менторы"
-        ordering = ["last_name", "first_name"]
-
-
 class Application(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name="applications")
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="applications")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Пользователь", on_delete=models.SET_NULL,
+                             null=True, related_name="applications")
+    course = models.ForeignKey(Course, verbose_name="Курсы", on_delete=models.CASCADE, related_name="applications")
     approved = models.BooleanField(verbose_name="Заявка подтверждена", default=False)
     created_at = models.DateTimeField(verbose_name='Создана', auto_now_add=True)
 
@@ -210,7 +189,8 @@ class StudentsWork(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(verbose_name="Название", max_length=250)
     description = models.TextField(verbose_name="Описание", blank=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name="studentworks")
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Студент",
+                             on_delete=models.SET_NULL, null=True, related_name="studentworks")
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
 
     def __str__(self):
@@ -219,22 +199,6 @@ class StudentsWork(models.Model):
     class Meta:
         verbose_name = "Работа студента"
         verbose_name_plural = "Работы студентов"
-
-
-class PromoCode(models.Model):
-    id = models.UUIDField(default=uuid4, primary_key=True)
-    text = models.CharField(verbose_name="Промокод", max_length=50)
-    created_at = models.DateTimeField(verbose_name="Создан", auto_now_add=True)
-    expiration_date = models.DateTimeField(verbose_name="Действует до")
-    students = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="promocodes")
-
-    def __str__(self):
-        return self.text
-
-    class Meta:
-        verbose_name = "Промокод"
-        verbose_name_plural = "Промокоды"
-        ordering = ["-created_at"]
 
 
 class Subscriber(models.Model):
@@ -250,3 +214,20 @@ class Subscriber(models.Model):
         verbose_name_plural = "Подписчики на новостную рассылку"
         ordering = ["first_name", "email"]
 
+
+class PromoCode(models.Model):
+    id = models.UUIDField(default=uuid4, primary_key=True)
+    text = models.CharField(verbose_name="Промокод", max_length=50)
+    discount = models.IntegerField(verbose_name="Сумма скидки")
+    created_at = models.DateTimeField(verbose_name="Создан", auto_now_add=True)
+    expiration_date = models.DateTimeField(verbose_name="Действует до")
+    for_students = models.BooleanField(verbose_name="Для зарегистрированных пользователей")
+    for_subscribers = models.BooleanField(verbose_name="Для подписчиков на новости")
+
+    def __str__(self):
+        return self.text
+
+    class Meta:
+        verbose_name = "Промокод"
+        verbose_name_plural = "Промокоды"
+        ordering = ["-created_at"]

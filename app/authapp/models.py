@@ -6,6 +6,8 @@ from django.utils.timezone import now
 from datetime import timedelta
 from uuid import uuid4
 
+from mainapp.models import Course
+
 
 class StudentUserManager(BaseUserManager):
     """
@@ -54,6 +56,7 @@ class StudentUser(AbstractUser):
                               validators=[EmailValidator])
     phone_number = models.CharField(verbose_name="Номер телефона", max_length=13, unique=True, blank=False)
     age = models.IntegerField(verbose_name="Возраст", blank=True, null=True)
+    courses = models.ManyToManyField(Course, verbose_name="Курсы", blank=True, related_name="students")
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
     deleted = models.BooleanField(default=False)
