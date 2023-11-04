@@ -26,7 +26,7 @@ class Migration(migrations.Migration):
                 ('part3', models.CharField(blank=True, default='Что нужно для урока?', max_length=150, verbose_name='Название третьей части описания урока')),
                 ('description_part3', models.TextField(blank=True, verbose_name='Содержание третьей части')),
                 ('image', models.ImageField(blank=True, null=True, upload_to='lessons_img/', verbose_name='Изображение')),
-                ('path_to_file', models.FilePathField(blank=True, path='C:\\Users\\perev\\Downloads\\ProjectP\\app\\media\\video_lessons')),
+                ('path_to_file', models.FilePathField(blank=True, path='/media/lessons_videos')),
                 ('link', models.CharField(blank=True, max_length=150, verbose_name='Ссылка на онлайн-урок')),
                 ('lesson_date', models.DateTimeField(blank=True, null=True, verbose_name='Дата онлайн-урока')),
                 ('viewed', models.BooleanField(default=False, verbose_name='Просмотрен')),

@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='lesson',
             name='path_to_file',
-            field=models.FilePathField(blank=True, path='D:\\Study\\Python\\04_Quart\\03_Командная разработка по методологии Agile SCRUM (практика)\\git\\ProjectP\\app\\media\\video_lessons'),
+            field=models.FilePathField(blank=True, path='D:\\Study\\Python\\04_Quart\\03_Командная разработка по методологии Agile SCRUM (практика)\\git\\ProjectP\\app\\media\\lessons_videos'),
         ),
         migrations.CreateModel(
             name='StudentCourse',

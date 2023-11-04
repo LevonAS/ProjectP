@@ -18,6 +18,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='lesson',
             name='path_to_file',
-            field=models.FilePathField(blank=True, path='/home/teamwork/0111/ProjectP/app/media/video_lessons'),
+            field=models.FilePathField(blank=True, path='/home/teamwork/0111/ProjectP/app/media/lessons_videos'),
         ),
     ]

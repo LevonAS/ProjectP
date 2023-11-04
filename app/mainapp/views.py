@@ -83,7 +83,7 @@ def view_course(request, slug):
 
     lessons = mainapp_models.Lesson.objects.filter(course=course)
     for lesson in lessons:
-        lesson.description_part3 = lesson.description_part3.split('\n')
+        lesson.material = lesson.materials.split('\n')
     # print('image: ', image)
     # for i in range(1,6):
     #     print(i)
