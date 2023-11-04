@@ -1,12 +1,9 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
-import mainapp.models as mainapp_models
-from django.db.models import Q
-
 from django_conf import settings
 from django.core.mail import send_mail
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+
+import mainapp.models as mainapp_models
 from mainapp.models import Subscriber, Tag
 from authapp import views as authapp_views
 
@@ -71,14 +68,18 @@ def send_mail_to_subscribe_user(user, request):
 
 def view_course(request, slug):
     ''' Страница вывода конкретного курса '''
-    current_number = 0
+    current_number = 1
     current_user = request.user
-    if current_user.is_authenticated:
-        # Необходимо установить current_number для текущего пользователя на этот курс (default 1)
-        current_number = 1
+
 
     course = get_object_or_404(mainapp_models.Course, slug=slug)
     descriptions = course.description.split('\n')
+
+    if current_user.is_authenticated:
+        # Необходимо установить current_number для текущего пользователя на этот курс (default 1)
+        studentCourse = mainapp_models.StudentCourse.objects.filter(user=current_user) & mainapp_models.StudentCourse.objects.filter(course=course)
+        if studentCourse:
+            current_number = studentCourse[0].lesson_number
 
     lessons = mainapp_models.Lesson.objects.filter(course=course)
     for lesson in lessons:
@@ -136,6 +137,21 @@ def view_self_account(request):
         first_course = get_object_or_404(mainapp_models.Course, slug='first-course')
         descriptions_first = first_course.description.split('\n')
 
+        # Проверяем есть ли запись у пользователя о наличии первого курса. Если нет, то добавляем ее ему
+        user_first_course = current_user.courses.filter(slug='first-course')
+        if user_first_course:
+            pass
+        else:
+             # В таблице StudentCourse необходимо сделать соответствующую запись
+            studentCourse = mainapp_models.StudentCourse()
+            studentCourse.user = current_user
+            studentCourse.course = first_course
+            studentCourse.lesson_number = 1
+            studentCourse.save()
+
+            first_course.students.add(current_user)
+            first_course.save()
+
         context = {'courses': courses,
                    'first_course': first_course,
                    'descriptions_first': descriptions_first,
@@ -152,9 +168,18 @@ def user_buy_course(request, slug):
     course = get_object_or_404(mainapp_models.Course, slug=slug)
     if current_user.is_authenticated:
         if current_user not in course.students.all():
+            # В таблице StudentCourse необходимо сделать соответствующую запись
+            studentCourse = mainapp_models.StudentCourse()
+            studentCourse.user = current_user
+            studentCourse.course = course
+            studentCourse.lesson_number = 1
+            studentCourse.save()
+
             course.students.add(current_user)
             course.save()
             messages.info(request, f'Поздравляем! Вы записаны на курс {course.title}')
+
+
             return redirect('self-account')
         else:
             messages.info(request, f'Вы уже записаны на курс {course.title}')
