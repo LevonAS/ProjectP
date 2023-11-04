@@ -3,7 +3,7 @@ from django.forms import ModelForm, FileField
 
 
 from mainapp.models import Tag, Benefit, Talent, Course, Mentor, Application,\
-StudentsWork, PromoCode, Preparation, Subscriber, Lesson
+StudentsWork, PromoCode, Preparation, Subscriber, Lesson, StudentCourse
 
 
 admin.site.register(Lesson)
@@ -15,6 +15,7 @@ admin.site.register(StudentsWork)
 admin.site.register(PromoCode)
 admin.site.register(Preparation)
 admin.site.register(Subscriber)
+admin.site.register(StudentCourse)
 
 
 # Класс-обманка для загрузки файлов .svg через алминку в модель Talent

@@ -231,3 +231,23 @@ class PromoCode(models.Model):
         verbose_name = "Промокод"
         verbose_name_plural = "Промокоды"
         ordering = ["-created_at"]
+
+
+class StudentCourse(models.Model):
+    id = models.UUIDField(default=uuid4, primary_key=True)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Студент",
+                             on_delete=models.CASCADE, null=False, related_name="student")
+    course = models.ForeignKey(Course, verbose_name="Курс", on_delete=models.CASCADE, related_name="course", null=False)
+    lesson_number = models.IntegerField(verbose_name="Номер доступного урока", default=1)
+    note = models.TextField(null=True, blank=False,  verbose_name="Примечания по студенту на этом курсе")
+    created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
+    updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
+    deleted = models.BooleanField(verbose_name="Удален", default=False)
+
+    def __str__(self):
+        return f'{self.user.first_name} {self.course.title}'
+
+    class Meta:
+        verbose_name = "Курс студента"
+        verbose_name_plural = "Курс студента"
+        ordering = ["-created_at"]
