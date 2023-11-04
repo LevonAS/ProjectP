@@ -132,10 +132,6 @@ class Course(models.Model):
 
 
 class Lesson(models.Model):
-    VALUE_PART1 = 'Цель урока'
-    VALUE_PART2 = 'Чему научится ребенок?'
-    VALUE_PART3 = 'Что нужно для урока?'
-
     class LessonType(models.TextChoices):
         ONLINE_LESSON = ("Online lesson", "Онлайн-урок")
         VIDEO_LESSON = ("Video lesson", "Видеоурок")
@@ -145,17 +141,15 @@ class Lesson(models.Model):
     number = models.IntegerField(verbose_name="Номер урока")
     course = models.ForeignKey(Course, verbose_name="Курс", on_delete=models.CASCADE, related_name="lessons")
     type = models.CharField(verbose_name="Тип урока", max_length=13, choices=LessonType.choices)
-    part1 = models.CharField(verbose_name="Название первой части описания урока", default=VALUE_PART1,
-                             max_length=150, blank=True)
-    description_part1 = models.TextField(verbose_name="Содержание первой части", blank=True)
-    part2 = models.CharField(verbose_name="Название второй части описания урока", default=VALUE_PART2,
-                             max_length=150, blank=True)
-    description_part2 = models.TextField(verbose_name="Содержание второй части", blank=True)
-    part3 = models.CharField(verbose_name="Название третьей части описания урока", default=VALUE_PART3,
-                             max_length=150, blank=True)
-    description_part3 = models.TextField(verbose_name="Содержание третьей части", blank=True)
+    lesson_goal = models.TextField(verbose_name="Цель урока", blank=True)
+    new_skill = models.TextField(verbose_name="Чему научится ребенок", blank=True)
+    materials = models.TextField(verbose_name="Что нужно для урока", blank=True)
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="lessons_img/")
-    path_to_file = models.FilePathField(path=os.path.join(settings.MEDIA_ROOT, "video_lessons"), blank=True)
+    description = models.TextField(verbose_name="Описание урока", blank=True)
+    path_to_video_file = models.FilePathField(verbose_name="Видео в записи",
+                                              path=os.path.join(settings.MEDIA_ROOT, "lessons_videos"), blank=True)
+    path_to_pdf_file = models.FilePathField(verbose_name="Дополнительный файл",
+                                            path=os.path.join(settings.MEDIA_ROOT, "lessons_files"), blank=True)
     link = models.CharField(verbose_name="Ссылка на онлайн-урок", max_length=150, blank=True)
     lesson_date = models.DateTimeField(verbose_name="Дата онлайн-урока", blank=True, null=True)
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
