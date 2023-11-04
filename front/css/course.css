@@ -389,7 +389,7 @@
 .pc__rate__1 > h1 {
     font-size: clamp(1.5rem, 3vw, 2.25rem);
     text-transform: uppercase;
-    font-weight: 300;        
+    font-weight: 470;
 }
 
 .pc__rate__1 > ul {
@@ -415,7 +415,7 @@
     margin-left: calc(clamp(33px, 5vw, 66px) - 33px);
     margin-bottom: clamp(46px, 5vw, 70px);
     text-transform: uppercase;
-    font-weight: 300;
+    font-weight: 470;
     color: #082963;
 }
 
@@ -463,6 +463,7 @@
 .pc__rate__form_price {
     font-size: clamp(2.375rem, 3vw, 3.5rem);
     color: #082963;
+    font-weight: 470;
 }
 
 .pc__rate__form_price:after {
