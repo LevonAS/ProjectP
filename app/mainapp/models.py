@@ -6,19 +6,6 @@ from django.urls import reverse
 from uuid import uuid4
 
 
-class Tag(models.Model):
-    id = models.UUIDField(default=uuid4, primary_key=True)
-    text = models.CharField(verbose_name="Текст тега", max_length=50)
-
-    def __str__(self):
-        return self.text
-
-    class Meta:
-        verbose_name = "Тег"
-        verbose_name_plural = "Теги"
-        ordering = ["text"]
-
-
 class Benefit(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(verbose_name="Польза", max_length=150)
