@@ -2,12 +2,14 @@ from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import View, TemplateView
 from django.contrib.auth import get_user_model, authenticate, login, logout
+from django.contrib.auth.views import PasswordChangeView
 from django.core.mail import send_mail
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from django_conf import settings
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib import messages
+from  django.contrib.auth.views import PasswordChangeView
 from django.utils.safestring import mark_safe
 
 from random import random
@@ -28,8 +30,6 @@ def login_view(request):
     user = authenticate(request, email=email, password=password)
     if user is not None:
         login(request, user)
-        # messages.success(request, 'Авторизация пройдена успешно')
-        # Redirect to a success page.
         # return render(request, 'mainapp/index.html', context)
         return redirect('index')
     else:
@@ -114,42 +114,11 @@ class UserConfirmEmailView(View):
             user.is_active = True
             user.save()
             login(request, user, backend='authapp.auth.EmailAuthBackend')
-            # return redirect('authapp:email_confirmed')
             messages.success(request, 'Ваш адрес электронной почты успешно подтвержден. Спасибо за регистрацию!')
             return redirect('index')
         else:
-            # return redirect('authapp:email_confirmation_failed')
-            messages.error(request, 'Ссылка для подтверждения по электронной почте недействительна или срок ее действия истек. Пожалуйста, зарегистрируйтесь снова. Либо попробуйте войти в личный кабинет.')
+            messages.error(request, 'Ссылка для подтверждения по электронной почте недействительна или срок ее действия'
+                                    'истек. Пожалуйста, зарегистрируйтесь снова. Либо попробуйте войти в личный кабинет.')
             return redirect('index')
 
 
-
-
-
-
-
-class EmailConfirmationSentView(TemplateView):
-    template_name = 'authapp/email_confirmation_sent.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Письмо для подтверждения адреса электронной почты отправлено'
-        return context
-
-
-class EmailConfirmedView(TemplateView):
-    template_name = 'authapp/email_confirmed.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Адрес электронной почты подтвержден'
-        return context
-
-
-class EmailConfirmationFailedView(TemplateView):
-    template_name = 'authapp/email_confirmation_failed.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['title'] = 'Адрес электронной почты не подтвержден'
-        return context

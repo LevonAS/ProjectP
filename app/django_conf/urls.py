@@ -19,7 +19,6 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 
-
 from mainapp import views as main_views
 from authapp import views as auth_views
 
@@ -29,13 +28,15 @@ urlpatterns = [
     path('login/', auth_views.login_view, name='login'),
     path('logout/', auth_views.logout_view),
     path('register/', auth_views.register_view),
+
     path('subscribe/', main_views.subscribe_view),
     path('courses/<str:slug>/', main_views.view_course, name='course'),
     path('courses-all/', main_views.view_courses_all, name='courses_all'),
-    path('self-account/', main_views.view_self_account, name='self-account'),
     path('buy-course/<str:slug>/', main_views.user_buy_course, name='buy-course'),
+
+    path('self-account/', main_views.view_self_account, name='self-account'),
     # path('courses/', include('mainapp.urls', namespace='courses')),
-    path('auth/', include('authapp.urls', namespace='authapp')),
+    path('authapp/', include('authapp.urls', namespace='authapp')),
 ]
 
 if settings.DEBUG:
