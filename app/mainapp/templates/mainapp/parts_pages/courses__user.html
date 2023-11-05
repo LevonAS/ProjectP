@@ -7,6 +7,7 @@
             <h1 class="section__title">Ваши курсы</h1>
             <div class="courses__cards">
 
+                {% if first_course_buy %}
                 <div class="courses__card">
                     <div class="courses__info">
                         <a class="courses__age" href="#">{{ first_course.age_group }}</a>
@@ -23,6 +24,7 @@
                     {% endfor %}
                     <a class="courses__detailed" href="{% url 'course' first_course.slug %}"><div>Подробнее о курсе</div></a>
                 </div>
+                {% endif %}
 
                 {% for item in courses %}
                 <div class="courses__card">
