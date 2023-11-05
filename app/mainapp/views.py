@@ -133,42 +133,59 @@ def get_mentor_course(request, slug):
 def view_self_account(request):
     current_user = request.user
     if current_user.is_authenticated:
-        # courses = current_user.courses.all()
-        courses = current_user.courses.exclude(slug='first-course')
+        account_courses = {}
+        active_courses = 0
+        completed_courses = 0
+        # Получим все активные курсы пользователя кроме 1-ого
+        # courses = current_user.courses.exclude(slug='first-course')
+        courses = current_user.courses.all()
         for course in courses:
-            course.description = course.description.split('\n')
+            account_courses[course.id] = {}
 
-        # Первый курс также необходимо приобретать!
-        # first_course = get_object_or_404(mainapp_models.Course, slug='first-course')
-        first_course = current_user.courses.filter(slug='first-course')
-        descriptions_first = None
-        first_course_buy = False
-        if first_course:
-            first_course_buy = True
-            descriptions_first = first_course.description.split('\n')
+            account_courses[course.id]['title'] = course.title
+            account_courses[course.id]['slug'] = course.slug
+            account_courses[course.id]['image'] = course.image
+            account_courses[course.id]['lesons_count'] = course.lessons.count()
+            studentCourse = mainapp_models.StudentCourse.objects.filter(user=current_user) & mainapp_models.StudentCourse.objects.filter(course=course)
+            if studentCourse:
+                account_courses[course.id]['lesons_view'] = studentCourse[0].lesson_number - 1
+            else:
+                account_courses[course.id]['lesons_view'] = 0
+            if account_courses[course.id]['lesons_count'] > account_courses[course.id]['lesons_view']:
+                account_courses[course.id]['is_active'] = True
+                active_courses += 1
+            else:
+                account_courses[course.id]['is_active'] = False
+                completed_courses += 1
 
-        # В виду приобретения данного курса, ниже код не актуален
-        # Остается просто как пример
-        # # Проверяем есть ли запись у пользователя о наличии первого курса. Если нет, то добавляем ее ему
-        # user_first_course = current_user.courses.filter(slug='first-course')
-        # if user_first_course:
-        #     pass
-        # else:
-        #      # В таблице StudentCourse необходимо сделать соответствующую запись
-        #     studentCourse = mainapp_models.StudentCourse()
-        #     studentCourse.user = current_user
-        #     studentCourse.course = first_course
-        #     studentCourse.lesson_number = 1
-        #     studentCourse.save()
-        #
-        #     first_course.students.add(current_user)
-        #     first_course.save()
+        # Первый курс также необходимо приобретать
+        # first_course = current_user.courses.filter(slug='first-course')[0]
+        # account_first = {}
+        # first_course_buy = False
+        # if first_course:
+        #     first_course_buy = True
+        #     account_first['title'] = first_course.title
+        #     account_first['slug'] = first_course.slug
+        #     account_first['lesons_count'] = first_course.lessons.count()
+        #     studentCourse = mainapp_models.StudentCourse.objects.filter(
+        #         user=current_user) & mainapp_models.StudentCourse.objects.filter(course=first_course)
+        #     if studentCourse:
+        #         account_first['lesons_view'] = studentCourse[0].lesson_number - 1
+        #     else:
+        #         account_first['lesons_view'] = 0
+        #     if account_first['lesons_count'] > account_first['lesons_view']:
+        #         account_first['is_active'] = True
+        #         active_courses += 1
+        #     else:
+        #         account_first['is_active'] = False
+        #         completed_courses += 1
 
-        context = {'courses': courses,
-                   'first_course_buy': first_course_buy,
-                   'first_course': first_course,
-                   'descriptions_first': descriptions_first,
-                   'user': current_user,
+        context = {'user': current_user,
+                   'active_courses': active_courses,
+                   'completed_courses': completed_courses,
+                   'account_courses': account_courses,
+                   # 'account_first': account_first,
+                   # 'first_course_buy': first_course_buy,
                    }
         return render(request, 'mainapp/user_page.html', context)
     else:
