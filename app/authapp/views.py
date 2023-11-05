@@ -1,21 +1,20 @@
+from django.contrib.auth.forms import PasswordChangeForm
 from django.db.models import Q
 from django.urls import reverse_lazy
-from django.views.generic import View, TemplateView
+from django.views.generic import View
 from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.contrib.auth.views import PasswordChangeView
 from django.core.mail import send_mail
-from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect
 from django_conf import settings
-from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib import messages
-from  django.contrib.auth.views import PasswordChangeView
-from django.utils.safestring import mark_safe
+from django.contrib.auth.views import PasswordChangeView
 
 from random import random
 from hashlib import sha1
 
 from authapp.models import StudentUser
+from authapp.forms import ChangePasswordForm
 
 
 User = get_user_model()
@@ -122,3 +121,7 @@ class UserConfirmEmailView(View):
             return redirect('index')
 
 
+class ChangePasswordView(PasswordChangeView):
+    form_class = ChangePasswordForm
+    success_url = reverse_lazy("self-account")
+    template_name = "mainapp/parts_pages/password_change.html"

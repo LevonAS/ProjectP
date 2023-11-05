@@ -1,10 +1,12 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django import forms
 
 from random import random
 from hashlib import sha1
+
+from django.urls import reverse_lazy
 
 from authapp.models import StudentUser
 
@@ -52,3 +54,23 @@ class StudentUserRegisterForm(UserCreationForm):
         user.save()
 
         return user
+
+
+class ChangePasswordForm(PasswordChangeForm):
+    old_password = forms.CharField(
+        label="Старый пароль",
+        strip=False,
+        widget=forms.PasswordInput(
+            attrs={"autocomplete": "current-password", "autofocus": True}
+        ),
+    )
+    new_password1 = forms.CharField(
+        label="Новый пароль",
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+        strip=False,
+    )
+    new_password2 = forms.CharField(
+        label="Подтверждение нового пароля",
+        strip=False,
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password"}),
+    )
