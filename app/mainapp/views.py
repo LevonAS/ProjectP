@@ -4,7 +4,6 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 
 import mainapp.models as mainapp_models
-from mainapp.models import Subscriber, Tag
 from authapp import views as authapp_views
 
 

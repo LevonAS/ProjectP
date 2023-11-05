@@ -79,7 +79,6 @@ class Course(models.Model):
     title = models.CharField(verbose_name="Название курса", max_length=150)
     slug = models.SlugField(verbose_name="URL", max_length=200, unique=True, blank=True, null=True)
     category = models.CharField(verbose_name="Категория курса", max_length=11, choices=CourseCategory.choices)
-    tags = models.ManyToManyField(Tag, verbose_name="Теги курса", related_name="courses")
     note = models.CharField(verbose_name="Цель курса", max_length=200, blank=True)
     description = models.TextField(verbose_name="Описание курса", blank=True)
     price = models.IntegerField(verbose_name="Стоимость курса")
