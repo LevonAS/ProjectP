@@ -2,12 +2,11 @@ from django.contrib import admin
 from django.forms import ModelForm, FileField
 
 
-from mainapp.models import Tag, Benefit, Talent, Course, Mentor, Application,\
+from mainapp.models import Benefit, Talent, Course, Mentor, Application,\
 StudentsWork, PromoCode, Preparation, Subscriber, Lesson, StudentCourse
 
 
 admin.site.register(Lesson)
-admin.site.register(Tag)
 admin.site.register(Benefit)
 admin.site.register(Mentor)
 admin.site.register(Application)
