@@ -107,8 +107,14 @@ def view_courses_all(request):
         course.description = course.description.split('\n')
 
     # Первый курс выбирается по слагу first-course
-    first_course = get_object_or_404(mainapp_models.Course, slug='first-course')
-    descriptions_first = first_course.description.split('\n')
+    # first_course = get_object_or_404(mainapp_models.Course, slug='first-course')
+    # descriptions_first = first_course.description.split('\n')
+
+    # Первый курс также необходимо приобретать!
+    first_course = mainapp_models.Course.objects.filter(slug='first-course')
+    descriptions_first = None
+    if first_course:
+        descriptions_first = first_course.description.split('\n')
 
     context = {'courses': courses,
                'first_course': first_course,
@@ -131,25 +137,35 @@ def view_self_account(request):
         courses = current_user.courses.exclude(slug='first-course')
         for course in courses:
             course.description = course.description.split('\n')
-        first_course = get_object_or_404(mainapp_models.Course, slug='first-course')
-        descriptions_first = first_course.description.split('\n')
 
-        # Проверяем есть ли запись у пользователя о наличии первого курса. Если нет, то добавляем ее ему
-        user_first_course = current_user.courses.filter(slug='first-course')
-        if user_first_course:
-            pass
-        else:
-             # В таблице StudentCourse необходимо сделать соответствующую запись
-            studentCourse = mainapp_models.StudentCourse()
-            studentCourse.user = current_user
-            studentCourse.course = first_course
-            studentCourse.lesson_number = 1
-            studentCourse.save()
+        # Первый курс также необходимо приобретать!
+        # first_course = get_object_or_404(mainapp_models.Course, slug='first-course')
+        first_course = current_user.courses.filter(slug='first-course')
+        descriptions_first = None
+        first_course_buy = False
+        if first_course:
+            first_course_buy = True
+            descriptions_first = first_course.description.split('\n')
 
-            first_course.students.add(current_user)
-            first_course.save()
+        # В виду приобретения данного курса, ниже код не актуален
+        # Остается просто как пример
+        # # Проверяем есть ли запись у пользователя о наличии первого курса. Если нет, то добавляем ее ему
+        # user_first_course = current_user.courses.filter(slug='first-course')
+        # if user_first_course:
+        #     pass
+        # else:
+        #      # В таблице StudentCourse необходимо сделать соответствующую запись
+        #     studentCourse = mainapp_models.StudentCourse()
+        #     studentCourse.user = current_user
+        #     studentCourse.course = first_course
+        #     studentCourse.lesson_number = 1
+        #     studentCourse.save()
+        #
+        #     first_course.students.add(current_user)
+        #     first_course.save()
 
         context = {'courses': courses,
+                   'first_course_buy': first_course_buy,
                    'first_course': first_course,
                    'descriptions_first': descriptions_first,
                    'user': current_user,
