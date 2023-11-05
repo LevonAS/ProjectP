@@ -7,7 +7,6 @@ import mainapp.models as mainapp_models
 from authapp import views as authapp_views
 
 
-
 def index(request):
     context = {}
     #  Курсы за исключением первого, первые три
@@ -132,7 +131,6 @@ def get_mentor_course(request, slug):
 
 
 def view_self_account(request):
-
     current_user = request.user
     if current_user.is_authenticated:
         # courses = current_user.courses.all()
