@@ -1,0 +1,153 @@
+.account__courses-my {
+    display: flex;
+    gap: 14px;
+}
+
+.account__courses-my-nothing {
+    flex: 1;
+}
+
+.account__courses-my-text {
+    padding-top: clamp(5px, 1vw, 10px);
+    padding-bottom: clamp(5px, 1vw, 10px);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    flex: 2;
+}
+
+.account__courses {
+    display: flex;
+    gap: 14px;
+    margin-bottom: clamp(50px, 5vw, 100px);
+}
+
+.account__courses-stat {
+    flex: 1;
+    margin-top: clamp(90px, 6vw, 120px);
+}
+
+.account__courses-stat-active {
+    font-size: clamp(1.5rem, 2vw, 2.25rem);
+}
+
+.account__courses-stat-end {
+    font-size: clamp(1.5rem, 2vw, 2.25rem);
+    color: #A0A5A8;
+    margin-top: 10px;
+}
+
+.account__courses-data {   
+    flex: 2; 
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    gap: clamp(10px, 2vw, 20px);
+}
+
+.account__courses-active {
+    padding-top: clamp(10px, 2vw, 20px);
+    padding-bottom: clamp(10px, 2vw, 20px);
+    font-size: clamp(2.375rem, 3vw, 3.5rem);
+}
+
+.account__courses-none {
+    background-color: #EBEBEB;
+    border-radius: 24px;
+    height: 437px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.account__courses-none > p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+}
+
+.account__courses-buy {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
+    text-decoration: none;
+    cursor: pointer;
+    padding: clamp(25px, 3vw, 30px) clamp(50px, 4vw, 97px);
+    background-color: #FFFFFF;
+    border-radius: 24px;
+    color: #FF9E00;
+}
+
+.account__courses-buy:hover {
+    background-color: #FF9E00;
+    color: #FFFFFF;
+}
+
+.account__null {
+    min-height: clamp(20px, 10vw, 200px);
+}
+
+.account__courses-card {
+    border-radius: 24px;
+    height: 437px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;    
+}
+
+.account__courses-card-img {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    flex-shrink: 0;
+    z-index: -1;
+}
+
+.account__courses-card-name {
+    position: absolute;
+    left: clamp(14px, 3vw, 36px);
+    right: clamp(14px, 3vw, 36px);
+    top: 30px;
+    /* width: 75%; */
+    font-size: clamp(1.5rem, 2vw, 2.25rem);
+    line-height: 1.3;
+    color: #FFFFFF;
+}
+
+.account__courses-card-count {
+    position: absolute;
+    left: clamp(14px, 3vw, 36px);
+    right: clamp(14px, 3vw, 36px);
+    top: calc(300px - clamp(100px, 3vw, 150px));
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: #FFFFFF;
+    font-weight: 200;
+}
+
+.account__courses-card-a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.account__courses-card-btn {
+    width: clamp(300px, 30vw, 351px);
+    height: clamp(87px, 5vw, 92px);
+    border-radius: 24px;
+    background-color: #FFFFFF;
+    color: #FF9E00;
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left: clamp(14px, 3vw, 36px);
+    bottom: 40px;
+}
+
+
+@media (max-width: 900px) {
+    .account__courses-stat {
+        display: none;
+    }
+}

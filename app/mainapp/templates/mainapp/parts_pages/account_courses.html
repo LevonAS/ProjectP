@@ -1,0 +1,72 @@
+{% load static %}
+
+
+<div class="site-box">
+    <h1 class="section__title">Привет, "{{ user.first_name }}" !</h1>
+</div>
+
+<div class="site-box">
+    <div class="account__courses-my">
+        <div class="account__courses-my-nothing"></div>
+        <div class="account__courses-my-text">Мои курсы</div>
+    </div>
+
+    <div class="account__courses">
+        <div class="account__courses-stat">
+            <p class="account__courses-stat-active">Активные курсы ({{ active_courses }})</p>
+            <p class="account__courses-stat-end">Завершенные ({{ completed_courses }})</p>
+        </div>
+
+        <div class="account__courses-data">
+            <p class="account__courses-active">АКТИВНЫЕ</p>
+            {% if active_courses <= 0 %}
+            <div class="account__courses-none">
+                <p>У вас нет активных курсов</p>
+                <a href="/#anchor-courses" class="account__courses-buy">Выбрать курс</a>
+            </div>
+            {% else %}
+                {% for key, value in account_courses.items %}
+                    {% if value.is_active %}
+                    <div class="account__courses-card">
+                        <img src="/media/{{ value.image }}" alt="" class="account__courses-card-img">
+                        <p class="account__courses-card-name">{{ value.title }}</p>
+                        <p class="account__courses-card-count">Пройдено: {{ value.lesons_view }}/{{ value.lesons_count }}</p>
+                        <a href="/courses/{{ value.slug }}/" class="account__courses-card-a">
+                            <div class="account__courses-card-btn">Продолжить смотреть</div>
+                        </a>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="site-box">
+    <div class="account__courses">
+        <div class="account__courses-stat"></div>
+        <div class="account__courses-data">
+            <p class="account__courses-active">ЗАВЕРШЕННЫЕ</p>
+
+            {% if completed_courses <= 0 %}
+            <div class="account__courses-none">
+                <p>У вас нет завершенных курсов</p>
+            </div>
+            {% else %}
+                {% for key, value in account_courses.items %}
+                    {% if not value.is_active %}
+                    <div class="account__courses-card">
+                        <img src="/media/{{ value.image }}" alt="" class="account__courses-card-img">
+                        <p class="account__courses-card-name">{{ value.title }}</p>
+                        <p class="account__courses-card-count">Пройдено: {{ value.lesons_view }}/{{ value.lesons_count }}</p>
+                        <a href="/courses/{{ value.slug }}/" class="account__courses-card-a">
+                            <div class="account__courses-card-btn">Начать смотреть</div>
+                        </a>
+                    </div>
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
+        </div>
+    </div>
+    <div class="account__null"></div>
+</div>
