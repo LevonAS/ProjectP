@@ -6,19 +6,6 @@ from django.urls import reverse
 from uuid import uuid4
 
 
-class Tag(models.Model):
-    id = models.UUIDField(default=uuid4, primary_key=True)
-    text = models.CharField(verbose_name="Текст тега", max_length=50)
-
-    def __str__(self):
-        return self.text
-
-    class Meta:
-        verbose_name = "Тег"
-        verbose_name_plural = "Теги"
-        ordering = ["text"]
-
-
 class Benefit(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(verbose_name="Польза", max_length=150)
@@ -95,10 +82,8 @@ class Course(models.Model):
     tags = models.ManyToManyField(Tag, verbose_name="Теги курса", related_name="courses")
     note = models.CharField(verbose_name="Цель курса", max_length=200, blank=True)
     description = models.TextField(verbose_name="Описание курса", blank=True)
-    price = models.FloatField(verbose_name="Стоимость курса")
+    price = models.IntegerField(verbose_name="Стоимость курса")
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="сourses_images")
-    teaser_video = models.FilePathField(verbose_name="Тизер-видео", blank=True, null=True,
-                                        path=os.path.join(settings.MEDIA_ROOT, "teaser_video"))
     talents = models.ManyToManyField(Talent, verbose_name="Навыки, которые дает курс", related_name="courses")
     benefits = models.ManyToManyField(Benefit, verbose_name="Польза курса", related_name="courses")
     lesson_qty = models.CharField(verbose_name="Количество уроков", max_length=25, blank=True)
@@ -109,12 +94,12 @@ class Course(models.Model):
                                     null=True, related_name="courses")
     filling = models.TextField(verbose_name="Наполнение курса", blank=True)
     mentors = models.ManyToManyField(Mentor, verbose_name="Менторы", related_name="courses")
-    is_popular = models.BooleanField(verbose_name="Популярный", default=False)
     question_lessons_features = models.TextField(verbose_name="Как проходят занятия на курсе?")
     question_access_duration = models.TextField(verbose_name="На сколько по времени доступен курс?")
     question_homework = models.TextField(verbose_name="Что насчет домашнего задания?")
     question_joining_telegram_chat = models.TextField(verbose_name="Что я получу, вступив в телеграм-канал курса?")
     question_paid_no_access = models.TextField(verbose_name="Я оплатил и не получил доступ к курсу")
+    is_popular = models.BooleanField(verbose_name="Популярный", default=False)
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
     deleted = models.BooleanField(verbose_name="Удален", default=False)
@@ -146,10 +131,10 @@ class Lesson(models.Model):
     materials = models.TextField(verbose_name="Что нужно для урока", blank=True)
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="lessons_img/")
     description = models.TextField(verbose_name="Описание урока", blank=True)
-    path_to_video_file = models.FilePathField(verbose_name="Видео в записи",
-                                              path=os.path.join(settings.MEDIA_ROOT, "lessons_videos"), blank=True)
-    path_to_pdf_file = models.FilePathField(verbose_name="Дополнительный файл",
-                                            path=os.path.join(settings.MEDIA_ROOT, "lessons_files"), blank=True)
+    path_to_video_file = models.FileField(verbose_name="Видео в записи", blank=True, null=True,
+                                              upload_to="lessons_videos/")
+    path_to_pdf_file = models.FileField(verbose_name="Дополнительный файл", blank=True, null=True,
+                                            upload_to="lessons_files/")
     link = models.CharField(verbose_name="Ссылка на онлайн-урок", max_length=150, blank=True)
     lesson_date = models.DateTimeField(verbose_name="Дата онлайн-урока", blank=True, null=True)
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
