@@ -1,3 +1,5 @@
+from django.db.models import Q
+
 from django_conf import settings
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect, get_object_or_404
@@ -245,32 +247,24 @@ def view_self_account_course(request, slug):
 
 
 def view_self_account_course_lesson(request, slug, number, hw):
-    print('slug:', slug)
-    print('number:', number)
-    print('hw:', hw)
-
     current_user = request.user
     if current_user.is_authenticated:
         course = current_user.courses.filter(slug=slug)
 
         if course:
-            studentCourse = mainapp_models.StudentCourse.objects.filter(user=current_user) & mainapp_models.StudentCourse.objects.filter(course=course[0])
-            studentCourse = studentCourse[0]
+            student_course = mainapp_models.StudentCourse.objects.filter(Q(user=current_user) & Q(course=course[0]))
+            student_course = student_course[0]
+
             lesson = course[0].lessons.filter(number=number)[0]
 
-            # И нужна проверка, не домашка ли это? Если hw = 0 то это урок, если 1 то это домашка!
-            # Соответственно и генерить надо соответствующий шаблон! Пока шаблона домашки нет ...
-
-
             context = {'user': current_user,
-                       'studentCourse': studentCourse[0],
+                       'studentCourse': student_course,
                        'lesson': lesson,
                        'course': course[0],
+                       'hw': hw,
                        }
 
             return render(request, 'mainapp/user_lesson.html', context)
-
-
 
         else:
             messages.error(request, 'У Вас нет такого курса!')
