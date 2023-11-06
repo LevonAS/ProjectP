@@ -1,0 +1,40 @@
+{% load static %}
+
+
+<div class="site-box">
+    <h1 class="section__title">
+        <a href="/self-account/course/{{ course.slug }}/">&#10094  {{ course.title }}</a>
+    </h1>
+</div>
+
+<div class="site-box">
+    <div class="account__les-container">
+        <div></div>
+            <div class="account__les-title">
+                <p>Урок {{ lesson.number }}</p>
+                <h1>{{ lesson.title }}</h1>
+                <h1>ДОМАШНЕЕ ЗАДАНИЕ</h1>
+                <div class="account__les-play">{{ lesson.type }}</div>
+            </div>
+
+            <div></div>
+
+            <div class="account__les-desc-title">Описание<br>урока</div>
+            <div class="account__les-desc">
+                {{ lesson.description }}
+            </div>
+
+            <div class="account__les-btns">
+                <div class="account__les-tg">Телеграм-канал: <a href="{{ course.telegram_channel_link }}">tg</a></div>
+                <div class="account__les-btns-lr">
+                    <a href="#"><div class="account__les-btn-l"></div></a>
+                    <a href="#"><div class="account__les-btn-r"></div></a>
+                </div>
+            </div>
+
+            <div>
+                <h1>ЗАГРУЗИТЬ ДОМАШНЕЕ ЗАДАНИЕ</h1>
+            </div>
+
+    </div>
+</div>

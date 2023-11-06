@@ -4,5 +4,9 @@
 
 
 {% block content %}
-    {% include "mainapp/parts_pages/account_lesson.html" %}
+    {% if hw == 0 %}
+        {% include "mainapp/parts_pages/account_lesson.html" %}
+    {% else %}
+        {% include "mainapp/parts_pages/account_lesson_hw.html" %}
+    {% endif %}
 {% endblock %}

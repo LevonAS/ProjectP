@@ -9,8 +9,37 @@
 
 <div class="site-box">
     <div class="account__les-container">
+        <div></div>
+            <div class="account__les-title">
+                <p>Урок {{ lesson.number }}</p>
+                <h1>{{ lesson.title }}</h1>
+                <div class="account__les-play">{{ lesson.type }}</div>
+            </div>
 
+            <div></div>
+            <div class="account__les-video">
+                <video controls loop muted="" playsinline="playsinline" poster="img/poster.png" class="wallpaper__video">
+                    <source src="{{ lesson.path_to_video_file }}" type="video/mp4">
+                    <source src="{{ lesson.image }}" type="video/webm">
+                </video>
+            </div>
 
+            <div></div>
+            <div class="account__les-btns">
+                <div class="account__les-tg">Телеграм-канал: <a href="{{ course.telegram_channel_link }}">tg</a></div>
+                <div class="account__les-btns-lr">
+                    <a href="#"><div class="account__les-btn-l"></div></a>
+                    <a href="#"><div class="account__les-btn-r"></div></a>
+                </div>
+            </div>
+
+            <div class="account__les-desc-title">Описание<br>урока</div>
+            <div class="account__les-desc">
+{#                <p>Но высококачественный прототип будущего проекта создаёт необходимость включения в производственный план целого ряда внеочередных мероприятий с учётом комплекса укрепления моральных ценностей.</p>#}
+{#                <p>Безусловно, реализация намеченных плановых заданий является качественно новой ступенью поставленных обществом задач. Банальные, но неопровержимые выводы, а также многие известные личности формируют глобальную экономическую сеть и при этом — объективно рассмотрены соответствующими инстанциями.</p>#}
+{#                <p>Как проходить курс и бла да ошуашгр агурга роиты првоцшырвицгрвоц</p>#}
+                {{ lesson.description }}
+            </div>
         
     </div>
 </div>
