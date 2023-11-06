@@ -25,12 +25,12 @@
                         <div class="account__lesson-open">
                             <p class="account__lesson-num">Урок {{ lesson.number }}</p>
                             <p class="account__lesson-name">{{ lesson.title }}</p>
-                            <a href="#"><div class="account__lesson-play">Видео урок</div></a>
+                            <a href="/self-account/lesson/{{ course.slug }}/{{ lesson.number }}/0/"><div class="account__lesson-play">Видео урок</div></a>
                         </div>
                         <div class="account__lesson-open">
                             <p class="account__lesson-num">Урок {{ lesson.number }}</p>
                             <p class="account__lesson-name">Домашнее задание к Уроку {{ lesson.number }}</p>
-                            <a href="#"><div class="account__lesson-play">Домашнее задание</div></a>
+                            <a href="/self-account/lesson/{{ course.slug }}/{{ lesson.number }}/1/"><div class="account__lesson-play">Домашнее задание</div></a>
                         </div>
                         {% else %}
                         <div class="account__lesson-close">
@@ -49,12 +49,12 @@
                         <div class="account__lesson-open">
                             <p class="account__lesson-num">Урок {{ lesson.number }}</p>
                             <p class="account__lesson-name">{{ lesson.title }}</p>
-                            <a href="#"><div class="account__lesson-play">Он-лайн урок</div></a>
+                            <a href="/self-account/lesson/{{ course.slug }}/{{ lesson.number }}/0/"><div class="account__lesson-play">Он-лайн урок</div></a>
                         </div>
                         <div class="account__lesson-open">
                             <p class="account__lesson-num">Урок {{ lesson.number }}</p>
                             <p class="account__lesson-name">Домашнее задание к Уроку {{ lesson.number }}</p>
-                            <a href="#"><div class="account__lesson-play">Домашнее задание</div></a>
+                            <a href="/self-account/lesson/{{ course.slug }}/{{ lesson.number }}/1/"><div class="account__lesson-play">Домашнее задание</div></a>
                         </div>
                         {% else %}
                         <div class="account__lesson-close">
