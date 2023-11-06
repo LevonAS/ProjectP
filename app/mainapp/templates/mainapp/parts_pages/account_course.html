@@ -1,0 +1,77 @@
+{% load static %}
+
+
+<div class="site-box">
+    <h1 class="section__title">
+        <a href="/self-account/">&#10094  Мои курсы</a>
+        {{ course.title }}
+    </h1>
+</div>
+
+<div class="site-box">
+        <div class="account__lessons">
+            <div class="account__lesson-important">
+                <div class="account__lesson-block">
+                    <p>Важное</p>
+                    <a href="#">Информация о курсе</a>
+                </div>
+            </div>
+
+            <div class="account__lesson-data">
+                {% for lesson in lessons %}
+                <div class="account__lesson-two">
+                    {% if lesson.type == 'Video lesson' %}
+                        {% if lesson.number <= studentCourse.lesson_number %}
+                        <div class="account__lesson-open">
+                            <p class="account__lesson-num">Урок {{ lesson.number }}</p>
+                            <p class="account__lesson-name">{{ lesson.title }}</p>
+                            <a href="#"><div class="account__lesson-play">Видео урок</div></a>
+                        </div>
+                        <div class="account__lesson-open">
+                            <p class="account__lesson-num">Урок {{ lesson.number }}</p>
+                            <p class="account__lesson-name">Домашнее задание к Уроку {{ lesson.number }}</p>
+                            <a href="#"><div class="account__lesson-play">Домашнее задание</div></a>
+                        </div>
+                        {% else %}
+                        <div class="account__lesson-close">
+                            <p class="account__lesson-num">Урок {{ lesson.number }}</p>
+                            <p class="account__lesson-name">{{ lesson.title }}</p>
+                            <div class="account__lesson-lock"></div>
+                        </div>
+                        <div class="account__lesson-close">
+                            <p class="account__lesson-num">Урок {{ lesson.number }}</p>
+                            <p class="account__lesson-name">Домашнее задание к Уроку {{ lesson.number }}</p>
+                            <div class="account__lesson-lock"></div>
+                        </div>
+                        {% endif %}
+                    {% else %}
+                        {% if lesson.number <= studentCourse.lesson_number %}
+                        <div class="account__lesson-open">
+                            <p class="account__lesson-num">Урок {{ lesson.number }}</p>
+                            <p class="account__lesson-name">{{ lesson.title }}</p>
+                            <a href="#"><div class="account__lesson-play">Он-лайн урок</div></a>
+                        </div>
+                        <div class="account__lesson-open">
+                            <p class="account__lesson-num">Урок {{ lesson.number }}</p>
+                            <p class="account__lesson-name">Домашнее задание к Уроку {{ lesson.number }}</p>
+                            <a href="#"><div class="account__lesson-play">Домашнее задание</div></a>
+                        </div>
+                        {% else %}
+                        <div class="account__lesson-close">
+                            <p class="account__lesson-num">Урок {{ lesson.number }}</p>
+                            <p class="account__lesson-name">{{ lesson.title }}</p>
+                            <div class="account__lesson-lock"></div>
+                        </div>
+                        <div class="account__lesson-close">
+                            <p class="account__lesson-num">Урок {{ lesson.number }}</p>
+                            <p class="account__lesson-name">Домашнее задание к Уроку {{ lesson.number }}</p>
+                            <div class="account__lesson-lock"></div>
+                        </div>
+                        {% endif %}
+                    {% endif %}
+
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+</div>
