@@ -82,6 +82,7 @@ def view_course(request, slug):
     lessons = mainapp_models.Lesson.objects.filter(course=course)
     for lesson in lessons:
         lesson.material = lesson.materials.split('\n')
+        # print(' /// context_course : ', lesson.material)
     # print('image: ', image)
     # for i in range(1,6):
     #     print(i)
@@ -96,7 +97,7 @@ def view_course(request, slug):
                'mentor': mentor,
                'current_number': current_number,
                }
-    # print(' /// context_course : ', context)
+    # print(' /// context_course : ', lesson.material)
     return render(request, 'mainapp/course.html', context)
 
 

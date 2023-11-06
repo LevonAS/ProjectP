@@ -1026,7 +1026,8 @@ footer ul li img {
     background: #566659;
 }
 
-.faq__collapsible > div > div > a::after {
+/* Отображение замочков */
+/* .faq__collapsible > div > div > a::after {
     content: url(../img/padlock-locked.png);
     margin-left: 7px;
 }
@@ -1034,7 +1035,8 @@ footer ul li img {
 .faq__collapsible > div > div > a.faq__collapsible-lesson-open::after {
     content: url(../img/padlock-unlocked.png);
     margin-left: 7px;
-}
+} */
+
 
 
 
