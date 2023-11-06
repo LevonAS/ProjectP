@@ -114,6 +114,7 @@ def view_courses_all(request):
     first_course = mainapp_models.Course.objects.filter(slug='first-course')
     descriptions_first = None
     if first_course:
+        first_course = first_course[0]
         descriptions_first = first_course.description.split('\n')
 
     context = {'courses': courses,
@@ -216,3 +217,28 @@ def user_buy_course(request, slug):
     else:
         messages.error(request, 'Для того чтобы записаться на курс Вам необходимо авторизоваться')
         return redirect('course', slug=course.slug)
+
+
+def view_self_account_course(request, slug):
+    context = {}
+    current_user = request.user
+    if current_user.is_authenticated:
+        course = current_user.courses.filter(slug=slug)
+        if course:
+            studentCourse = mainapp_models.StudentCourse.objects.filter(user=current_user) & mainapp_models.StudentCourse.objects.filter(course=course[0])
+            lessons = course[0].lessons.all().order_by('number')
+
+            context = {'user': current_user,
+                       'studentCourse': studentCourse[0],
+                       'lessons': lessons,
+                       'course': course[0],
+                       }
+
+            return render(request, 'mainapp/user_course.html', context)
+
+        else:
+            messages.error(request, 'У Вас нет такого курса!')
+            return redirect('index')
+
+    messages.error(request, 'Для данных действий необходимо авторизоваться')
+    return redirect('index')

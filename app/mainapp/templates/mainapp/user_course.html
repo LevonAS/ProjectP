@@ -1,0 +1,8 @@
+{% extends "mainapp/base.html" %}
+
+{% block title %}Ваши уроки, {{ user.first_name }}{% endblock %}
+
+
+{% block content %}
+    {% include "mainapp/parts_pages/account_course.html" %}
+{% endblock %}
