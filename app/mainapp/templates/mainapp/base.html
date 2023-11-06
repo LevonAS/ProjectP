@@ -27,7 +27,7 @@
     <!-- Авторизация и регистрация -->
     <div class="autorization__pop_up" id="autorization__pop_up">
         <div class="autorization__pop_up_container">
-            <form action="login/"  method="post" class="autorization__form" id="autorization__form">
+            <form action="/login/"  method="post" class="autorization__form" id="autorization__form">
                 {% csrf_token %}
                 <div class="autorization__title">
                     <span>Вход</span>
@@ -48,7 +48,7 @@
 
     <div class="registration__pop_up" id="registration__pop_up">
         <div class="registration__pop_up_container">
-            <form action="register/"  method="post" class="registration__form" id="registration__form">
+            <form action="/register/"  method="post" class="registration__form" id="registration__form">
                 {% csrf_token %}
                 <div class="registration__title">
                     <span>Регистрация</span>

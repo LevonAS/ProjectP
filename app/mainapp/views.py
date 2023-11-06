@@ -221,7 +221,6 @@ def user_buy_course(request, slug):
 
 
 def view_self_account_course(request, slug):
-    context = {}
     current_user = request.user
     if current_user.is_authenticated:
         course = current_user.courses.filter(slug=slug)
@@ -236,6 +235,42 @@ def view_self_account_course(request, slug):
                        }
 
             return render(request, 'mainapp/user_course.html', context)
+
+        else:
+            messages.error(request, 'У Вас нет такого курса!')
+            return redirect('index')
+
+    messages.error(request, 'Для данных действий необходимо авторизоваться')
+    return redirect('index')
+
+
+def view_self_account_course_lesson(request, slug, number, hw):
+    print('slug:', slug)
+    print('number:', number)
+    print('hw:', hw)
+
+    current_user = request.user
+    if current_user.is_authenticated:
+        course = current_user.courses.filter(slug=slug)
+
+        if course:
+            studentCourse = mainapp_models.StudentCourse.objects.filter(user=current_user) & mainapp_models.StudentCourse.objects.filter(course=course[0])
+            studentCourse = studentCourse[0]
+            lesson = course[0].lessons.filter(number=number)[0]
+
+            # И нужна проверка, не домашка ли это? Если hw = 0 то это урок, если 1 то это домашка!
+            # Соответственно и генерить надо соответствующий шаблон! Пока шаблона домашки нет ...
+
+
+            context = {'user': current_user,
+                       'studentCourse': studentCourse[0],
+                       'lesson': lesson,
+                       'course': course[0],
+                       }
+
+            return render(request, 'mainapp/user_lesson.html', context)
+
+
 
         else:
             messages.error(request, 'У Вас нет такого курса!')
