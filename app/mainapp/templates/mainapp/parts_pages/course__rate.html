@@ -15,7 +15,8 @@
                 </ul>
             </div>
             <div class="pc__rate__2" id="anchor-buy-course">
-                <form action="#"  method="post" class="pc__rate__form">
+                <form action="{% url 'buy_course' slug=course.slug %}"  method="post" class="pc__rate__form">
+                    {% csrf_token %}
                     <h1 class="pc__rate__form__title">ЗАПИСАТЬСЯ НА КУРС</h1>
                     <div class="pc__rate__form__inputs">
                         <input class="pc__rate__form__inputs_name" type="text" name="name" placeholder="Имя">

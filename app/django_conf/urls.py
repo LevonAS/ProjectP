@@ -32,7 +32,7 @@ urlpatterns = [
     path('subscribe/', main_views.subscribe_view),
     path('courses/<str:slug>/', main_views.view_course, name='course'),
     path('courses-all/', main_views.view_courses_all, name='courses_all'),
-    path('buy-course/<str:slug>/', main_views.user_buy_course, name='buy-course'),
+    path('buy-course/<str:slug>/', main_views.user_buy_course, name='buy_course'),
 
     path('self-account/', main_views.view_self_account, name='self-account'),
     path('self-account/course/<str:slug>/', main_views.view_self_account_course, name='self-account-course'),
