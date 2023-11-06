@@ -209,11 +209,10 @@ def user_buy_course(request, slug):
             course.save()
             messages.info(request, f'Поздравляем! Вы записаны на курс {course.title}')
 
-
             return redirect('self-account')
         else:
             messages.info(request, f'Вы уже записаны на курс {course.title}')
             return redirect('self-account')
     else:
         messages.error(request, 'Для того чтобы записаться на курс Вам необходимо авторизоваться')
-        return redirect('index')
+        return redirect('course', slug=course.slug)

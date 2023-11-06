@@ -112,7 +112,7 @@ class Course(models.Model):
         ordering = ["title"]
 
     # def get_absolute_url(self):
-    #     return reverse('courses: course_detail', args=[self.slug])
+    #     return reverse('courses', args=[self.slug])
 
 
 class Lesson(models.Model):
