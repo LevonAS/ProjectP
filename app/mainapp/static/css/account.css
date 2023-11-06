@@ -146,8 +146,135 @@
 }
 
 
+
+.account__lessons {
+    display: flex;
+    gap: 14px;
+    margin-bottom: clamp(50px, 5vw, 100px);
+}
+
+.section__title > a {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    text-transform: none;
+    margin-bottom: clamp(14px, 2vw, 27px);
+    display: block;
+    text-decoration: none;
+    color: #000000;
+}
+
+.account__lesson-important {
+    flex: 1;
+}
+
+.account__lesson-block {
+    padding: 32px clamp(18px, 3vw, 36px);
+    height: 373px;
+    background-color: #ECECEC;
+    color: #868D92;
+    border-radius: 24px;
+}
+
+.account__lesson-block > p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    margin-bottom: 37px;
+    font-weight: 200;
+}
+
+.account__lesson-block > a {
+    font-size: clamp(1.5rem, 2vw, 2.25rem);
+    line-height: 1.2;
+    text-decoration: none;
+    color: #868D92;
+}
+
+.account__lesson-data {
+    flex: 2;
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    gap: clamp(10px, 2vw, 20px);
+}
+
+.account__lesson-two {
+    display: flex;
+    gap: clamp(10px, 2vw, 20px);
+}
+
+.account__lesson-open {
+    padding: 32px clamp(18px, 3vw, 36px);
+    height: 373px;
+    background-color: #95AA99;
+    color: #FFFFFF;
+    border-radius: 24px;
+    flex: 1;
+}
+
+.account__lesson-num {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    margin-bottom: 37px;
+    font-weight: 200;
+}
+
+.account__lesson-name {
+    font-size: clamp(1.5rem, 2vw, 2.25rem);
+    line-height: 1.2;
+    margin-bottom: 27px;
+}
+
+.account__lesson-open > a {
+    text-decoration: none;
+}
+
+.account__lesson-play {
+    font-size: clamp(0.75rem, 2vw, 1rem);
+    color: #FFFFFF;
+    font-weight: 200;
+    display: flex;
+    align-items: center;
+}
+
+.account__lesson-play::before {
+    content: url(../img/btn_lesson_play.svg);
+    margin-right: 17px;
+}
+
+.account__lesson-close {
+    padding: 32px clamp(18px, 3vw, 36px);
+    height: 373px;
+    background-color: #CDDAD0;
+    color: #FFFFFF;
+    border-radius: 24px;
+    flex: 1;
+}
+
+.account__lesson-lock {
+    content: url(../img/lock.svg);
+}
+
+
+
+
+
 @media (max-width: 900px) {
     .account__courses-stat {
         display: none;
+    }
+
+    .account__lesson-two {
+        flex-direction: column;
+    }
+
+    /* .account__lesson-open {
+        min-height: 373px;
+    }
+
+    .account__lesson-close {
+        min-height: 373px;
+    } */
+}
+
+@media (max-width: 600px) {
+    .account__lessons {
+        flex-direction: column;
     }
 }
