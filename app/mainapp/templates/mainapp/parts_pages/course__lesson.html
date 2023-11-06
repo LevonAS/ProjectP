@@ -10,30 +10,30 @@
                 {% for lesson in lessons %}
                 <div class="faq__item">
                     {% if lesson.number <= current_number %}
-                        <button class="faq__collapsible"><div><div><a class="faq__collapsible-lesson-open" href="#">Урок {{ lesson.number }}</a></div><div>{{ lesson.title }}</div></div></button>
+                        <button class="faq__collapsible"><div><div><a class="faq__collapsible-lesson-open" href="">Урок {{ lesson.number }}</a></div><div>{{ lesson.title }}</div></div></button>
                     {% else %}
-                        <button class="faq__collapsible"><div><div><a href="#" style="pointer-events: none; opacity: 0.7;">Урок {{ lesson.number }}</a></div><div>{{ lesson.title }}</div></div></button>
+                        <button class="faq__collapsible"><div><div><a href="" style="pointer-events: none; opacity: 0.7;">Урок {{ lesson.number }}</a></div><div>{{ lesson.title }}</div></div></button>
                     {% endif %}
                     <div class="faq__content pc__lesson__content">
-                        {% if lesson.part1 %}
+                        {% if lesson.lesson_goal %}
                         <div class="pc__lesson__p">
-                            <p class="pc__lesson-title">{{ lesson.part1 }}</p>
-                            <p class="pc__lesson-text">{{ lesson.description_part1 }}</p>
+                            <p class="pc__lesson-title">Цель урока</p>
+                            <p class="pc__lesson-text">{{ lesson.lesson_goal}}</p>
                         </div>
                         {% endif %}
 
-                        {% if lesson.part2 %}
+                        {% if lesson.new_skill %}
                         <div class="pc__lesson__p">
-                            <p class="pc__lesson-title">{{ lesson.part2 }}</p>
-                            <p class="pc__lesson-text">{{ lesson.description_part2 }}</p>
+                            <p class="pc__lesson-title">Чему научится ребенок?</p>
+                            <p class="pc__lesson-text">{{ lesson.new_skill }}</p>
                         </div>
                         {% endif %}
 
-                        {% if lesson.part3 %}
+                        {% if lesson.materials %}
                         <div class="pc__lesson__p">
-                            <p class="pc__lesson-title">{{ lesson.part3 }}</p>
+                            <p class="pc__lesson-title">Что нужно для урока?</p>
                             <ul class="pc__lesson-text">
-                                {% for item_li in lesson.description_part3 %}
+                                {% for item_li in lesson.material %}
                                     <li>{{ item_li }}</li>
                                 {% endfor %}
                             </ul>
