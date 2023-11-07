@@ -112,8 +112,10 @@ class Course(models.Model):
         verbose_name_plural = "Курсы"
         ordering = ["title"]
 
-    # def get_absolute_url(self):
-    #     return reverse('courses', args=[self.slug])
+    def get_final_price(self, discount):
+        final_price = self.price - self.price * discount / 100
+        print(final_price)
+        return final_price
 
 
 class Lesson(models.Model):
