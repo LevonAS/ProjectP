@@ -1,9 +1,9 @@
 from django.db.models import Q
-
 from django_conf import settings
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.utils import timezone
 
 import mainapp.models as mainapp_models
 from authapp import views as authapp_views
@@ -70,7 +70,6 @@ def view_course(request, slug):
     ''' Страница вывода конкретного курса '''
     current_number = 1
     current_user = request.user
-
 
     course = get_object_or_404(mainapp_models.Course, slug=slug)
     descriptions = course.description.split('\n')
@@ -198,6 +197,7 @@ def view_self_account(request):
 
 
 def user_buy_course(request, slug):
+    print(request)
     current_user = request.user
     course = get_object_or_404(mainapp_models.Course, slug=slug)
     if current_user.is_authenticated:
@@ -211,6 +211,10 @@ def user_buy_course(request, slug):
 
             course.students.add(current_user)
             course.save()
+
+            if request.POST.get("promocode"):
+                apply_promo(course, request)
+
             messages.info(request, f'Поздравляем! Вы записаны на курс {course.title}')
 
             return redirect('self-account')
@@ -220,6 +224,20 @@ def user_buy_course(request, slug):
     else:
         messages.error(request, 'Для того чтобы записаться на курс Вам необходимо авторизоваться')
         return redirect('course', slug=course.slug)
+
+
+def apply_promo(course, request):
+    promocode_text = request.POST.get("promocode")
+    try:
+        promocode = mainapp_models.PromoCode.objects.filter(text=promocode_text).first()
+    except (TypeError, ValueError, OverflowError, mainapp_models.PromoCode.DoesNotExist):
+        promocode = None
+
+    if promocode is not None and promocode.expiration_date > timezone.now():
+        # еще будет проверка, что юзер относится к категории, для которой создан промокод
+        course.get_final_price(promocode.discount)
+    else:
+        messages.error(request, message='Вы ввели неверный промокод, либо срок действия промокода истек')
 
 
 def view_self_account_course(request, slug):
