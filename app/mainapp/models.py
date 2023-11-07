@@ -131,10 +131,10 @@ class Lesson(models.Model):
     materials = models.TextField(verbose_name="Что нужно для урока", blank=True)
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="lessons_img/")
     description = models.TextField(verbose_name="Описание урока", blank=True)
-    path_to_video_file = models.FileField(verbose_name="Видео в записи", blank=True, null=True,
-                                              upload_to="lessons_videos/")
-    path_to_pdf_file = models.FileField(verbose_name="Дополнительный файл", blank=True, null=True,
-                                            upload_to="lessons_files/")
+    video_file = models.FileField(verbose_name="Видео в записи", blank=True, null=True,
+                                  upload_to="lessons_videos/")
+    pdf_file = models.FileField(verbose_name="Дополнительный файл", blank=True, null=True,
+                                upload_to="lessons_files/")
     link = models.CharField(verbose_name="Ссылка на онлайн-урок", max_length=150, blank=True)
     lesson_date = models.DateTimeField(verbose_name="Дата онлайн-урока", blank=True, null=True)
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
@@ -197,11 +197,12 @@ class Subscriber(models.Model):
 class PromoCode(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     text = models.CharField(verbose_name="Промокод", max_length=50)
-    discount = models.IntegerField(verbose_name="Сумма скидки")
-    created_at = models.DateTimeField(verbose_name="Создан", auto_now_add=True)
-    expiration_date = models.DateTimeField(verbose_name="Действует до")
+    discount = models.IntegerField(verbose_name="Скидка в %")
     for_students = models.BooleanField(verbose_name="Для зарегистрированных пользователей")
     for_subscribers = models.BooleanField(verbose_name="Для подписчиков на новости")
+    for_user = models.EmailField(verbose_name="Промокод для конкретного юзера (указать email)", blank=True, null=True)
+    created_at = models.DateTimeField(verbose_name="Создан", auto_now_add=True)
+    expiration_date = models.DateTimeField(verbose_name="Действует до")
 
     def __str__(self):
         return self.text
