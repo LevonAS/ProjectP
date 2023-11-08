@@ -77,3 +77,7 @@ class StudentUser(AbstractUser):
             return False
         else:
             return True
+
+    @staticmethod
+    def get_student(email):
+        return StudentUser.objects.filter(email=email).first()

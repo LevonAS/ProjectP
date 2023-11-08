@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.utils import timezone
 
 import mainapp.models as mainapp_models
+import authapp.models as authapp_models
 from authapp import views as authapp_views
 
 
@@ -213,7 +214,7 @@ def user_buy_course(request, slug):
             course.save()
 
             if request.POST.get("promocode"):
-                apply_promo(course, request)
+                apply_promo(course, request, current_user)
 
             messages.info(request, f'Поздравляем! Вы записаны на курс {course.title}')
 
@@ -226,18 +227,22 @@ def user_buy_course(request, slug):
         return redirect('course', slug=course.slug)
 
 
-def apply_promo(course, request):
+def apply_promo(course, request, current_user):
     promocode_text = request.POST.get("promocode")
-    try:
-        promocode = mainapp_models.PromoCode.objects.filter(text=promocode_text).first()
-    except (TypeError, ValueError, OverflowError, mainapp_models.PromoCode.DoesNotExist):
-        promocode = None
+    promocode = mainapp_models.PromoCode.objects.filter(text=promocode_text).first()
+    message_error = 'Промокод недействителен'
 
-    if promocode is not None and promocode.expiration_date > timezone.now():
-        # еще будет проверка, что юзер относится к категории, для которой создан промокод
-        course.get_final_price(promocode.discount)
+    if promocode and promocode.is_promocode_expired():
+        if promocode.for_students and authapp_models.StudentUser.objects.filter(email=current_user.email).first():
+            return course.get_final_price(promocode.discount)
+        if promocode.for_subscribers and mainapp_models.Subscriber.objects.filter(email=current_user.email).first():
+            return course.get_final_price(promocode.discount)
+        if mainapp_models.PromoCode.is_promocode_for_user:
+            return course.get_final_price(promocode.discount)
+
+        return messages.error(request, message=message_error)
     else:
-        messages.error(request, message='Вы ввели неверный промокод, либо срок действия промокода истек')
+        return messages.error(request, message='Вы ввели неверный промокод, либо срок действия промокода истек')
 
 
 def view_self_account_course(request, slug):
@@ -245,11 +250,11 @@ def view_self_account_course(request, slug):
     if current_user.is_authenticated:
         course = current_user.courses.filter(slug=slug)
         if course:
-            studentCourse = mainapp_models.StudentCourse.objects.filter(user=current_user) & mainapp_models.StudentCourse.objects.filter(course=course[0])
+            student_course = mainapp_models.StudentCourse.objects.filter(user=current_user) & mainapp_models.StudentCourse.objects.filter(course=course[0])
             lessons = course[0].lessons.all().order_by('number')
 
             context = {'user': current_user,
-                       'studentCourse': studentCourse[0],
+                       'studentCourse': student_course[0],
                        'lessons': lessons,
                        'course': course[0],
                        }
