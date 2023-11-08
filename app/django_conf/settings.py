@@ -186,7 +186,7 @@ AUTH_USER_MODEL = 'authapp.StudentUser'
 
 
 # Настройки сервера исходящей почты (SMTP)
-DOMAIN_NAME = 'http://localhost:8000'
+DOMAIN_NAME = os.getenv("DOMAIN_NAME")
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'

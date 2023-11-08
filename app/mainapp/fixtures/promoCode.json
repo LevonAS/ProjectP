@@ -1,0 +1,1 @@
+[{"model": "mainapp.promocode", "pk": "eb4d07f7-c858-4252-95af-7c88284c8766", "fields": {"text": "ПРИВЕТ", "discount": 15, "for_students": true, "for_subscribers": false, "for_user": null, "created_at": "2023-11-07T09:19:29.303Z", "expiration_date": "2023-11-08T03:00:00Z", "deleted": false}}]

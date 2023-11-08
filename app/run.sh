@@ -6,6 +6,10 @@ cd ./app
 
 echo ' ///  Запуск миграций'
 python ./manage.py migrate 
+
+echo ' ///  Загрузка фискур'
+python ./manage.py  loaddata ./*/fixtures/*.json
+
 echo ' ///  Сборка статических файлов'
 python ./manage.py collectstatic --noinput
 

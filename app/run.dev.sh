@@ -8,6 +8,12 @@ echo ' ///  Запуск миграций'
 python ./manage.py migrate 
 # echo ' ///  Сборка статических файлов'
 # python ./manage.py collectstatic --noinput
+echo ' ///  Загрузка фискур'
+python ./manage.py  loaddata ./*/fixtures/*.json
+# python ./manage.py  loaddata mainapp/fixtures/courses.json
+# python ./manage.py  loaddata mainapp/fixtures/lesson.json
+# python ./manage.py  loaddata mainapp/fixtures/mentor.json
+# python ./manage.py  loaddata authapp/fixtures/studentuser.json
 
 echo ' ///  Запуск Django'
 python manage.py runserver 0.0.0.0:8000
