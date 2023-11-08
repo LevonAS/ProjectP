@@ -10,8 +10,10 @@
 - docker-compose.yml
 - .env.lite
 
-Сборка/запуск контейнера командой: \
-    sudo docker-compose -f docker-compose.yml up --build
+Сборка/запуск контейнера командой:
+```sh
+sudo docker-compose -f docker-compose.yml up --build
+```
 
 Запускается один контейнер.\
 Содержимое папки проекта "app" подтягивается с Github  непосредственно в контейнер на стадии сборки.\
