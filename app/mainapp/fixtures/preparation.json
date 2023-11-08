@@ -1,0 +1,1 @@
+[{"model": "mainapp.preparation", "pk": "38d57960-4b59-46bd-95a0-7067706dbc7b", "fields": {"value": "Для Подготовленных"}}, {"model": "mainapp.preparation", "pk": "68721505-5a8e-4c41-aa63-cf39444d7db6", "fields": {"value": "Для Начинающих"}}, {"model": "mainapp.preparation", "pk": "c2bd46b2-2ca4-40e0-afda-df784bc5d757", "fields": {"value": "Для Начинающих и Подготовленных"}}]
