@@ -28,8 +28,10 @@ sudo docker-compose -f docker-compose.yml up --build
 - docker-compose.dev.yml
 - .env
 
-Сборка/запуск контейнеров командой: \
-    sudo docker-compose -f docker-compose.dev.yml up --build
+Сборка/запуск контейнеров командой:
+```sh
+sudo docker-compose -f docker-compose.dev.yml up --build
+```
 
 Запускаются 2 контейнера:
 - django-web 
@@ -49,8 +51,10 @@ sudo docker-compose -f docker-compose.yml up --build
 - nginx.conf
 - .env
 
-Сборка/запуск контейнеров командой: \
-    sudo docker-compose -f docker-compose.prod.yml up --build
+Сборка/запуск контейнеров командой:
+```sh
+sudo docker-compose -f docker-compose.prod.yml up --build
+```
 
 Запускаются 4 контейнера:
 - django-web 
@@ -70,8 +74,10 @@ sudo docker-compose -f docker-compose.yml up --build
 - nginx.conf
 - .env
 
-Запуск контейнеров командой: \
-    sudo docker-compose -f docker-compose.img.yml up
+Запуск контейнеров командой:
+```sh
+sudo docker-compose -f docker-compose.img.yml up
+```
 
 Для любителей всего готового. 
 Запускаются готовые образы с hub.docker, без сборки.
