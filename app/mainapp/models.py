@@ -3,6 +3,7 @@ from django.conf import settings
 from django.core.validators import EmailValidator
 from django.db import models
 from django.urls import reverse
+from django.utils.timezone import now
 from uuid import uuid4
 
 
@@ -114,7 +115,6 @@ class Course(models.Model):
 
     def get_final_price(self, discount):
         final_price = self.price - self.price * discount / 100
-        print(final_price)
         return final_price
 
 
@@ -195,16 +195,21 @@ class Subscriber(models.Model):
         verbose_name_plural = "Подписчики на новостную рассылку"
         ordering = ["first_name", "email"]
 
+    @staticmethod
+    def get_subscriber(email):
+        return Subscriber.objects.filter(email=email).first()
+
 
 class PromoCode(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
-    text = models.CharField(verbose_name="Промокод", max_length=50)
+    text = models.CharField(verbose_name="Промокод", max_length=50, unique=True)
     discount = models.IntegerField(verbose_name="Скидка в %")
     for_students = models.BooleanField(verbose_name="Для зарегистрированных пользователей")
     for_subscribers = models.BooleanField(verbose_name="Для подписчиков на новости")
     for_user = models.EmailField(verbose_name="Промокод для конкретного юзера (указать email)", blank=True, null=True)
     created_at = models.DateTimeField(verbose_name="Создан", auto_now_add=True)
     expiration_date = models.DateTimeField(verbose_name="Действует до")
+    deleted = models.BooleanField(verbose_name="Удален", default=False)
 
     def __str__(self):
         return self.text
@@ -214,6 +219,21 @@ class PromoCode(models.Model):
         verbose_name_plural = "Промокоды"
         ordering = ["-created_at"]
 
+    def is_promocode_expired(self):
+        if now() <= self.expiration_date:
+            return False
+        else:
+            return True
+
+    # def is_promocode_for_students(self):
+    #     return self.for_students
+    #
+    # def is_promocode_for_subscribers(self):
+    #     return self.for_subscribers
+    #
+    def is_promocode_for_user(self, email):
+        return self.objects.filter(for_user=email).first()
+
 
 class StudentCourse(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
@@ -221,7 +241,8 @@ class StudentCourse(models.Model):
                              on_delete=models.CASCADE, null=False, related_name="student")
     course = models.ForeignKey(Course, verbose_name="Курс", on_delete=models.CASCADE, related_name="course", null=False)
     lesson_number = models.IntegerField(verbose_name="Номер доступного урока", default=1)
-    note = models.TextField(null=True, blank=False,  verbose_name="Примечания по студенту на этом курсе")
+    note = models.TextField(verbose_name="Примечания по студенту на этом курсе", blank=True)
+    purchase_price = models.IntegerField(verbose_name="Цена покупки", blank=True, null=True)
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
     deleted = models.BooleanField(verbose_name="Удален", default=False)
