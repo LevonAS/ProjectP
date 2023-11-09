@@ -277,10 +277,33 @@ def view_self_account_course_lesson(request, slug, number, hw):
         if course:
             student_course = mainapp_models.StudentCourse.objects.filter(Q(user=current_user) & Q(course=course[0]))
             student_course = student_course[0]
-            student_course.lesson_number += 1
 
             lesson = course[0].lessons.filter(number=number)[0]
             lesson_desc = lesson.description.split('\n')
+            lesson_count = course[0].lessons.count()
+
+            btn_l = ''
+            btn_r = ''
+            if number == 1:
+                if hw == 0:
+                    btn_l = f'/self-account/lesson_zero/{slug}/'
+                    btn_r = f'/self-account/lesson/{slug}/{number}/1/'
+                else:
+                    btn_l = f'/self-account/lesson/{slug}/{number}/0/'
+                    btn_r = f'/self-account/lesson/{slug}/{number + 1}/0/'
+            if number > 1 and number < lesson_count:
+                if hw == 0:
+                    btn_l = f'/self-account/lesson/{slug}/{number - 1}/1/'
+                    btn_r = f'/self-account/lesson/{slug}/{number}/1/'
+                else:
+                    btn_l = f'/self-account/lesson/{slug}/{number}/0/'
+                    btn_r = f'/self-account/lesson/{slug}/{number + 1}/0/'
+            if number == lesson_count:
+                if hw == 0:
+                    btn_l = f'/self-account/lesson/{slug}/{number - 1}/1/'
+                    btn_r = f'/self-account/lesson/{slug}/{number}/1/'
+                else:
+                    btn_l = f'/self-account/lesson/{slug}/{number}/0/'
 
             context = {'user': current_user,
                        'studentCourse': student_course,
@@ -288,7 +311,15 @@ def view_self_account_course_lesson(request, slug, number, hw):
                        'course': course[0],
                        'hw': hw,
                        'lesson_desc': lesson_desc,
+                       'btn_l': btn_l,
+                       'btn_r': btn_r,
                        }
+
+            if student_course.lesson_number == number:
+                print('LESSON от:', student_course.lesson_number)
+                student_course.lesson_number = number + 1
+                student_course.save()
+                print('LESSON до:', student_course.lesson_number)
 
             return render(request, 'mainapp/user_lesson.html', context)
 
