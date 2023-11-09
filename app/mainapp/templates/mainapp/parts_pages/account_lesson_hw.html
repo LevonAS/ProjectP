@@ -10,39 +10,76 @@
 <div class="site-box">
     <div class="account__les-container">
         <div></div>
-            <div class="account__les-title">
-                <p>Урок {{ lesson.number }}</p>
-                <h1>{{ lesson.title }}</h1>
-                <h1>ДОМАШНЕЕ ЗАДАНИЕ</h1>
-                <div class="account__les-play">{{ lesson.type }}</div>
+        <div class="account__les-title">
+            <p>Урок {{ lesson.number }}</p>
+            <h1>{{ lesson.title }}</h1>
+            <h1>ДОМАШНЕЕ ЗАДАНИЕ</h1>
+        </div>
+
+        <div></div>
+        <div class="account__les-zero-space"></div>
+
+        <div class="account__les-desc-title">Описание<br>урока</div>
+        <div class="account__les-desc">
+            {{ lesson.description }}
+        </div>
+
+        <div></div>
+        <div class="account__les-zero-space"></div>
+    </div>
+
+    <form class="account__les-hw" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+
+        <div class="account__les-hw-comment">
+            <h1>Загрузить домашнюю работу</h1>
+            <div>
+                <p class="account__les-hw-comment-p">Комментарий:</p>
+                <p><textarea name="comment_student" rows="7"></textarea></p>
+                <h2 class="account__les-hw-comment-mentor">Здесь отображается комментарий преподавателя</h2>
             </div>
-
-            <div></div>
-
-            <div class="account__les-desc-title">Описание<br>урока</div>
-            <div class="account__les-desc">
-                {{ lesson.description }}
-            </div>
-
-            <div class="account__les-btns">
-                <a class="account__les-tg" href="{{ course.telegram_channel_link }}">tg</a>
-                <div class="account__les-btns-lr">
-                    {% if btn_l == '' %}
-                        <a href="{{ btn_l }}"><div class="account__les-btn-l"></div></a>
-                    {% else %}
-                        <a href="{{ btn_l }}"><div class="account__les-btn-l account__les-btn-l-active"></div></a>
-                    {% endif %}
-                    {% if btn_r == '' %}
-                        <a href="{{ btn_r }}"><div class="account__les-btn-r"></div></a>
-                    {% else %}
-                        <a href="{{ btn_r }}"><div class="account__les-btn-r account__les-btn-r-active"></div></a>
-                    {% endif %}
+        </div>
+        <div class="account__les-hw-file">
+            <h1>Файлы</h1>
+            <div class="account__les-hw-files">
+                <div>
+                    <label for=account__les-hw-file-1f id=account__les-hw-file-1l></label>
+                    <input type=file id=account__les-hw-file-1f name="image1">
+                </div>
+                <div>
+                    <label for=account__les-hw-file-2f id=account__les-hw-file-2l></label>
+                    <input type=file id=account__les-hw-file-2f name="image2">
+                </div>
+                <div>
+                    <label for=account__les-hw-file-3f id=account__les-hw-file-3l></label>
+                    <input type=file id=account__les-hw-file-3f name="image3">
+                </div>
+                <div>
+                    <label for=account__les-hw-file-pdf id=account__les-hw-file-pdfl></label>
+                    <input type=file id=account__les-hw-file-pdf name="pdf_file">
                 </div>
             </div>
 
-            <div>
-                <h1>ЗАГРУЗИТЬ ДОМАШНЕЕ ЗАДАНИЕ</h1>
-            </div>
+            <input type="submit" value="Отправить" class="account__les-hw-submit">
+        </div>
+    </form>
 
+    <div class="account__les-btns">
+        <a class="account__les-tg" href="{{ course.telegram_channel_link }}">tg</a>
+        <div class="account__les-btns-lr">
+            {% if btn_l == '' %}
+            <a href="{{ btn_l }}"><div class="account__les-btn-l"></div></a>
+            {% else %}
+            <a href="{{ btn_l }}"><div class="account__les-btn-l account__les-btn-l-active"></div></a>
+            {% endif %}
+            {% if btn_r == '' %}
+            <a href="{{ btn_r }}"><div class="account__les-btn-r"></div></a>
+            {% else %}
+            <a href="{{ btn_r }}"><div class="account__les-btn-r account__les-btn-r-active"></div></a>
+            {% endif %}
+        </div>
     </div>
+
+    <script src="{% static 'js/lesson_hw.js' %}"></script>
+
 </div>
