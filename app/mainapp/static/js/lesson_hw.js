@@ -45,8 +45,8 @@ document.querySelector("#account__les-hw-file-pdf").addEventListener("change", f
       var fr = new FileReader();
 
       fr.addEventListener("load", function () {
-        document.querySelector("#account__les-hw-file-pdfl").style.backgroundImage = "url(../img/pdf.png)";
-        document.querySelector("#account__les-hw-file-pdfl").style.backgroundSize = "77%";
+        document.querySelector("#account__les-hw-file-pdfl").style.backgroundImage = "url(' {% static 'img/pdf.png' %}');";
+        document.querySelector("#account__les-hw-file-pdfl").style.backgroundSize = "87%";
       }, false);
 
       fr.readAsDataURL(this.files[0]);

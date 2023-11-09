@@ -439,6 +439,10 @@
     background-size: 60px;
 }
 
+#account__les-hw-file-pdfl {
+    background-image: url(../img/pdf.svg);
+}
+
 #account__les-hw-file-1f,
 #account__les-hw-file-2f,
 #account__les-hw-file-3f,
