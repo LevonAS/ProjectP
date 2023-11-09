@@ -383,6 +383,112 @@
 }
 
 
+.account__les-hw {
+    grid-template-columns: 2fr 1fr;
+    display: grid;
+    gap: clamp(7px, 4vw, 21px);
+}
+
+.account__les-hw-comment {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #95AA99;
+    padding: clamp(16px, 4vw, 32px) clamp(22px, 4vw, 45px);
+    border-radius: 24px;
+
+}
+
+.account__les-hw-comment > h1 {
+    color: #FFFFFF;
+    font-weight: 300;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.account__les-hw-comment-p {
+    color: #FFFFFF;
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    margin-left: 20px;
+    margin-bottom: 17px;
+}
+
+.account__les-hw-comment textarea {
+    width: calc(100% - 34px);
+    border-radius: 24px;
+    border: 0.5px solid #FFFFFF;
+    background-color: #95AA99;
+    padding: 17px;
+    font-size: 1rem;
+    color: #FFFFFF;
+}
+
+#account__les-hw-file-1l,
+#account__les-hw-file-2l,
+#account__les-hw-file-3l,
+#account__les-hw-file-pdfl {
+    display: inline-block;
+    width: 144px;
+    aspect-ratio: 0.77;
+    background: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 0.5px dashed #082963;
+    border-radius: 24px;
+    background-image: url(../img/hw_file_add.svg);
+    background-size: 60px;
+}
+
+#account__les-hw-file-1f,
+#account__les-hw-file-2f,
+#account__les-hw-file-3f,
+#account__les-hw-file-pdf {
+  display: none;
+}
+
+.account__les-hw-file {
+    background-color: #FFFFFF;
+    border-radius: 24px;
+    padding: clamp(16px, 4vw, 32px) clamp(22px, 4vw, 45px);
+}
+
+.account__les-hw-file > h1 {
+    color: #082963;
+    font-weight: 300;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    margin-bottom: 17px;
+}
+
+.account__les-hw-files {
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-gap: clamp(7px, 4vw, 21px);
+    align-items: center;
+}
+
+.account__les-hw-submit {
+    margin: 17px auto 0;
+    border: 0.5px solid #082963;
+    background: transparent;
+    padding: 17px 59px;
+    color: #082963;
+    border-radius: 15px;
+}
+
+.account__les-hw-submit:hover {
+    background: #082963;
+    color: #FFFFFF;
+}
+
+.account__les-hw-comment-mentor {
+    color: #FFFFFF;
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    font-weight: 100;
+    margin-left: 20px;
+    margin-top: 17px;
+}
+
+
 
 
 

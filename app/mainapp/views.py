@@ -316,10 +316,8 @@ def view_self_account_course_lesson(request, slug, number, hw):
                        }
 
             if student_course.lesson_number == number:
-                print('LESSON от:', student_course.lesson_number)
                 student_course.lesson_number = number + 1
                 student_course.save()
-                print('LESSON до:', student_course.lesson_number)
 
             return render(request, 'mainapp/user_lesson.html', context)
 
