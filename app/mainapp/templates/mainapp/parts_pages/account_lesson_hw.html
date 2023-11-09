@@ -25,10 +25,18 @@
             </div>
 
             <div class="account__les-btns">
-                <div class="account__les-tg">Телеграм-канал: <a href="{{ course.telegram_channel_link }}">tg</a></div>
+                <a class="account__les-tg" href="{{ course.telegram_channel_link }}">tg</a>
                 <div class="account__les-btns-lr">
-                    <a href="#"><div class="account__les-btn-l"></div></a>
-                    <a href="#"><div class="account__les-btn-r"></div></a>
+                    {% if btn_l == '' %}
+                        <a href="{{ btn_l }}"><div class="account__les-btn-l"></div></a>
+                    {% else %}
+                        <a href="{{ btn_l }}"><div class="account__les-btn-l account__les-btn-l-active"></div></a>
+                    {% endif %}
+                    {% if btn_r == '' %}
+                        <a href="{{ btn_r }}"><div class="account__les-btn-r"></div></a>
+                    {% else %}
+                        <a href="{{ btn_r }}"><div class="account__les-btn-r account__les-btn-r-active"></div></a>
+                    {% endif %}
                 </div>
             </div>
 

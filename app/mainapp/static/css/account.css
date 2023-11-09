@@ -312,10 +312,19 @@
     align-items: center;
 }
 .account__les-tg {
-    font-size: clamp(1rem, 2vw, 1.25rem);
-}
-.account__les-tg > a {
+    font-size: 0;
     text-decoration: none;
+    color: #FFFFFF;
+    padding: 24px 27px;
+    border-radius: 20px;
+    background-color: #082963;
+}
+.account__les-tg:hover {
+    background-color: #4AA7FF;
+}
+.account__les-tg::before {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    content: "Переходи в телеграмм-канал курса";
 }
 .account__les-btns-lr {
     display: flex;
@@ -328,11 +337,17 @@
 .account__les-btn-l.account__les-btn-l-active {
     content: url(../img/btn_lesson_left_active.svg);
 }
+.account__les-btn-l.account__les-btn-l-active:hover {
+    content: url(../img/btn_lesson_left_passive.svg);
+}
 .account__les-btn-r {
     content: url(../img/btn_lesson_right_passive.svg);
 }
 .account__les-btn-r.account__les-btn-r-active {
     content: url(../img/btn_lesson_right_active.svg);
+}
+.account__les-btn-r.account__les-btn-r-active:hover {
+    content: url(../img/btn_lesson_right_passive.svg);
 }
 
 .account__les-desc-title {
@@ -361,6 +376,10 @@
     font-size: clamp(1.125rem, 3vw, 1.25rem);
     background-color: #95AA99;
     border-radius: 15px;
+}
+
+.account__les-zero-read > a:hover {
+    background-color: #566659;
 }
 
 
