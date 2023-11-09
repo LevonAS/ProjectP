@@ -1,0 +1,38 @@
+{% load static %}
+
+
+<div class="site-box">
+    <h1 class="section__title">
+        <a href="/self-account/course/{{ course.slug }}/">&#10094  {{ course.title }}</a>
+    </h1>
+</div>
+
+<div class="site-box">
+    <div class="account__les-container">
+        <div></div>
+            <div class="account__les-title">
+                <p>Урок 0</p>
+                <h1>Важная информация</h1>
+            </div>
+
+            <div></div>
+            <div class="account__les-zero-space"></div>
+
+            <div class="account__les-desc-title">Описание</div>
+            <div class="account__les-desc">
+                {% for desc in course_desc %}
+                    <p>{{ desc }}</p>
+                {% endfor %}
+            </div>
+
+            <div></div>
+            <div class="account__les-btns">
+                <div class="account__les-zero-read"><a href="/self-account/course/{{ course.slug }}/">Прочитано</a></div>
+                <div class="account__les-btns-lr">
+                    <a href=""><div class="account__les-btn-l"></div></a>
+                    <a href="/self-account/lesson/{{ course.slug }}/1/0/"><div class="account__les-btn-r account__les-btn-r-active"></div></a>
+                </div>
+            </div>
+
+    </div>
+</div>

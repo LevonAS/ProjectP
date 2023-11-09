@@ -277,17 +277,47 @@ def view_self_account_course_lesson(request, slug, number, hw):
         if course:
             student_course = mainapp_models.StudentCourse.objects.filter(Q(user=current_user) & Q(course=course[0]))
             student_course = student_course[0]
+            student_course.lesson_number += 1
 
             lesson = course[0].lessons.filter(number=number)[0]
+            lesson_desc = lesson.description.split('\n')
 
             context = {'user': current_user,
                        'studentCourse': student_course,
                        'lesson': lesson,
                        'course': course[0],
                        'hw': hw,
+                       'lesson_desc': lesson_desc,
                        }
 
             return render(request, 'mainapp/user_lesson.html', context)
+
+        else:
+            messages.error(request, 'У Вас нет такого курса!')
+            return redirect('index')
+
+    messages.error(request, 'Для данных действий необходимо авторизоваться')
+    return redirect('index')
+
+
+def view_self_account_course_lesson_zero(request, slug):
+    current_user = request.user
+    if current_user.is_authenticated:
+        course = current_user.courses.filter(slug=slug)
+
+        if course:
+            student_course = mainapp_models.StudentCourse.objects.filter(Q(user=current_user) & Q(course=course[0]))
+            student_course = student_course[0]
+
+            course_desc = course[0].description.split('\n')
+
+            context = {'user': current_user,
+                       'studentCourse': student_course,
+                       'course': course[0],
+                       'course_desc': course_desc,
+                       }
+
+            return render(request, 'mainapp/user_lesson_zero.html', context)
 
         else:
             messages.error(request, 'У Вас нет такого курса!')
