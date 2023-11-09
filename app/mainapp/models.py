@@ -169,10 +169,9 @@ class Application(models.Model):
 class StudentsWork(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     title = models.CharField(verbose_name="Название", max_length=250)
-    description = models.TextField(verbose_name="Описание", blank=True)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Студент",
                              on_delete=models.SET_NULL, null=True, related_name="studentworks")
-    image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="")
+    image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="students_best_pics_files/")
 
     def __str__(self):
         return self.title
@@ -180,6 +179,27 @@ class StudentsWork(models.Model):
     class Meta:
         verbose_name = "Работа студента"
         verbose_name_plural = "Работы студентов"
+
+
+class StudentsHomework(models.Model):
+    id = models.UUIDField(default=uuid4, primary_key=True)
+    lesson = models.ForeignKey(Lesson, verbose_name="Урок", on_delete=models.CASCADE, null=True,
+                               related_name="studenthomework")
+    description = models.TextField(verbose_name="Описание", blank=True)
+    image1 = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="homework_files/")
+    image2 = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="homework_files/")
+    image3 = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="homework_files/")
+    pdf_file = models.FileField(verbose_name="Дополнительный файл", blank=True, null=True,
+                                upload_to="homework_files/")
+    comment_student = models.TextField(verbose_name="Комментарий студента", blank=True)
+    comment_mentor = models.TextField(verbose_name="Комментарий ментора", blank=True)
+
+    def __str__(self):
+        return f'Домашнее задание к уроку {self.lesson}'
+
+    class Meta:
+        verbose_name = "Домашнее задание студента"
+        verbose_name_plural = "Домашние задания студентов"
 
 
 class Subscriber(models.Model):
@@ -225,12 +245,6 @@ class PromoCode(models.Model):
         else:
             return True
 
-    # def is_promocode_for_students(self):
-    #     return self.for_students
-    #
-    # def is_promocode_for_subscribers(self):
-    #     return self.for_subscribers
-    #
     def is_promocode_for_user(self, email):
         return self.objects.filter(for_user=email).first()
 
