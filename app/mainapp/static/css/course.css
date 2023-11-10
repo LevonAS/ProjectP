@@ -9,13 +9,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: black;
 }
 
 .pc__aboute > img {
     position: absolute;
     min-width: 100%;
     min-height: 100%;
-    flex-shrink: 0; 
+    flex-shrink: 0;
+    opacity: 80%;
 }
 
 .pc__aboute__data {
