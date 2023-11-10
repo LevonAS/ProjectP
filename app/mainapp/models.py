@@ -185,7 +185,8 @@ class StudentsHomework(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     lesson = models.ForeignKey(Lesson, verbose_name="Урок", on_delete=models.CASCADE, null=True,
                                related_name="studenthomework")
-    description = models.TextField(verbose_name="Описание", blank=True)
+    student = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Студент", on_delete=models.CASCADE,
+                                related_name="studenthomework")
     image1 = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="homework_files/")
     image2 = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="homework_files/")
     image3 = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="homework_files/")

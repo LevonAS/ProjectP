@@ -305,12 +305,18 @@ def view_self_account_course_lesson(request, slug, number, hw):
                 else:
                     btn_l = f'/self-account/lesson/{slug}/{number}/0/'
 
+            if request.method == 'POST':
+                student_homework = save_homework_files(request, lesson, current_user)
+            else:
+                student_homework = mainapp_models.StudentsHomework.objects.filter(Q(lesson=lesson) & Q(student=current_user)).first()
+
             context = {'user': current_user,
                        'studentCourse': student_course,
                        'lesson': lesson,
                        'course': course[0],
                        'hw': hw,
                        'lesson_desc': lesson_desc,
+                       'student_homework': student_homework,
                        'btn_l': btn_l,
                        'btn_r': btn_r,
                        }
@@ -354,3 +360,29 @@ def view_self_account_course_lesson_zero(request, slug):
 
     messages.error(request, 'Для данных действий необходимо авторизоваться')
     return redirect('index')
+
+
+def save_homework_files(request, lesson, current_user):
+    image1 = request.FILES.get("image1")
+    image2 = request.FILES.get("image2")
+    image3 = request.FILES.get("image3")
+    pdf_file = request.FILES.get("pdf_file")
+    comment_student = request.POST.get("comment_student")
+
+    student_homework = mainapp_models.StudentsHomework.objects.filter(Q(lesson=lesson) | Q(student=current_user)).first()
+
+    if not student_homework:
+        student_homework = mainapp_models.StudentsHomework.objects.create(lesson=lesson, student=current_user,
+                                                                          image1=image1, image2=image2, image3=image3,
+                                                                          pdf_file=pdf_file,
+                                                                          comment_student=comment_student)
+
+    else:
+        student_homework.image1 = image1
+        student_homework.image2 = image2
+        student_homework.image3 = image3
+        student_homework.pdf_file = pdf_file
+        student_homework.comment_student = comment_student
+        student_homework.save()
+
+    return student_homework

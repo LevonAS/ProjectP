@@ -34,9 +34,14 @@
         <div class="account__les-hw-comment">
             <h1>Загрузить домашнюю работу</h1>
             <div>
-                <p class="account__les-hw-comment-p">Комментарий:</p>
-                <p><textarea name="comment_student" rows="7"></textarea></p>
-                <h2 class="account__les-hw-comment-mentor">Здесь отображается комментарий преподавателя</h2>
+                <p class="account__les-hw-comment-p">Комментарий студента:</p>
+                <p><textarea name="comment_student" rows="7">{{ student_homework.comment_student }}</textarea></p>
+{#                <h2 class="account__les-hw-comment-mentor">Здесь отображается комментарий ученика</h2>#}
+            </div>
+            <div>
+                <p class="account__les-hw-comment-p">Комментарий ментора:</p>
+                <p><textarea name="comment_mentor" rows="7">{{ student_homework.comment_mentor }}</textarea></p>
+{#                <h2 class="account__les-hw-comment-mentor">Здесь отображается комментарий преподавателя</h2>#}
             </div>
         </div>
         <div class="account__les-hw-file">
