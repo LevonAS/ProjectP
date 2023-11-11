@@ -492,6 +492,56 @@
     margin-top: 17px;
 }
 
+.account__les-hw-file-ib {
+    border-radius: 24px;
+    width: 146px;
+    aspect-ratio: 0.77;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+#account__les-hw-file-1ii,
+#account__les-hw-file-2ii,
+#account__les-hw-file-3ii {
+    min-width: 100%;
+    min-height: 100%;
+    flex-shrink: 0;
+}
+
+#account__les-hw-file-pb {
+    border-radius: 24px;
+    width: 146px;
+    aspect-ratio: 0.77;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#account__les-hw-file-pi {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.account__les-hw-file-ib-a {
+    text-decoration: none;
+    color: #082963;
+    opacity: .7;
+    font-size: clamp(0.75rem, 2vw, 1rem);
+}
+
+.account__les-hw-files-b {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    justify-content: center;
+    align-items: center;
+}
+
 
 
 

@@ -21,7 +21,9 @@
 
         <div class="account__les-desc-title">Описание<br>урока</div>
         <div class="account__les-desc">
-            {{ lesson.description }}
+            {% for desc in lesson_desc %}
+                <p>{{ desc }}</p>
+            {% endfor %}
         </div>
 
         <div></div>
@@ -47,22 +49,58 @@
         <div class="account__les-hw-file">
             <h1>Файлы</h1>
             <div class="account__les-hw-files">
-                <div>
-                    <label for=account__les-hw-file-1f id=account__les-hw-file-1l></label>
-                    <input type=file id=account__les-hw-file-1f name="image1">
-                </div>
-                <div>
-                    <label for=account__les-hw-file-2f id=account__les-hw-file-2l></label>
-                    <input type=file id=account__les-hw-file-2f name="image2">
-                </div>
-                <div>
-                    <label for=account__les-hw-file-3f id=account__les-hw-file-3l></label>
-                    <input type=file id=account__les-hw-file-3f name="image3">
-                </div>
-                <div>
-                    <label for=account__les-hw-file-pdf id=account__les-hw-file-pdfl></label>
-                    <input type=file id=account__les-hw-file-pdf name="pdf_file">
-                </div>
+                {% if student_homework.image1 %}
+                    <div class="account__les-hw-files-b">
+                        <div class=account__les-hw-file-ib>
+                            <img src="/media/{{ student_homework.image1 }}" alt="" id=account__les-hw-file-1ii>
+                        </div>
+                        <a href="/self-account/lesson_delete_img/{{ course.slug }}/{{ lesson.number }}/{{ student_homework.image1 }}/" class=account__les-hw-file-ib-a>Удалить</a>
+                    </div>
+                {% else %}
+                    <div>
+                        <label for=account__les-hw-file-1f id=account__les-hw-file-1l></label>
+                        <input type=file id=account__les-hw-file-1f name="image1">
+                    </div>
+                {% endif %}
+                {% if student_homework.image2 %}
+                    <div class="account__les-hw-files-b">
+                        <div class=account__les-hw-file-ib>
+                            <img src="/media/{{ student_homework.image2 }}" alt="" id=account__les-hw-file-2ii>
+                        </div>
+                        <a href="/self-account/lesson_delete_img/{{ course.slug }}/{{ lesson.number }}/{{ student_homework.image2 }}/" class=account__les-hw-file-ib-a>Удалить</a>
+                    </div>
+                {% else %}
+                    <div>
+                        <label for=account__les-hw-file-2f id=account__les-hw-file-2l></label>
+                        <input type=file id=account__les-hw-file-2f name="image2">
+                    </div>
+                {% endif %}
+                {% if student_homework.image3 %}
+                    <div class="account__les-hw-files-b">
+                        <div class=account__les-hw-file-ib>
+                            <img src="/media/{{ student_homework.image3 }}" alt="" id=account__les-hw-file-3ii>
+                        </div>
+                        <a href="/self-account/lesson_delete_img/{{ course.slug }}/{{ lesson.number }}/{{ student_homework.image3 }}/" class=account__les-hw-file-ib-a>Удалить</a>
+                    </div>
+                {% else %}
+                    <div>
+                        <label for=account__les-hw-file-3f id=account__les-hw-file-3l></label>
+                        <input type=file id=account__les-hw-file-3f name="image3">
+                    </div>
+                {% endif %}
+                {% if student_homework.pdf_file %}
+                    <div class="account__les-hw-files-b">
+                        <div id=account__les-hw-file-pb>
+                            <img src="{% static 'img/pdf.png' %}" alt="" id=account__les-hw-file-pi style="background-size: 87%;">
+                        </div>
+                        <a href="/self-account/lesson_delete_img/{{ course.slug }}/{{ lesson.number }}/{{ student_homework.pdf_file }}/" class=account__les-hw-file-ib-a>Удалить</a>
+                    </div>
+                {% else %}
+                    <div>
+                        <label for=account__les-hw-file-pdf id=account__les-hw-file-pdfl></label>
+                        <input type=file id=account__les-hw-file-pdf name="pdf_file">
+                    </div>
+                {% endif %}
             </div>
 
             <input type="submit" value="Отправить" class="account__les-hw-submit">
