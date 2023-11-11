@@ -1089,7 +1089,15 @@ footer ul li img {
 }
 
 
-
+.animated_svg {
+    animation: svg_line 5s linear alternate infinite;
+}
+@keyframes svg_line {
+    to {
+        fill: #FF0000;
+        /* stroke-dashoffset: 0; */
+    }
+}
 
 
 
