@@ -105,18 +105,28 @@
     width: 289px;
     height: 297px;
     position: relative;
-    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.pc__what__card > img {
+.pc__what__card-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: #D9D9D9;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 50px;
+}
+
+.pc__what__card-img > img {
     position: absolute;
-    height: 100%;
-    /* min-width: 100%;
-    min-height: 100%; */
-    object-fit: cover;
+    top: 50%;
+    left: 50%;
+    width: 90px;
+    height: 90px;
+    transform: translate(-50%, -50%);
     flex-shrink: 0;
 }
 

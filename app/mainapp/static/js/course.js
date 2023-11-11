@@ -28,8 +28,8 @@ function showSlidePcWhat(a, b) {
         dots[i].className = dots[i].className.replace(" pc__what__dot-active", "");
     }
 
-    slides[a].style.display = "block";
-    slides[b].style.display = "block";
+    slides[a].style.display = "flex";
+    slides[b].style.display = "flex";
     dots[a].className += " pc__what__dot-active";
     // dots[b].className += " pc__what__dot-active";
 }
@@ -40,7 +40,7 @@ function showSlidesAllpcWhat() {
     var dots = document.getElementsByClassName("pc__what__dot");
 
     for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "block";
+        slides[i].style.display = "flex";
     }
 }
 

@@ -7,9 +7,11 @@
     <div class="pc__what__cards pc__what-slideshow-container">
       {% for item in course.benefits.all %}
         <div class="pc__what__card pc__what__fade">
-          {% if item.image %}
-            <img src="{{ item.image.url }}" alt="">
-          {% endif %}
+          <div class="pc__what__card-img">
+            {% if item.image %}
+              <img src="{{ item.image.url }}" alt="">
+            {% endif %}
+          </div>
           <p>{{ item.title }}</p>
         </div>
       {% endfor %}
