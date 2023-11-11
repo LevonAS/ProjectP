@@ -378,11 +378,47 @@ def save_homework_files(request, lesson, current_user):
                                                                           comment_student=comment_student)
 
     else:
-        student_homework.image1 = image1
-        student_homework.image2 = image2
-        student_homework.image3 = image3
-        student_homework.pdf_file = pdf_file
+        if image1 != None:
+            student_homework.image1 = image1
+        if image2 != None:
+            student_homework.image2 = image2
+        if image3 != None:
+            student_homework.image3 = image3
+        if pdf_file != None:
+            student_homework.pdf_file = pdf_file
         student_homework.comment_student = comment_student
         student_homework.save()
 
     return student_homework
+
+
+def view_delete_homework_files(request, slug, number, path, name):
+    current_user = request.user
+    if current_user.is_authenticated:
+        course = current_user.courses.filter(slug=slug)
+        if course:
+            lesson = course[0].lessons.filter(number=number)[0]
+            student_homework = mainapp_models.StudentsHomework.objects.filter(Q(lesson=lesson) | Q(student=current_user)).first()
+            fname = path + '/' + name
+
+            if student_homework.image1 == fname:
+                student_homework.image1.delete()
+                student_homework.save()
+            if student_homework.image2 == fname:
+                student_homework.image2.delete()
+                student_homework.save()
+            if student_homework.image3 == fname:
+                student_homework.image3.delete()
+                student_homework.save()
+            if student_homework.pdf_file == fname:
+                student_homework.pdf_file.delete()
+                student_homework.save()
+
+            return redirect('self-account-lesson', slug=slug, number=number, hw=1)
+
+        else:
+            messages.error(request, 'У Вас нет такого курса!')
+            return redirect('index')
+
+    messages.error(request, 'Для данных действий необходимо авторизоваться')
+    return redirect('index')

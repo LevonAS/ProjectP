@@ -39,6 +39,7 @@ urlpatterns = [
     # path('self-account/lesson/', main_views.view_self_account_course_lesson, name='self-account-lesson'),
     path('self-account/lesson/<str:slug>/<int:number>/<int:hw>/', main_views.view_self_account_course_lesson, name='self-account-lesson'),
     path('self-account/lesson_zero/<str:slug>/', main_views.view_self_account_course_lesson_zero, name='self-account-lesson-zero'),
+    path('self-account/lesson_delete_img/<str:slug>/<int:number>/<str:path>/<str:name>/', main_views.view_delete_homework_files, name='self-account-lesson-delete-img'),
     # path('self-account/course/<str:slug>/homework/<int:number>', main_views.view_self_account_course_lesson_hw, name='self-account-course-lesson-hw'),
     # path('courses/', include('mainapp.urls', namespace='courses')),
     path('authapp/', include('authapp.urls', namespace='authapp')),
