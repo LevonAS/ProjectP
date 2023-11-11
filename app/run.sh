@@ -7,8 +7,11 @@ cd ./app
 echo ' ///  Запуск миграций'
 python ./manage.py migrate 
 
-echo ' ///  Загрузка фискур'
-python ./manage.py  loaddata ./*/fixtures/*.json
+echo ' ///  Создание фискур из локальной БД db.sqlite3 '
+python ./manage.py  dumpdata --database sqlite > db.json
+
+echo ' ///  Загрузка фискур в БД "default" '
+python ./manage.py  loaddata db.json
 
 echo ' ///  Сборка статических файлов'
 python ./manage.py collectstatic --noinput
