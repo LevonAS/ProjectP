@@ -113,8 +113,8 @@
 .pc__what__card-img {
     width: 90px;
     height: 90px;
-    border-radius: 50%;
-    background-color: #D9D9D9;
+    /* border-radius: 50%; */
+    /* background-color: #D9D9D9; */
     position: relative;
     overflow: hidden;
     margin-bottom: 50px;

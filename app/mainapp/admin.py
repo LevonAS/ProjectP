@@ -7,7 +7,7 @@ from mainapp.models import Benefit, Talent, Course, Mentor, Application,\
 
 
 admin.site.register(Lesson)
-admin.site.register(Benefit)
+# admin.site.register(Benefit)
 admin.site.register(Mentor)
 admin.site.register(Application)
 admin.site.register(StudentsWork)
@@ -32,6 +32,22 @@ class TalentModelForm(ModelForm):
 class TalentAdmin(admin.ModelAdmin):
     list_display = 'title',
     form = TalentModelForm
+
+
+# Класс-обманка для загрузки файлов .svg через алминку в модель Benefit
+class BenefitModelForm(ModelForm):
+    class Meta:
+        model = Benefit
+        exclude = []
+        field_classes = {
+            'image': FileField,
+        }
+
+
+@admin.register(Benefit)
+class BenefitAdmin(admin.ModelAdmin):
+    list_display = 'title',
+    form = BenefitModelForm
 
 
 @admin.register(Course)
