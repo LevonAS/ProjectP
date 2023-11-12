@@ -18,8 +18,8 @@
 
             <div></div>
             <div class="account__les-video">
-                <video controls loop muted="" playsinline="playsinline" poster="img/poster.png" class="wallpaper__video">
-                    <source src="{{ lesson.path_to_video_file }}" type="video/mp4">
+                <video controls loop muted="" playsinline="playsinline" poster="/media/{{ course.image }}" class="wallpaper__video">
+                    <source src="{{ lesson.video_file }}" type="video/mp4">
                     <source src="{{ lesson.image }}" type="video/webm">
                 </video>
             </div>
