@@ -2,14 +2,13 @@ from django.contrib import admin
 from django.forms import ModelForm, FileField
 
 
-from mainapp.models import Benefit, Talent, Course, Mentor, Application,\
+from mainapp.models import Benefit, Talent, Course, Mentor,\
     StudentsWork, StudentsHomework, PromoCode, Preparation, Subscriber, Lesson, StudentCourse
 
 
 admin.site.register(Lesson)
 # admin.site.register(Benefit)
 admin.site.register(Mentor)
-admin.site.register(Application)
 admin.site.register(StudentsWork)
 admin.site.register(StudentsHomework)
 admin.site.register(PromoCode)
