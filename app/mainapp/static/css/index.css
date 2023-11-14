@@ -45,16 +45,16 @@ header {
 }
 
 .header__logo_max {
-    min-width: clamp(161px, 17vw, 249px);
-    min-height: clamp(47px, 5vw, 55px);
+    width: clamp(161px, 17vw, 249px);
+    height: clamp(47px, 5vw, 55px);
     overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 .header__logo_min {
-    min-width: clamp(54px, 5vw, 115px);
-    min-height: clamp(28px, 4vw, 40px);
+    width: clamp(54px, 17vw, 115px);
+    height: clamp(28px, 4vw, 40px);
     overflow: hidden;
     display: none;
     justify-content: center;
@@ -66,14 +66,7 @@ header {
     height: clamp(47px, 5vw, 55px);
 } */
 
-.header__logo_obj_max {
-    width: clamp(161px, 17vw, 249px);
-    height: clamp(47px, 5vw, 55px);
-}
-.header__logo_obj_min {
-    width: clamp(54px, 17vw, 115px);
-    height: clamp(28px, 4vw, 40px);
-}object {
+object {
     pointer-events: none;
 }
 
