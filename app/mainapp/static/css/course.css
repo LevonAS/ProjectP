@@ -292,7 +292,7 @@
 
 .pc__teacher__photo {
     width: 100%;
-    height: clamp(300px, 37vw, 602px);
+    height: clamp(600px, 37vw, 602px);
     position: relative;
     border-radius: 24px;
     overflow: hidden;
