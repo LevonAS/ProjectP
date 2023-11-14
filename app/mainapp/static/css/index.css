@@ -1125,19 +1125,12 @@ footer ul li img {
 }
 
 .header__self-account {
-    /* background-image: url(../img/self-account.svg);
-    background-size: contain;
-    display: inline-block;
-    background-repeat: no-repeat;
-    background-position: center center;
-    padding: 5px;
-    object-fit: cover; */
     height: clamp(37px, 4vw, 47px);
     width: clamp(57px, 4vw, 67px);
+    cursor: pointer;
 }
 
 .header__self-account:hover .header__self-account-fill {
-    /* background-image: url(../img/self-account_active.svg); */
     transition: .5s linear;
     fill: #95AA99;
     stroke: #ffffff;
