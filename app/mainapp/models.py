@@ -117,6 +117,17 @@ class Course(models.Model):
         final_price = self.price - self.price * discount / 100
         return final_price
 
+    def get_quantity_lessons(self,):
+        qty = len(self.lessons.all())
+        if qty in [11, 12, 13, 14]:
+            return f'{qty} уроков'
+        if qty % 10 == 1:
+            return f'{qty} урок'
+        if qty % 10 in [2, 3, 4]:
+            return f'{qty} урока'
+        else:
+            return f'{qty} уроков'
+
 
 class Lesson(models.Model):
     class LessonType(models.TextChoices):
