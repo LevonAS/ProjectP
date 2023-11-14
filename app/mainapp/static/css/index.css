@@ -146,6 +146,7 @@ header {
 .header__buttons {
     display: flex;
     gap: 19px;
+    position: relative;
 }
 
 .header__buttons a {
@@ -310,6 +311,38 @@ header {
     margin: 7px;
     color: red;
     display: none;
+}
+
+
+.autorization__context_menu {
+    width: 117px;
+    padding: 25px;
+    border-radius: 24px;
+    position: absolute;
+    right: 37px;
+    top: 37px;
+    background-color: #FFFFFF;
+    z-index: 7;
+    transform: translate(57%, -57%) scale(0);
+    transition: 0.5s ease-in-out;
+}
+.autorization__context_menu_active {
+    transform: translate(0%, 0%) scale(100%);
+}
+.autorization__context_menu_container {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+.autorization__context_menu_container a {
+    text-decoration: none;
+    font-size: clamp(1rem, 4vw, 1.25rem);
+    color: rgba(0, 0, 0, 0.7);
+    text-wrap: nowrap;
+}
+.autorization__context_menu_container a:hover {
+    color: #000000;
+    font-weight: 600;
 }
 
 
