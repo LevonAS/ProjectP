@@ -11,7 +11,7 @@
                 <div class="courses__card">
                     <div class="courses__info">
                         <a class="courses__age" href="#">{{ first_course.age_group }}</a>
-                        <a class="courses__count" href="#">{{ first_course.lesson_qty }}</a>
+                        <div class="courses__count" >{{ first_course.get_quantity_lessons }}</div>
                         <a class="courses__time courses__time-unique" href="#">{{ first_course.duration }}</a>
                     </div>
                     <div class="courses__name">{{ first_course.title }}</div>
@@ -30,7 +30,7 @@
                 <div class="courses__card">
                     <div class="courses__info">
                         <a class="courses__age" href="#">{{ item.age_group }}</a>
-                        <a class="courses__count" href="#">{{ item.lesson_qty }}</a>
+                        <div class="courses__count">{{ item.get_quantity_lessons }}</div>
                         <a class="courses__time" href="#">{{ item.duration }}</a>
                     </div>
                     <div class="courses__name">{{ item.title }}</div>
