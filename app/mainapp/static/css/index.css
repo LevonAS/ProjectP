@@ -44,7 +44,7 @@ header {
     margin-bottom: calc(77px - clamp(57px, 4vw, 63px));
 }
 
-.header__logo {
+.header__logo_max {
     min-width: clamp(161px, 17vw, 249px);
     min-height: clamp(47px, 5vw, 55px);
     overflow: hidden;
@@ -52,10 +52,27 @@ header {
     justify-content: center;
     align-items: center;
 }
+.header__logo_min {
+    min-width: clamp(54px, 5vw, 115px);
+    min-height: clamp(28px, 4vw, 40px);
+    overflow: hidden;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
 
-.header__logo img {
+/* .header__logo img {
     width: clamp(161px, 17vw, 249px);
     height: clamp(47px, 5vw, 55px);
+} */
+
+.header__logo_obj_max {
+    width: clamp(161px, 17vw, 249px);
+    height: clamp(47px, 5vw, 55px);
+}
+.header__logo_obj_min {
+    width: clamp(54px, 17vw, 115px);
+    height: clamp(28px, 4vw, 40px);
 }
 
 .header__menu {
@@ -105,6 +122,7 @@ header {
 
 .header__menu ul li a:hover { 
     opacity: 0.35;
+    transition: .7s linear;
 }
 
 .header__menu ul li:hover a:before {
@@ -132,6 +150,7 @@ header {
     padding: clamp(14px, 2vw, 20px) clamp(21px, 5vw, 39px);
     border: 1px solid #95AA99;
     color: #95AA99;
+    transition: .7s linear;
 }
 
 .header__login:hover {
@@ -1082,6 +1101,7 @@ footer ul li img {
     width: clamp(57px, 4vw, 67px);
     padding: 5px;
     object-fit: cover;
+    transition: .7s linear;
 }
 
 .header__self-account:hover {
@@ -1181,15 +1201,6 @@ footer ul li img {
 }
 
 @media (max-width: 1100px) {
-    .header__menu, .header__detailed {
-        display: none;
-    }
-    .header__login {
-        background-color: #B1C2B5;
-        border-color: #B1C2B5;
-        color: #FFFFFF;
-    }
-
     .task__author {
         flex-direction: column;
     }
@@ -1217,5 +1228,22 @@ footer ul li img {
     .faq__collapsible > div {
         flex-wrap: wrap;
         margin-top: 20px;
+    }
+}
+
+@media (max-width: 900px) {
+    .header__menu, .header__detailed {
+        display: none;
+    }
+    .header__login {
+        background-color: #B1C2B5;
+        border-color: #B1C2B5;
+        color: #FFFFFF;
+    }
+    .header__logo_max {
+        display: none;
+    }
+    .header__logo_min {
+        display: flex;
     }
 }
