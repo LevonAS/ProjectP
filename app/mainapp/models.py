@@ -86,7 +86,6 @@ class Course(models.Model):
     image = models.ImageField(verbose_name="Изображение", blank=True, null=True, upload_to="сourses_images")
     talents = models.ManyToManyField(Talent, verbose_name="Навыки, которые дает курс", related_name="courses")
     benefits = models.ManyToManyField(Benefit, verbose_name="Польза курса", related_name="courses")
-    lesson_qty = models.CharField(verbose_name="Количество уроков", max_length=25, blank=True)
     duration = models.CharField(verbose_name="Продолжительность курса", max_length=25, blank=True)
     age_group = models.CharField(verbose_name="Возрастная группа", max_length=25, blank=True)
     tools = models.TextField(verbose_name="Необходимые материалы и инструменты для курса", blank=True)
@@ -161,20 +160,6 @@ class Lesson(models.Model):
         verbose_name = "Урок"
         verbose_name_plural = "Уроки"
         ordering = ["course", "number"]
-
-
-class Application(models.Model):
-    id = models.UUIDField(default=uuid4, primary_key=True)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Пользователь", on_delete=models.SET_NULL,
-                             null=True, related_name="applications")
-    course = models.ForeignKey(Course, verbose_name="Курсы", on_delete=models.CASCADE, related_name="applications")
-    approved = models.BooleanField(verbose_name="Заявка подтверждена", default=False)
-    created_at = models.DateTimeField(verbose_name='Создана', auto_now_add=True)
-
-    class Meta:
-        verbose_name = "Заявка"
-        verbose_name_plural = "Заявки"
-        ordering = ["created_at"]
 
 
 class StudentsWork(models.Model):
