@@ -155,15 +155,14 @@ header {
 .header__login {
     border-radius: 15px;
     font-size: 1.25rem;
-    padding: clamp(14px, 2vw, 20px) clamp(21px, 5vw, 39px);
-    border: 1px solid #95AA99;
-    color: #95AA99;
+    padding: clamp(15px, 2vw, 20px) clamp(21px, 5vw, 40px);
+    background: #95AA99;
+    color: #FFFFFF;
     transition: color .7s linear;
 }
 
 .header__login:hover {
-    color: #FFFFFF;
-    background: #95AA99;
+    background: #CDDAD0;
 }
 
 .header__detailed {
@@ -1100,20 +1099,22 @@ footer ul li img {
 }
 
 .header__self-account {
-    background-image: url(../img/self-account.svg);
+    /* background-image: url(../img/self-account.svg);
     background-size: contain;
     display: inline-block;
     background-repeat: no-repeat;
     background-position: center center;
+    padding: 5px;
+    object-fit: cover; */
     height: clamp(37px, 4vw, 47px);
     width: clamp(57px, 4vw, 67px);
-    padding: 5px;
-    object-fit: cover;
-    transition: .7s linear;
 }
 
-.header__self-account:hover {
-    background-image: url(../img/self-account_active.svg);
+.header__self-account:hover .header__self-account-fill {
+    /* background-image: url(../img/self-account_active.svg); */
+    transition: .5s linear;
+    fill: #95AA99;
+    stroke: #ffffff;
 }
 
 
@@ -1242,11 +1243,6 @@ footer ul li img {
 @media (max-width: 900px) {
     .header__menu, .header__detailed {
         display: none;
-    }
-    .header__login {
-        background-color: #B1C2B5;
-        border-color: #B1C2B5;
-        color: #FFFFFF;
     }
     .header__logo_max {
         display: none;
