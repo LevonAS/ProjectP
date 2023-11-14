@@ -75,6 +75,10 @@ header {
     height: clamp(28px, 4vw, 40px);
 }
 
+object {
+    pointer-events: none;
+}
+
 .header__menu {
     width: 100%;
 }
