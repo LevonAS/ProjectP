@@ -123,7 +123,8 @@
                 <ul>
                     <li><a href="/#anchor-about">О школе</a></li>
                         <!--#anchor-about-->
-                    <li><a href="/#anchor-courses">Наши курсы</a></li>
+{#                    <li><a href="/#anchor-courses">Наши курсы</a></li>#}
+                    <li><a href="/courses-all/">Наши курсы</a></li>
                     <li><a href="/#anchor-mentors">Преподаватели</a></li>
                 </ul>
             </nav>
@@ -139,7 +140,7 @@
                     <div class="autorization__context_menu_container">
                         <a href="/courses-all/">Все курсы</a>
                         <a href="/self-account/">Мои курсы</a>
-                        <a href="#">На стройку</a>
+                        <a href="#">Настройки</a>
                         <a href="/logout/">Выход</a>
                     </div>
                 </div>
@@ -158,13 +159,12 @@
         <footer>
             <span>Мы в соц-сетях:</span>
             <ul>
-                <li><a href="#"><img src="{% static 'img/vk.svg' %}" alt="VK"></a></li>
-                <li><a href="#"><img src="{% static 'img/in.svg' %}" alt=""></a></li>
-                <li><a href="#"><img src="{% static 'img/tg.svg' %}" alt="Telegram"></a></li>
+                <li><a href="https://vk.com/petrocreative" target="_blank"><img src="{% static 'img/vk.svg' %}" alt="VK"></a></li>
+                <li><a href="https://dzen.ru/id/65527afd3a2cd66a5960c1fc" target="_blank"><img src="{% static 'img/yandex_zen.svg' %}" alt=""></a></li>
+                <li><a href="https://t.me/petrocreative" target="_blank"><img src="{% static 'img/tg.svg' %}" alt="Telegram"></a></li>
             </ul>
         </footer>
     </div>
-
 
     <script src="{% static 'js/index.js' %}"></script>
     <script src="{% static 'js/contextMenu.js' %}"></script>
