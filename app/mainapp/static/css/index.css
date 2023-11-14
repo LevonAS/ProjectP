@@ -73,10 +73,14 @@ header {
 .header__logo_obj_min {
     width: clamp(54px, 17vw, 115px);
     height: clamp(28px, 4vw, 40px);
+}object {
+    pointer-events: none;
 }
 
-object {
-    pointer-events: none;
+.header__logo_obj_max:hover .logo_elefant_max_hover,
+.header__logo_obj_min:hover .logo_elefant_min_hover {
+    fill: #CDDAD0;
+    transition: .7s linear;
 }
 
 .header__menu {
@@ -154,7 +158,7 @@ object {
     padding: clamp(14px, 2vw, 20px) clamp(21px, 5vw, 39px);
     border: 1px solid #95AA99;
     color: #95AA99;
-    transition: .7s linear;
+    transition: color .7s linear;
 }
 
 .header__login:hover {
