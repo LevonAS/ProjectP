@@ -119,16 +119,17 @@
             </a></div>
             </div>
 <!--            <div class="header__logo"><a href="/"><img src="{% static 'img/logo.svg' %}" alt="Logo"></a></div>-->
-            <nav class="header__menu">
-                <ul>
-                    <li><a href="/#anchor-about">О школе</a></li>
-                        <!--#anchor-about-->
-{#                    <li><a href="/#anchor-courses">Наши курсы</a></li>#}
-                    <li><a href="/courses-all/">Наши курсы</a></li>
-                    <li><a href="/#anchor-mentors">Преподаватели</a></li>
-                </ul>
-            </nav>
+
             <div class="header__buttons">
+                <nav class="header__menu">
+                    <ul>
+                        <li class="bottom_line_slider"><a href="/#anchor-about">О школе</a></li>
+                            <!--#anchor-about-->
+{#                        <li class="bottom_line_slider"><a href="/#anchor-courses">Наши курсы</a></li>#}
+                        <li class="bottom_line_slider"><a href="/courses-all/">Наши курсы</a></li>
+                        <li class="bottom_line_slider"><a href="/#anchor-mentors">Преподаватели</a></li>
+                    </ul>
+                </nav>
                 {% if request.user.is_authenticated %}
                 <svg width="64" height="65" viewBox="0 0 64 65" fill="none" xmlns="http://www.w3.org/2000/svg" class="header__self-account" id="header__self-account">
                     <circle class="header__self-account-fill" cx="32" cy="32" r="32" fill="#ECECEC"/>
