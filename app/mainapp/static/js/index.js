@@ -19,24 +19,6 @@ mobileWidthMediaQuery.addEventListener('change', function (event) {
 //     showMission(event.matches)
 // };
 
-// Раскрытие вкладок faq
-var coll = document.getElementsByClassName("faq__collapsible");
-var i;
-for (i = 0; i < coll.length; i++) {
-    coll[i].addEventListener("click", function() {
-        this.classList.toggle("faq__active");
-        var content = this.nextElementSibling;
-        if (content.style.maxHeight){
-            content.style.maxHeight = null;
-            content.style.marginTop = null;
-        } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-            content.style.marginTop = "35px";
-        }
-    });
-}
-
-
 // АВТОРИЗАЦИЯ
 
 function autorization() {
@@ -46,38 +28,44 @@ function autorization() {
     // let frm = document.getElementById("form__autorization");
     let cls = document.getElementById("autorization__close");
     let rgs = document.getElementById("autorization__registration");
-    let frm_rgs = document.getElementById("registration__pop_up");   
+    let frm_rgs = document.getElementById("registration__pop_up");
 
-    btn.addEventListener('click', function() {
-        if (btn.innerHTML === 'Войти') {
-            // frm.style.display = 'block';
-            popUp.classList.add('pop_up_active');
-        } else {
-            // window.location.href = '/logout/';
-            // https://code.mu/ru/javascript/book/supreme/ajax/post-queries/
-            let promise = fetch('/logout/', {
-                method: 'post',
-            });
-            // https://learn.javascript.ru/fetch
-            // fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits')
-            //     .then(response => response.json())
-            //     .then(commits => alert(commits[0].author.login));
-        }
-        // btn.innerHTML =
-        //   (btn.innerHTML === 'Показать всё') ? btn.innerHTML = 'Скрыть всё' : btn.innerHTML = 'Показать всё';
-    });
+    if (btn) {
+        btn.addEventListener('click', function() {
+            if (btn.innerHTML === 'Войти') {
+                // frm.style.display = 'block';
+                popUp.classList.add('pop_up_active');
+            } else {
+                // window.location.href = '/logout/';
+                // https://code.mu/ru/javascript/book/supreme/ajax/post-queries/
+                let promise = fetch('/logout/', {
+                    method: 'post',
+                });
+                // https://learn.javascript.ru/fetch
+                // fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits')
+                //     .then(response => response.json())
+                //     .then(commits => alert(commits[0].author.login));
+            }
+            // btn.innerHTML =
+            //   (btn.innerHTML === 'Показать всё') ? btn.innerHTML = 'Скрыть всё' : btn.innerHTML = 'Показать всё';
+        });
+    };
 
-    cls.addEventListener("click", function() {
-        // frm.style.display = "none";
-        popUp.classList.remove('pop_up_active');
-    });
+    if (cls) {
+        cls.addEventListener("click", function() {
+            // frm.style.display = "none";
+            popUp.classList.remove('pop_up_active');
+        });
+    };
 
-    rgs.addEventListener("click", function() {
-        popUp.classList.remove('pop_up_active');
-        frm_rgs.classList.add('pop_up_active');
-        // frm.style.display = "none";
-        // frm_rgs.style.display = "block";
-    });
+    if (rgs) {
+        rgs.addEventListener("click", function() {
+            popUp.classList.remove('pop_up_active');
+            frm_rgs.classList.add('pop_up_active');
+            // frm.style.display = "none";
+            // frm_rgs.style.display = "block";
+        });
+    };
 }
 
 function registration() {
