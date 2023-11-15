@@ -99,6 +99,7 @@ class Course(models.Model):
     question_joining_telegram_chat = models.TextField(verbose_name="Что я получу, вступив в телеграм-канал курса?")
     question_paid_no_access = models.TextField(verbose_name="Я оплатил и не получил доступ к курсу")
     telegram_channel_link = models.URLField(verbose_name="Ссылка на тг-канал", blank=True, null=True)
+    on_sale = models.BooleanField(verbose_name="В продаже", default = False)
     is_popular = models.BooleanField(verbose_name="Популярный", default=False)
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
