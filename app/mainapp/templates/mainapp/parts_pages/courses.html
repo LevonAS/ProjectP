@@ -15,7 +15,7 @@
                     </div>
                     <div class="courses__name">{{ first_course.title }}</div>
                     <div class="courses__for-btns">
-                        <a class="courses__for-1" href="#"><div>{{ first_course.preparation }}</div></a>
+                        <a class="courses__for-1" href="{% url 'filter_courses' %}?key={{ first_course.preparation }}"><div>{{ first_course.preparation }}</div></a>
                         <a class="courses__for-2" href="#"><div>О ПЕТРОГЛИФЕ</div></a>
                     </div>
                     {% for desc in descriptions_first %}
@@ -32,7 +32,7 @@
                         <a class="courses__time" href="#">{{ item.duration }}</a>
                     </div>
                     <div class="courses__name">{{ item.title }}</div>
-                    <a class="courses__for" href="#"><div>{{ item.preparation }}</div></a>
+                    <a class="courses__for" href="{% url 'filter_courses' %}?key={{ item.preparation }}"><div>{{ item.preparation }}</div></a>
                     {% for desc in item.description %}
                         <p class="courses__note">{{ desc }}</p>
                     {% endfor %}
