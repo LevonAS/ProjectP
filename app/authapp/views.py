@@ -9,7 +9,7 @@ from django.shortcuts import redirect
 from django_conf import settings
 from django.contrib import messages
 from django.contrib.auth.views import PasswordChangeView, PasswordResetView
-from django.contrib.auth.views.token import PasswordResetTokenGenerator
+# from django.contrib.auth.views.token import PasswordResetTokenGenerator
 
 from random import random
 from hashlib import sha1

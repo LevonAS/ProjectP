@@ -484,6 +484,8 @@ object {
 }
 .endpage__slogan-img {
     width: clamp(309px, 45vw, 616px);
+    height: clamp(439px, 57vw, 875px);
+    aspect-ratio: 616/875;
 }
 .endpage__slogan-txt {
     position: absolute;
@@ -517,6 +519,26 @@ footer ul {
 footer ul li img {
     width: clamp(40px, 4vw, 75px);
     height: clamp(40px, 4vw, 75px);
+}
+
+.footer_politics {
+    display: flex;
+    justify-content: space-between;
+    gap: 17px;
+    margin-top: clamp(57px, 10vw, 137px);
+    margin-bottom: clamp(27px, 5.5vw, 77px);
+}
+.footer_politics div a {
+    color: #868D92;
+    font-size: clamp(0.75rem, 4vw, 1rem);
+    text-decoration: none;
+}
+.footer_self {
+    display: flex;
+    justify-content: center;
+    color: #B4BFC5;
+    font-size: clamp(0.75rem, 4vw, 1rem);
+    margin-bottom: clamp(27px, 5vw, 77px);
 }
 
 /* INDEX: ВИДЕО */
@@ -1300,5 +1322,17 @@ footer ul li img {
     }
     .header__logo_obj_min {
         display: flex;
+    }
+
+    footer > span,
+    footer > ul {
+        margin-left: 0;
+    }
+    .footer_politics {
+        flex-direction: column;
+
+    }
+    .footer_self {
+        justify-content: left;
     }
 }
