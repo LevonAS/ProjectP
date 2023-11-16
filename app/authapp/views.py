@@ -1,21 +1,18 @@
-from django.contrib.auth.forms import PasswordChangeForm
 from django.db.models import Q
 from django.urls import reverse_lazy
 from django.views.generic import View
 from django.contrib.auth import get_user_model, authenticate, login, logout
-from django.contrib.auth.views import PasswordChangeView
 from django.core.mail import send_mail
 from django.shortcuts import redirect
-from django_conf import settings
 from django.contrib import messages
 from django.contrib.auth.views import PasswordChangeView, PasswordResetView
-# from django.contrib.auth.views.token import PasswordResetTokenGenerator
 
 from random import random
 from hashlib import sha1
 
 from authapp.models import StudentUser
 from authapp.forms import ChangePasswordForm
+from django_conf import settings
 
 
 User = get_user_model()
@@ -128,15 +125,26 @@ class ChangePasswordView(PasswordChangeView):
     template_name = "mainapp/parts_pages/password_change.html"
 
 
-def reset_password_view(request):
-    email = request.POST.get("email")
-    if not email:
-        messages.error(request, message="Необходимо ввести email")
-        return redirect('index')
+# def reset_password_view(request):
+#     email = request.POST.get("email")
+#     if not email:
+#         messages.error(request, message="Необходимо ввести email")
+#         return redirect('index')
+#
+#     student = StudentUser.objects.filter(email=email).first()
+#     if not student:
+#         messages.error(request, message="Пользователь с таким адресом электронной почты не зарегистрирован")
+#         return redirect('index')
+#
+#     if student.is_active:
+#         token = PasswordResetTokenGenerator.make_token(student)
 
-    student = StudentUser.objects.filter(email=email).first()
-    if not student:
-        messages.error(request, message="Пользователь с таким адресом электронной почты не зарегистрирован")
-        return redirect('index')
 
-    token = PasswordResetTokenGenerator.make_token()
+def password_reset_done_view(request):
+    messages.info(request, message='Мы отправили вам инструкцию по установке нового пароля на указанный адрес электронной почты (если в нашей базе данных есть такой адрес). Вы должны получить ее в ближайшее время. Если вы не получили письмо, пожалуйста, убедитесь, что вы ввели адрес с которым Вы зарегистрировались, и проверьте папку со спамом.')
+    return redirect('index')
+
+
+def password_reset_complete_view(request):
+    messages.info(request, message='Ваш пароль был сохранен. Теперь вы можете войти.')
+    return redirect('index')
