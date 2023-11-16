@@ -5,8 +5,7 @@ from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django.contrib import messages
-from django.contrib.auth.views import PasswordChangeView, PasswordResetView, PasswordResetConfirmView
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
+from django.contrib.auth.views import PasswordChangeView, PasswordResetView
 
 from random import random
 from hashlib import sha1

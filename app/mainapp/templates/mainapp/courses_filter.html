@@ -1,0 +1,9 @@
+{% extends "mainapp/base.html" %}
+
+{% block title %}Выборка курсов по ключу: {{key}}{% endblock %}
+
+
+{% block content %}
+    {% include "mainapp/parts_pages/courses__filter.html" %}
+    {% include "mainapp/parts_pages/image_tree_yellow.html" %}
+{% endblock %}

@@ -47,6 +47,7 @@ urlpatterns = [
     # path('self-account/course/<str:slug>/homework/<int:number>', main_views.view_self_account_course_lesson_hw, name='self-account-course-lesson-hw'),
     # path('courses/', include('mainapp.urls', namespace='courses')),
     path('authapp/', include('authapp.urls', namespace='authapp')),
+    path('filter-courses/', main_views.filter_courses, name='filter_courses'),
 ]
 
 if settings.DEBUG:
