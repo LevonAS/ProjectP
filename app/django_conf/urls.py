@@ -26,8 +26,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main_views.index, name='index'),
     path('login/', auth_views.login_view, name='login'),
-    path('logout/', auth_views.logout_view),
-    path('register/', auth_views.register_view),
+    path('logout/', auth_views.logout_view, name='logout'),
+    path('register/', auth_views.register_view, name='register'),
+    path('reset_password/', auth_views.reset_password_view, name='reset_password'),
 
     path('subscribe/', main_views.subscribe_view),
     path('courses/<str:slug>/', main_views.view_course, name='course'),

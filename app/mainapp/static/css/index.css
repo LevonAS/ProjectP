@@ -200,7 +200,7 @@ object {
 
 /* pop-up авторизации и регистрации */
 
-.autorization__pop_up, .registration__pop_up {
+.autorization__pop_up, .registration__pop_up, .password_reset__pop_up {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -212,18 +212,18 @@ object {
     transition: 0.5s ease-in-out;
 }
 
-.autorization__pop_up.pop_up_active, .registration__pop_up.pop_up_active {
+.autorization__pop_up.pop_up_active, .registration__pop_up.pop_up_active, .password_reset__pop_up.pop_up_active {
     transform: translate(0%, 0%) scale(100%);
     background-color: rgba(86, 102, 89, .8);    
 }
 
-.autorization__pop_up_container, .registration__pop_up_container {
+.autorization__pop_up_container, .registration__pop_up_container, .password_reset__pop_up_container {
     display: flex;
     width: 100%;
     height: 100%;
 }
 
-.autorization__form, .registration__form {
+.autorization__form, .registration__form, .password_reset__form {
     margin: auto;
     width: min(495px, 90vw);
     padding: 28px;
@@ -231,19 +231,19 @@ object {
     border-radius: 24px;
 }
 
-.autorization__title, .registration__title {
+.autorization__title, .registration__title, .password_reset__title {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.autorization__title > span, .registration__title > span {
+.autorization__title > span, .registration__title > span, .password_reset__title > span {
     color: #082963;
     font-size: 2.25rem;
     font-weight: 500;
 }
 
-.autorization__close, .registration__close {
+.autorization__close, .registration__close, .password_reset__close {
     width: 40px;
     height: 40px;
     background-image: url("../img/btn_close.svg");
@@ -251,11 +251,11 @@ object {
     background-size: contain;
 }
 
-.autorization__close:hover, .registration__close:hover {
+.autorization__close:hover, .registration__close:hover, .password_reset__close:hover {
     background-image: url("../img/btn_close_hover.svg");
 }
 
-.autorization__inputs > input, .registration__inputs > input {
+.autorization__inputs > input, .registration__inputs > input, .password_reset__inputs > input {
     border: 1px solid #95AA99;
     padding: 20px 30px;
     margin-top: 12px;
@@ -265,7 +265,7 @@ object {
     width: calc(100% - 70px);
 }
 
-.autorization__inputs > input:focus, .registration__inputs > input:focus {
+.autorization__inputs > input:focus, .registration__inputs > input:focus, .password_reset__inputs > input:focus {
     outline: none;
 }
 
@@ -277,19 +277,19 @@ object {
     margin-top: 27px;
 }
 
-.autorization__recover {
+.autorization__reset {
     text-align: end;    
     margin-top: 17px;
 }
 
-.autorization__recover > a {
+.autorization__reset > a {
     text-decoration: none;
     color: #A0A5A9;
     font-size: 1rem;
     font-weight: 400;
 }
 
-.autorization__footer, .registration__footer {
+.autorization__footer, .registration__footer, .password_reset__footer {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -309,7 +309,7 @@ object {
     color: #566659;
 }
 
-.autorization__button, .registration__button {
+.autorization__button, .registration__button, .password_reset__button {
     padding: 30px 36px;
     border: none;
     border-radius: 15px;
@@ -319,7 +319,7 @@ object {
     cursor: pointer;
 }
 
-.autorization__button:hover, .registration__button:hover {
+.autorization__button:hover, .registration__button:hover, .password_reset__button:hover {
     background: #566659;
 }
 

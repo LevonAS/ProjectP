@@ -8,7 +8,8 @@ from django.core.mail import send_mail
 from django.shortcuts import redirect
 from django_conf import settings
 from django.contrib import messages
-from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.views import PasswordChangeView, PasswordResetView
+from django.contrib.auth.views.token import PasswordResetTokenGenerator
 
 from random import random
 from hashlib import sha1
@@ -125,3 +126,17 @@ class ChangePasswordView(PasswordChangeView):
     form_class = ChangePasswordForm
     success_url = reverse_lazy("self-account")
     template_name = "mainapp/parts_pages/password_change.html"
+
+
+def reset_password_view(request):
+    email = request.POST.get("email")
+    if not email:
+        messages.error(request, message="Необходимо ввести email")
+        return redirect('index')
+
+    student = StudentUser.objects.filter(email=email).first()
+    if not student:
+        messages.error(request, message="Пользователь с таким адресом электронной почты не зарегистрирован")
+        return redirect('index')
+
+    token = PasswordResetTokenGenerator.make_token()
