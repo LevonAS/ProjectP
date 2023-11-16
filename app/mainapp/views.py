@@ -422,3 +422,14 @@ def view_delete_homework_files(request, slug, number, path, name):
 
     messages.error(request, 'Для данных действий необходимо авторизоваться')
     return redirect('index')
+
+
+def filter_courses(request):
+    key = request.GET['key']
+    preparation = get_object_or_404(mainapp_models.Preparation, value=key)
+    courses = mainapp_models.Course.objects.filter(preparation_id=preparation.id)
+    for course in courses:
+        course.description = course.description.split('\n')
+    context = {'courses': courses,
+               'key': key}
+    return render(request, 'mainapp/courses_filter.html', context)

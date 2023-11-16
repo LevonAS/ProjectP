@@ -1,28 +1,8 @@
-{% load static markdownify %}
-<!-- Курсы  -->
-    <!-- Обратите внимание что 1ый курс уникальный! Остальные однотипные, их можно в поток -->
-    <div class="site-box">
+ <div class="site-box">
         <section class="courses"  id="anchor-courses">
 
-            <h1 class="section__title">Все курсы он-лайн школы Петроглиф</h1>
+            <h1 class="section__title">Выборка курсов по ключу: "{{key}}"</h1>
             <div class="courses__cards">
-
-                <div class="courses__card">
-                    <div class="courses__info">
-                        <a class="courses__age" href="#">{{ first_course.age_group }}</a>
-                        <div class="courses__count">{{ first_course.get_quantity_lessons }}</div>
-                        <a class="courses__time courses__time-unique" href="#">{{ first_course.duration }}</a>
-                    </div>
-                    <div class="courses__name">{{ first_course.title }}</div>
-                    <div class="courses__for-btns">
-                        <a class="courses__for-1" href="{% url 'filter_courses' %}?key={{ first_course.preparation }}"><div>{{ first_course.preparation }}</div></a>
-                        <a class="courses__for-2" href="#"><div>О ПЕТРОГЛИФЕ</div></a>
-                    </div>
-                    {% for desc in descriptions_first %}
-                        <p class="courses__note">{{ desc }}</p>
-                    {% endfor %}
-                    <a class="courses__detailed" href="{% url 'course' first_course.slug %}"><div>Подробнее о курсе</div></a>
-                </div>
 
                 {% for item in courses %}
                 <div class="courses__card">
@@ -32,7 +12,7 @@
                         <a class="courses__time" href="#">{{ item.duration }}</a>
                     </div>
                     <div class="courses__name">{{ item.title }}</div>
-                    <a class="courses__for" href="{% url 'filter_courses' %}?key={{ item.preparation }}"><div>{{ item.preparation }}</div></a>
+                    <a class="courses__for" href="#"><div>{{ item.preparation }}</div></a>
                     {% for desc in item.description %}
                         <p class="courses__note">{{ desc }}</p>
                     {% endfor %}
