@@ -37,7 +37,7 @@
                     <input class="autorization__email" type="email" name="email" placeholder="E-Mail" required>
                     <input class="autorization__password" type="password" name="password" placeholder="Пароль" required>
                 </div>
-                <p class="autorization__recover"><a href="#" id="autorization__recover">Восстановить пароль</a></p>
+                <p class="autorization__reset"><a href="#" id="autorization__reset">Восстановить пароль</a></p>
                 <div class="autorization__footer">
                     <a href="#" class="autorization__registration" id="autorization__registration">Зарегистрироваться</a>
                     <button class="autorization__button" type="submit" name="autorization__submit">Отправить</button>
@@ -67,6 +67,24 @@
                         <button class="registration__button" type="submit" name="registration__submit" id="registration__button">Зарегистрироваться</button>
                     </div>
                     <!-- <p>Если Вы регистрировались, то <a href="#" id="registration__autorization">авторизоваться</a>.</p> -->
+            </form>
+        </div>
+    </div>
+
+    <div class="password_reset__pop_up" id="password_reset__pop_up">
+        <div class="password_reset__pop_up_container">
+            <form action="/reset_password/"  method="post" class="password_reset__form" id="password_reset__form">
+                {% csrf_token %}
+                <div class="password_reset__title">
+                    <span>Восстановление пароля</span>
+                    <a href="#"><div class="password_reset__close" id="password_reset__close"></div></a>
+                </div>
+                <div class="password_reset__inputs">
+                    <input class="autorization__email" type="email" name="email" placeholder="E-Mail" required>
+                </div>
+                <div class="password_reset__footer">
+                    <button class="password_reset__button" type="submit" name="password_reset__submit">Восстановить</button>
+                </div>
             </form>
         </div>
     </div>

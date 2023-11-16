@@ -2,6 +2,7 @@
 
 autorization();
 registration();
+password_reset();
 passTrue();
 
 // headerMargin();  
@@ -29,6 +30,8 @@ function autorization() {
     let cls = document.getElementById("autorization__close");
     let rgs = document.getElementById("autorization__registration");
     let frm_rgs = document.getElementById("registration__pop_up");
+    let rst = document.getElementById("autorization__reset")
+    let frm_rp = document.getElementById("password_reset__pop_up");
 
     if (btn) {
         btn.addEventListener('click', function() {
@@ -66,6 +69,13 @@ function autorization() {
             // frm_rgs.style.display = "block";
         });
     };
+
+    if (rst) {
+        rst.addEventListener("click", function () {
+            popUp.classList.remove('pop_up_active');
+            frm_rp.classList.add('pop_up_active')
+        })
+    }
 }
 
 function registration() {
@@ -84,6 +94,15 @@ function registration() {
         // frm_rgs.style.display = "none";
         popUp.classList.remove('pop_up_active');
     });
+}
+
+function password_reset() {
+    let popUp = document.getElementById('password_reset__pop_up');
+    let cls = document.getElementById('password_reset__close')
+
+    cls.addEventListener("click", function () {
+        popUp.classList.remove('pop_up_active')
+    })
 }
 
 function passTrue() {
