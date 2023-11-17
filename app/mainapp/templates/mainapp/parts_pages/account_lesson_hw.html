@@ -19,7 +19,7 @@
         <div></div>
         <div class="account__les-zero-space"></div>
 
-        <div class="account__les-desc-title">Описание<br>урока</div>
+        <div class="account__les-desc-title"></div>
         <div class="account__les-desc">
             {% for desc in lesson_desc %}
                 <p>{{ desc }}</p>
@@ -57,7 +57,7 @@
                         <a href="/self-account/lesson_delete_img/{{ course.slug }}/{{ lesson.number }}/{{ student_homework.image1 }}/" class=account__les-hw-file-ib-a>Удалить</a>
                     </div>
                 {% else %}
-                    <div>
+                    <div class="account__les-hw-files-b">
                         <label for=account__les-hw-file-1f id=account__les-hw-file-1l></label>
                         <input type=file id=account__les-hw-file-1f name="image1">
                     </div>
@@ -70,7 +70,7 @@
                         <a href="/self-account/lesson_delete_img/{{ course.slug }}/{{ lesson.number }}/{{ student_homework.image2 }}/" class=account__les-hw-file-ib-a>Удалить</a>
                     </div>
                 {% else %}
-                    <div>
+                    <div class="account__les-hw-files-b">
                         <label for=account__les-hw-file-2f id=account__les-hw-file-2l></label>
                         <input type=file id=account__les-hw-file-2f name="image2">
                     </div>
@@ -83,7 +83,7 @@
                         <a href="/self-account/lesson_delete_img/{{ course.slug }}/{{ lesson.number }}/{{ student_homework.image3 }}/" class=account__les-hw-file-ib-a>Удалить</a>
                     </div>
                 {% else %}
-                    <div>
+                    <div class="account__les-hw-files-b">
                         <label for=account__les-hw-file-3f id=account__les-hw-file-3l></label>
                         <input type=file id=account__les-hw-file-3f name="image3">
                     </div>
@@ -96,7 +96,7 @@
                         <a href="/self-account/lesson_delete_img/{{ course.slug }}/{{ lesson.number }}/{{ student_homework.pdf_file }}/" class=account__les-hw-file-ib-a>Удалить</a>
                     </div>
                 {% else %}
-                    <div>
+                    <div class="account__les-hw-files-b">
                         <label for=account__les-hw-file-pdf id=account__les-hw-file-pdfl></label>
                         <input type=file id=account__les-hw-file-pdf name="pdf_file">
                     </div>
@@ -108,7 +108,7 @@
     </form>
 
     <div class="account__les-btns">
-        <a class="account__les-tg" href="{{ course.telegram_channel_link }}">tg</a>
+        <a class="account__les-tg" href="{{ course.telegram_channel_link }}"><div>Переходи в Телеграмм-канал курса</div></a>
         <div class="account__les-btns-lr">
             {% if btn_l == '' %}
             <a href="{{ btn_l }}"><div class="account__les-btn-l"></div></a>
