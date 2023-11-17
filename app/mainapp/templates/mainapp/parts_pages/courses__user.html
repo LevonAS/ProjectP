@@ -12,7 +12,7 @@
                     <div class="courses__info">
                         <a class="courses__age" href="#">{{ first_course.age_group }}</a>
                         <div class="courses__count" >{{ first_course.get_quantity_lessons }}</div>
-                        <a class="courses__time courses__time-unique" href="#">{{ first_course.duration }}</a>
+                        <div class="courses__time courses__time-unique" >{{ first_course.duration }}</div>
                     </div>
                     <div class="courses__name">{{ first_course.title }}</div>
                     <div class="courses__for-btns">
@@ -31,7 +31,7 @@
                     <div class="courses__info">
                         <a class="courses__age" href="#">{{ item.age_group }}</a>
                         <div class="courses__count">{{ item.get_quantity_lessons }}</div>
-                        <a class="courses__time" href="#">{{ item.duration }}</a>
+                        <div class="courses__time">{{ item.duration }}</div>
                     </div>
                     <div class="courses__name">{{ item.title }}</div>
                     <a class="courses__for" href="{% url 'filter_courses' %}?key={{ item.preparation }}"><div>{{ item.preparation }}</div></a>
