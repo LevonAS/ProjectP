@@ -7,12 +7,12 @@
                 {% for item in courses %}
                 <div class="courses__card">
                     <div class="courses__info">
-                        <a class="courses__age" href="#">{{ item.age_group }}</a>
+                        <div class="courses__age" href="#">{{ item.age_group }}</div>
                         <div class="courses__count">{{ item.get_quantity_lessons }}</div>
                         <div class="courses__time">{{ item.duration }}</div>
                     </div>
                     <div class="courses__name">{{ item.title }}</div>
-                    <a class="courses__for" href="#"><div>{{ item.preparation }}</div></a>
+                    <div class="courses__for" href="#"><div>{{ item.preparation }}</div></div>
                     {% for desc in item.description %}
                         <p class="courses__note">{{ desc }}</p>
                     {% endfor %}

@@ -426,8 +426,14 @@ def view_delete_homework_files(request, slug, number, path, name):
 
 def filter_courses(request):
     key = request.GET['key']
-    preparation = get_object_or_404(mainapp_models.Preparation, value=key)
-    courses = mainapp_models.Course.objects.filter(preparation_id=preparation.id)
+    try:
+        #Ищем сразу ключ в объектах Уровня подготовки
+        preparation = mainapp_models.Preparation.objects.get(value=key)
+        courses = mainapp_models.Course.objects.filter(preparation_id=preparation.id)
+    except mainapp_models.Preparation.DoesNotExist:
+        # Если не находим ищем в объектах курса по полю age_group
+        courses = mainapp_models.Course.objects.filter(age_group=key)
+
     for course in courses:
         course.description = course.description.split('\n')
     context = {'courses': courses,
