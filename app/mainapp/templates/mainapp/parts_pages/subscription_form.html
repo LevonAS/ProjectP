@@ -11,7 +11,7 @@
             <input class="form__inputs_email" type="email" name="email" placeholder="Почта">
         </div>
         <input type="submit" value="Получить письмо" class="form__submit">
-        <p>Нажимая на кнопку «Получить письмо», вы принимаете условия <a href="#">пользовательского соглашения</a>.</p>
+        <p>Нажимая на кнопку «Получить письмо», вы принимаете условия <a href="{% url 'documents' name="consent_to_email_advertising" %}">согласия на получение рекламных рассылок</a>.</p>
     </form>
     <img src="{% static 'img/image08.svg' %}" alt="" class="teacher__petroglif">
 </div>
