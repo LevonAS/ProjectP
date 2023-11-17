@@ -32,7 +32,7 @@
     flex-wrap: wrap;
 }
 
-.pc__aboute__info > a, .pc__aboute__count {
+.pc__aboute__info > a, .pc__aboute__count, .pc__aboute__time {
     font-size: clamp(1rem, 3vw, 1.25rem);
     padding: 20px 35px;
     background-color: #FFFFFF;

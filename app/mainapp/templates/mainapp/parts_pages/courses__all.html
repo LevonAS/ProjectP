@@ -16,7 +16,7 @@
                     <div class="courses__name">{{ first_course.title }}</div>
                     <div class="courses__for-btns">
                         <a class="courses__for-1" href="{% url 'filter_courses' %}?key={{ first_course.preparation }}"><div>{{ first_course.preparation }}</div></a>
-                        <a class="courses__for-2" href="#"><div>О ПЕТРОГЛИФЕ</div></a>
+                        <div class="courses__for-2"><div>О ПЕТРОГЛИФЕ</div></div>
                     </div>
                     {% for desc in descriptions_first %}
                         <p class="courses__note">{{ desc }}</p>
