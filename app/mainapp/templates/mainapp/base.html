@@ -211,9 +211,10 @@
             </ul>
 
             <div class="footer_politics">
-                <div id="footer_politics_pc"><a href="#">Политика конфиденциальности</a></div>
-                <div id="footer_politics_of"><a href="#">Договор оферты</a></div>
-                <div id="footer_politics_sd"><a href="#">Согласие на обработку персональных данных</a></div>
+{#                <div id="footer_politics_pc"><a href="/documents/{% name='privacy-policy' %}">Политика конфиденциальности</a></div>#}
+                <div id="footer_politics_pc"><a href="{% url 'documents' name="privacy-policy" %}">Политика конфиденциальности</a></div>
+                <div id="footer_politics_of"><a href="{% url 'documents' name="offer" %}">Договор оферты</a></div>
+                <div id="footer_politics_sd"><a href="{% url 'documents' name="consent-to-personal-data-processing" %}">Согласие на обработку персональных данных</a></div>
             </div>
             <div class="footer_self">Контакты ИП Заремба Алина Муслимовна ИНН: 343503571874 ОГРН ИП: 323344300063482</div>
         </footer>
