@@ -10,7 +10,7 @@
                 <a class="pc__aboute__age" href="{% url 'filter_courses' %}?key={{ course.age_group }}">{{ course.age_group }}</a>
                 <div class="pc__aboute__count">{{ course.get_quantity_lessons }}</div>
                 <!-- Для главного начального курса, указать доп стили в этот элемент! -->
-                <a class="pc__aboute__time" href="#" {% if course.slug == 'first-course' %} style="background: #FF8D8D; color: #FFFFFF;"{% endif %}>{{ course.duration }}</a>
+                <div class="pc__aboute__time" {% if course.slug == 'first-course' %} style="background: #FF8D8D; color: #FFFFFF;"{% endif %}>{{ course.duration }}</div>
 <!--                <a class="pc__aboute__time" href="#" {% if course.duration == 'Бесконечный доступ' %} style="background: #FF8D8D; color: #FFFFFF;" {% else %} style="background: #FFFFFF; color: #566659;" {% endif %}>{{ course.duration }}</a>-->
                 <!-- Для остальных курсов не надо! -->
                 <!-- <a class="pc__aboute__time" href="#">бесконечный доступ</a> -->
