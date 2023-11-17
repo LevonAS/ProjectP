@@ -255,6 +255,7 @@ class StudentCourse(models.Model):
     lesson_number = models.IntegerField(verbose_name="Номер доступного урока", default=1)
     note = models.TextField(verbose_name="Примечания по студенту на этом курсе", blank=True)
     purchase_price = models.IntegerField(verbose_name="Цена покупки", blank=True, null=True)
+    bank = models.CharField(verbose_name="Банк", max_length=150, blank=True)
     created_at = models.DateTimeField(verbose_name='Создан', auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name='Обновлен', auto_now=True)
     deleted = models.BooleanField(verbose_name="Удален", default=False)
