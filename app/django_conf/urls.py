@@ -48,6 +48,11 @@ urlpatterns = [
     # path('courses/', include('mainapp.urls', namespace='courses')),
     path('authapp/', include('authapp.urls', namespace='authapp')),
     path('filter-courses/', main_views.filter_courses, name='filter_courses'),
+
+    path('documents/<str:name>/', main_views.get_document, name='documents'),
+    # path('privacy-policy'),
+    # path('consent-to-personal-data-processing'),
+    # path('consent-to-email-advertising'),
 ]
 
 if settings.DEBUG:

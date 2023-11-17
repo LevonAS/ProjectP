@@ -1,0 +1,7 @@
+{% load static %}
+
+<div>
+    {% static "" as baseUrl %}
+    <iframe id="verPDF" src="{{ baseUrl }}docs/{{ doc_name }}"
+    style="width:800px; height:800px;"></iframe>
+</div>

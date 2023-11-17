@@ -433,3 +433,10 @@ def filter_courses(request):
     context = {'courses': courses,
                'key': key}
     return render(request, 'mainapp/courses_filter.html', context)
+
+
+def get_document(request, name):
+    context = {
+        'doc_name': f'{name}.pdf',
+    }
+    return render(request, 'mainapp/document.html', context)
