@@ -148,3 +148,8 @@ def password_reset_done_view(request):
 def password_reset_complete_view(request):
     messages.info(request, message='Ваш пароль был сохранен. Теперь вы можете войти.')
     return redirect('index')
+
+
+class StudentPasswordResetConfirmView(PasswordResetConfirmView):
+    template_name = "mainapp/reset_password.html"
+    # success_url = ''
