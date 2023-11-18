@@ -833,6 +833,21 @@ footer ul li img {
     background: #566659;
 }
 
+.courses__card-locked {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(3px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.courses__card-locked > svg {
+    width: clamp(67px, 5vw, 125px);
+}
+
 .courses__helpdesc {
     display: flex;
     justify-content: end;
