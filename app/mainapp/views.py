@@ -16,6 +16,7 @@ def index(request):
     courses = mainapp_models.Course.objects.exclude(slug='first-course')[:3]
     for course in courses:
         course.description = course.description.split('\n')
+        print('course:', course.on_sale)
     # courses.description.str.split('\n')
     # descriptions = courses.description.split('\n')
     # Первый курс выбирается по слагу first-course
