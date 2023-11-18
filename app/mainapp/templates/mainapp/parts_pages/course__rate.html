@@ -19,7 +19,7 @@
                     {% csrf_token %}
                     <h1 class="pc__rate__form__title">ЗАПИСАТЬСЯ НА КУРС</h1>
                     <div class="pc__rate__form__inputs">
-                        <input class="pc__rate__form__inputs_name" type="text" name="promocode" placeholder="Промокод">
+                        <input class="pc__rate__form__inputs_name" type="text" name="promocode" placeholder="Промокод (если есть)">
                         <input class="pc__rate__form__inputs_email" type="email" name="email" placeholder="Почта">
                         <!-- <input class="pc__rate__form__inputs_phone" type="tel" name="phone" placeholder="+7"> -->
                         <p>Нажимая на кнопку «Получить письмо», вы принимаете условия <a href="{% url 'documents' name="offer" %}">пользовательского соглашения</a>.</p>
