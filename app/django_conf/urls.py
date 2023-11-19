@@ -50,6 +50,8 @@ urlpatterns = [
     path('filter-courses/', main_views.filter_courses, name='filter_courses'),
 
     path('documents/<str:name>/', main_views.get_document, name='documents'),
+
+    path("cookies/", include("cookie_consent.urls")),
 ]
 
 if settings.DEBUG:
