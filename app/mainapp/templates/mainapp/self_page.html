@@ -1,0 +1,8 @@
+{% extends "mainapp/base.html" %}
+
+{% block title %}Личный кабинет, {{ user.first_name }}{% endblock %}
+
+
+{% block content %}
+    {% include "mainapp/parts_pages/self__page.html" %}
+{% endblock %}
