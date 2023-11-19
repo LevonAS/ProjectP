@@ -135,6 +135,41 @@ def get_mentor_course(request, slug):
     return mentor
 
 
+def view_self_page(request):
+    current_user = request.user
+    if current_user.is_authenticated:
+        context = {'user': current_user,  }
+        return render(request, 'mainapp/self_page.html', context)
+    else:
+        messages.error(request, 'Для входа в личный кабинет Вам необходимо авторизоваться')
+        return redirect('index')
+
+def view_self_page_info(request):
+    current_user = request.user
+    first_name = request.POST.get("name")
+    photo = request.FILES.get("photo")
+    bio = request.POST.get("about")
+    if first_name:
+        current_user.first_name = first_name
+    if bio:
+        current_user.bio = bio
+    if photo:
+        print('photo:', photo)
+
+    current_user.save()
+    return redirect('self-page')
+
+def view_self_page_settigs(request):
+    current_user = request.user
+    password1 = request.POST.get("password1")
+    password2 = request.POST.get("password2")
+
+    print('passwords:', password1, password2)
+    # Теоретически можно просто сохранить пароль, пользователь же уже авторизован
+
+    return redirect('self-page')
+
+
 def view_self_account(request):
     current_user = request.user
     if current_user.is_authenticated:

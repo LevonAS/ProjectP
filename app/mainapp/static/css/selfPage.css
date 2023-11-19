@@ -1,0 +1,161 @@
+
+.self-cabinet {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 17px;
+}
+
+.self__information-title,
+.self__settings-title {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    color: #A0A5A8;
+    margin-bottom: 7px;
+}
+.self__information-title.self__information-active,
+.self__settings-title.self__settings-active {
+    color: #000000;
+}
+.self__information-title:not(.self__information-active):hover,
+.self__settings-title:not(.self__settings-active):hover {
+    color: #000000;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.self__information-form,
+.self__settings-form {
+    display: none;
+}
+.self__information-form.self__information-active,
+.self__settings-form.self__settings-active {
+    display: block;
+}
+.self__block_bottom {
+    border-bottom: 1px solid #A0A5A8;
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    margin-bottom: 37px;
+}
+.self__input-field__label {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    pointer-events: none;
+}
+#self__input-field__email {
+    pointer-events: none;
+}
+.self__input-field__icon {
+    position: relative;
+    width: 100%;
+}
+.self__input-field__input {
+    border: none;
+    background-color: transparent;
+    width: calc(100% - 47px);
+    outline: none;
+    font-size: clamp(1.5rem, 5vw, 2.25rem);
+}
+.self__input-field__input::placeholder {
+    color: #A0A5A9;
+    font-size: clamp(1rem, 4vw, 1.25rem);
+}
+#self__input-field__photo {
+    display: none;
+}
+#self__input-field__path {
+    width: 100%;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+}
+#self__input-field__svg {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.self__block_user {
+    display: flex;
+    align-items: flex-start;
+    gap: 17px;
+}
+#self__input-field__user {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 227px;
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    color: #000000;
+    margin-bottom: 27px;
+}
+#self__input-field__user::placeholder {
+    color: #A0A5A9;
+    font-size: clamp(1rem, 7vw, 1.25rem);
+}
+.self__input_block_btn {
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    color: #FFFFFF;
+    border: 1px solid #687B9E;
+    border-radius: 24px;
+    background-color: #687B9E;
+    padding: 30px clamp(37px, 5vw, 107px);
+    cursor: pointer;
+    margin-bottom: clamp(37px, 5vw, 77px);
+}
+.self__input_block_btn:hover {
+    color: #687B9E;
+    background-color: transparent;
+}
+.self__sertificates {
+    padding: 17px;
+    width: calc(100% - 34px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 17px;
+    margin-bottom: 37px;
+}
+.self__sertificate {
+    width: 100%;
+    aspect-ratio: 0.75;
+    border-radius: 24px;
+    background-color: #A0A5A8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    object-fit: contain;
+}
+.self__input-field__aicon {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 0;
+    bottom: 0;
+    right: 0px;
+    width: 40px;
+    cursor: pointer;
+    color: #bdbdbd;
+    transition: color 0.15s ease-in-out;
+}
+.self__input-field__aicon svg:hover path {
+    fill: #212529;
+}
+.self__input-field__aicon svg:hover rect {
+    fill: #212529;
+}
+.input_block_save-nothing {
+    height: 117px;
+}
+
+
+
+@media (max-width: 900px) {
+    .self-cabinet {
+        display: flex;
+        flex-direction: column;
+    }
+}
