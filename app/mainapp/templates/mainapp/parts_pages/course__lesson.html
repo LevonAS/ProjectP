@@ -9,11 +9,7 @@
             <div class="faq__items">
                 {% for lesson in lessons %}
                 <div class="faq__item">
-                    {% if lesson.number <= current_number %}
-                        <button class="faq__collapsible"><div><div><a class="faq__collapsible-lesson-open" href="">Урок {{ lesson.number }}</a></div><div>{{ lesson.title }}</div></div></button>
-                    {% else %}
-                        <button class="faq__collapsible"><div><div><a href="" style="pointer-events: none; opacity: 0.7;">Урок {{ lesson.number }}</a></div><div>{{ lesson.title }}</div></div></button>
-                    {% endif %}
+                    <button class="faq__collapsible"><div><div><span class="faq__collapsible-lesson-open">Урок {{ lesson.number }}</span></div><div>{{ lesson.title }}</div></div></button>
                     <div class="faq__content pc__lesson__content">
                         {% if lesson.lesson_goal %}
                         <div class="pc__lesson__p">
@@ -51,7 +47,7 @@
                 {% endfor %}
             </div>
         </div>
-        <a href="#"><div class="pc__lesson-all">Смотреть все уроки</div></a>
+        <div class="pc__lesson-all">Смотреть все уроки</div>
         <div class="pc__lesson__container">
             {% for item in course.talents.all %}   
             <div class="pc__lesson__card">

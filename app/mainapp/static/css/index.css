@@ -1132,7 +1132,7 @@ footer ul li img {
     align-items: center;
 }
 
-.faq__collapsible > div > div > a {
+.faq__collapsible > div > div > span.faq__collapsible-lesson-open {
     text-wrap: nowrap;
     text-decoration: none;
     font-size: clamp(1.25rem, 3vw, 1.5rem);
@@ -1143,7 +1143,7 @@ footer ul li img {
     padding: clamp(11px, 2vw, 19.5px) clamp(20px, 3vw, 35px);
 }
 
-.faq__collapsible > div > div > a:hover {
+.faq__collapsible > div > div > span.faq__collapsible-lesson-open:hover {
     background: #566659;
 }
 

@@ -191,13 +191,6 @@
     flex-shrink: 0;
 }
 
-.pc__lesson > a {
-    text-decoration: none;
-    font-size: clamp(1.25rem, 3vw, 1.5rem);
-    color: #FFFFFF;
-    text-wrap: nowrap;
-}
-
 .pc__lesson-all {
     height: clamp(62px, 10vw, 90px);
     width: clamp(258px, 20vw, 300px);
@@ -207,6 +200,14 @@
     align-items: center;
     justify-content: center;
     margin: clamp(20px, 4vw, 40px) auto;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: clamp(1.25rem, 3vw, 1.5rem);
+    color: #FFFFFF;
+    text-wrap: nowrap;
+}
+.pc__lesson-all:hover {
+    background: #566659;
 }
 
 .pc__lesson__container {
