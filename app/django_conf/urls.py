@@ -54,7 +54,7 @@ urlpatterns = [
 
     path('documents/<str:name>/', main_views.get_document, name='documents'),
 
-    path("cookies/", include("cookie_consent.urls")),
+    # path("cookies/", include("cookie_consent.urls")),
 ]
 
 if settings.DEBUG:
