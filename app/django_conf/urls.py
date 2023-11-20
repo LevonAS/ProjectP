@@ -40,7 +40,8 @@ urlpatterns = [
 
     path('self-page/', main_views.view_self_page, name='self-page'),
     path('self-page-info/', main_views.view_self_page_info, name='self-page-info'),
-    path('self-page-settings/', main_views.view_self_page_settigs, name='self-page-settings'),
+    path('self-page-settings/', auth_views.ChangePasswordView.as_view(), name='self-page-settings'),
+    path('password-change-done/', auth_views.password_change_done_view, name='password_change_done'),
     path('self-account/', main_views.view_self_account, name='self-account'),
     path('self-account/course/<str:slug>/', main_views.view_self_account_course, name='self-account-course'),
     # path('self-account/lesson/', main_views.view_self_account_course_lesson, name='self-account-lesson'),
@@ -54,7 +55,7 @@ urlpatterns = [
 
     path('documents/<str:name>/', main_views.get_document, name='documents'),
 
-    # path("cookies/", include("cookie_consent.urls")),
+    path("cookies/", include("cookie_consent.urls")),
 ]
 
 if settings.DEBUG:

@@ -144,29 +144,23 @@ def view_self_page(request):
         messages.error(request, 'Для входа в личный кабинет Вам необходимо авторизоваться')
         return redirect('index')
 
+
 def view_self_page_info(request):
     current_user = request.user
     first_name = request.POST.get("name")
+    age = request.POST.get("age")
     photo = request.FILES.get("photo")
     bio = request.POST.get("about")
     if first_name:
         current_user.first_name = first_name
+    if age:
+        current_user.age = age
     if bio:
         current_user.bio = bio
     if photo:
         print('photo:', photo)
 
     current_user.save()
-    return redirect('self-page')
-
-def view_self_page_settigs(request):
-    current_user = request.user
-    password1 = request.POST.get("password1")
-    password2 = request.POST.get("password2")
-
-    print('passwords:', password1, password2)
-    # Теоретически можно просто сохранить пароль, пользователь же уже авторизован
-
     return redirect('self-page')
 
 

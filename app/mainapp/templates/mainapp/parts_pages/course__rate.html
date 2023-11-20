@@ -15,7 +15,8 @@
                 </ul>
             </div>
             <div class="pc__rate__2" id="anchor-buy-course">
-                <form action="{% url 'buy_course' slug=course.slug %}"  method="post" class="pc__rate__form">
+{#                <form action="{% url 'buy_course' slug=course.slug %}"  method="post" class="pc__rate__form">#}
+                <form method="post" class="pc__rate__form">
                     {% csrf_token %}
                     <h1 class="pc__rate__form__title">ЗАПИСАТЬСЯ НА КУРС</h1>
                     <div class="pc__rate__form__inputs">
@@ -26,7 +27,8 @@
                     </div>
                     <div class="pc__rate__form__pay">
                         <div class="pc__rate__form_price">{{ course.price }}</div>
-                        <input type="submit" value="Оплатить курс" class="pc__rate__form_submit">
+{#                        <input type="submit" value="Оплатить курс" class="pc__rate__form_submit">#}
+                        <input value="Оплатить курс" class="pc__rate__form_submit">
                     </div>
                 </form>
             </div>
