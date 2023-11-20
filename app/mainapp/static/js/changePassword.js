@@ -1,3 +1,22 @@
+
+let pass0 = document.getElementById("input-field__aicon-pass0");
+let rect0 = document.getElementById("input-field__aicon-svg-rect0");
+let input0 = document.getElementById("input-field__pass0");
+if (pass0 && rect0 && input0) {
+    pass0.addEventListener('click', function() {
+        if (rect0 && input0) {
+            if (rect0.style.display != "none") {
+                rect0.style.display="none";
+                input0.type = 'text';
+            } else {
+                rect0.style.display="block";
+                input0.type = 'password';
+            }
+
+        }
+    });
+};
+
 let pass1 = document.getElementById("input-field__aicon-pass1");
 let rect1 = document.getElementById("input-field__aicon-svg-rect1");
 let input1 = document.getElementById("input-field__pass1");
