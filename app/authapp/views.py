@@ -120,24 +120,12 @@ class UserConfirmEmailView(View):
 
 
 class ChangePasswordView(PasswordChangeView):
-    form_class = ChangePasswordForm
-    success_url = reverse_lazy("self-account")
-    template_name = "mainapp/parts_pages/password_change.html"
+    template_name = "mainapp/self_page.html"
 
 
-# def reset_password_view(request):
-#     email = request.POST.get("email")
-#     if not email:
-#         messages.error(request, message="Необходимо ввести email")
-#         return redirect('index')
-#
-#     student = StudentUser.objects.filter(email=email).first()
-#     if not student:
-#         messages.error(request, message="Пользователь с таким адресом электронной почты не зарегистрирован")
-#         return redirect('index')
-#
-#     if student.is_active:
-#         token = PasswordResetTokenGenerator.make_token(student)
+def password_change_done_view(request):
+    messages.info(request, message='Ваш пароль был успешно изменен.')
+    return redirect('self-page-settings')
 
 
 def password_reset_done_view(request):
@@ -152,4 +140,3 @@ def password_reset_complete_view(request):
 
 class StudentPasswordResetConfirmView(PasswordResetConfirmView):
     template_name = "mainapp/reset_password.html"
-    # success_url = ''

@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # 'django.contrib.sites',
     'markdownify.apps.MarkdownifyConfig',
-    # 'cookie_consent',
+    'cookie_consent',
 
     'authapp',
     'mainapp',
